@@ -1,3 +1,3 @@
 # Play2Gether -- Aplikacja mobilna
 
-TODO
+Test

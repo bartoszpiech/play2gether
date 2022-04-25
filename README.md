@@ -1,3 +1,4 @@
 # Play2Gether -- Aplikacja mobilna
 
-Test
+## Uruchomienie
+Aby uruchomić aplikację, należy użyć komendy `$ npm start`

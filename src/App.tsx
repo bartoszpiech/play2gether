@@ -3,21 +3,20 @@ import './App.css';
 
 import Navbar from './components/Navbar/Navbar';
 import SearchBox from './components/SearchBox/SearchBox';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     <div className="App">
         <Navbar title="PLAY2GETHER" icon="fa-solid fa-volleyball"/>
-        <SearchBox/>
-        <div className="map" style={{float: "left", width: "50%"}}>
-            map
+        <SearchBox title="Wyszukaj"/>
+        <div className="map" style={{textAlign: "center", height: "1000px", backgroundColor: "green", float: "left", width: "55%"}}>
+            Mapa
         </div>
-        <div className="ad" style={{float: "left", width: "20%"}}>
-            ad
+        <div className="ad" style={{textAlign: "center", height: "1000px", backgroundColor: "red", float: "left", width: "20%"}}>
+            Miejsce na twoją reklamę
         </div>
-        <div className="footer" style={{clear: "both"}}>
-            footer
-        </div>
+        <Footer creatorName="Play2Gether inc."/>
     </div>
   );
 }

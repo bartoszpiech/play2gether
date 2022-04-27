@@ -1,10 +1,10 @@
-import React from 'react';
-
-export interface MenuItems {
+/*
+interface MenuItems {
     title: string;
     url: string;
     isSignupButton?: boolean;
 };
+*/
 
 export const MenuItems = [
     {

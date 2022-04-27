@@ -16,11 +16,11 @@ export const MenuItems = [
         url: '#',
     },
     {
-        title: 'Kontakt',
+        title: 'Premium',
         url: '#',
     },
     {
-        title: 'O nas',
+        title: 'Konto',
         url: '#',
     },
     {

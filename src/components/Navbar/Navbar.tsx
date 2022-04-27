@@ -5,10 +5,12 @@ import { Heading } from './styled/Heading';
 import { MenuIcon } from './styled/MenuIcon';
 import { NavMenu, NavMenuProps} from './styled/NavMenu';
 import { NavLink } from './styled/NavLink';
+
 import { MenuItems } from './MenuItems';
 
 export interface NavbarProps {
     title?: string;
+    icon?: string;
     children?: React.ReactNode; // dunno why?
 }
 
@@ -20,11 +22,11 @@ export default class Navbar extends Component<NavbarProps> {
     render() {
         return(
             <PageNavbar>
-                <Heading><i className="fa-solid fa-volleyball" />{ this.props.title }</Heading>
+                <Heading><i className={ this.props.icon }/>{ this.props.title }</Heading>
                 <MenuIcon onClick={ this.handleClick }>
                     <i className={ this.state.clicked ? "fas fa-times" : "fas fa-bars" } />
                 </MenuIcon>
-                <NavMenu isActive={ this.state.clicked }>
+                <NavMenu isActive={ this.state.clicked } menuHeight={ MenuItems.length * 100 } >
                     { MenuItems.map((item, index) => {
                         return(
                             <li key={ index }>

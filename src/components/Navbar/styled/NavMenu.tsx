@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export interface NavMenuProps {
     isActive?: boolean;
+    menuHeight: number;
 }
 
 export const NavMenu = styled.ul<NavMenuProps>`
@@ -19,7 +20,7 @@ export const NavMenu = styled.ul<NavMenuProps>`
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 500px;
+        height: ${ props => props.menuHeight }px;
         position: absolute;
         top: 80px;
         left: -100%;

@@ -7,10 +7,8 @@ import SearchBox from './components/SearchBox/SearchBox';
 function App() {
   return (
     <div className="App">
-        <Navbar title="PLAY2GETHER">
-        </Navbar>
-        <SearchBox>
-        </SearchBox>
+        <Navbar title="PLAY2GETHER" icon="fa-solid fa-volleyball"/>
+        <SearchBox/>
         <div className="map" style={{float: "left", width: "50%"}}>
             map
         </div>

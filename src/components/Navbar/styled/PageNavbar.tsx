@@ -8,7 +8,7 @@ export const PageNavbar = styled.nav`
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1200px) {
         position: relative;
     }
 `;

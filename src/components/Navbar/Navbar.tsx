@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
-import { NavLink } from "react-router-dom";
 
 import { PageNavbar } from './styled/PageNavbar';
 import { Heading } from './styled/Heading';
 import { MenuIcon } from './styled/MenuIcon';
 import { NavMenu } from './styled/NavMenu';
-// import { MainNavLink } from './styled/NavLink';
+import { StyledNavLink } from './styled/NavLink';
 
 import { MenuItems } from './MenuItems';
 
@@ -28,13 +27,13 @@ export default class Navbar extends Component<NavbarProps> {
                 <MenuIcon onClick={ this.handleClick }>
                     <i className={ this.state.clicked ? "fa-solid fa-arrow-left" : "fa-solid fa-arrow-right" } />
                 </MenuIcon>
-                <NavMenu isActive={ this.state.clicked } menuHeight={ MenuItems.length * 100 } >
+                <NavMenu isActive={ this.state.clicked } menuHeight={ MenuItems.length * 100 + 20} >
                     { MenuItems.map((item, index) => {
                         return(
                             <li key={ index }>
-                                <NavLink to={item.url}>
-                                    {item.title}
-                                </NavLink>
+                                <StyledNavLink to={ item.url } isSignupButton={ item.isSignupButton } onClick={ this.handleClick }>
+                                    { item.title }
+                                </StyledNavLink>
                             </li>
                             )
                     })}

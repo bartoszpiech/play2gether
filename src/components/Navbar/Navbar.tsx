@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import { NavLink } from "react-router-dom";
+
 import { PageNavbar } from './styled/PageNavbar';
 import { Heading } from './styled/Heading';
 import { MenuIcon } from './styled/MenuIcon';
 import { NavMenu } from './styled/NavMenu';
-import { NavLink } from './styled/NavLink';
+// import { MainNavLink } from './styled/NavLink';
 
 import { MenuItems } from './MenuItems';
 
@@ -30,7 +32,7 @@ export default class Navbar extends Component<NavbarProps> {
                     { MenuItems.map((item, index) => {
                         return(
                             <li key={ index }>
-                                <NavLink href={item.url} isSignupButton={ item.isSignupButton }>
+                                <NavLink to={item.url}>
                                     {item.title}
                                 </NavLink>
                             </li>

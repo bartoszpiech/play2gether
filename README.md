@@ -4,7 +4,8 @@ Play2Gether is an app that allows you to create, join and connect with others th
 
 ## Installation
 ### Prerequisites
-- Javascript package manager (npm or yarn are ok),
+- Node.js (version >= 14.0.0),
+- Javascript package manager (npm (version >= 5.6) or yarn (didn't use) are ok),
 
 ### How to launch
 To launch Play2Gether you have to install prerequisites and fork this repository.

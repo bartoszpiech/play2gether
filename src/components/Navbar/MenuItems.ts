@@ -8,19 +8,7 @@ interface MenuItems {
 
 export const MenuItems = [
     {
-        title: 'Home',
-        url: '#',
-    },
-    {
-        title: 'Wydarzenia',
-        url: '#',
-    },
-    {
         title: 'Premium',
-        url: '#',
-    },
-    {
-        title: 'Konto',
         url: '#',
     },
     {

@@ -1,11 +1,29 @@
-# Play2Gether -- Aplikacja mobilna
+# Play2Gether -- Sports gathering app
+### Warning: App is under active development
+Play2Gether is an app that allows you to create, join and connect with others that want to do some sport activities in groups.
 
-## Uruchamianie
-Aby uruchomić aplikację, należy użyć komendy `$ npm start`.
+## Installation
+### Prerequisites
+- Node.js (version >= 14.0.0),
+- Javascript package manager (npm (version >= 5.6) or yarn (didn't use) are ok),
 
+### How to launch
+To launch Play2Gether you have to install prerequisites and fork this repository.
+```bash
+# clone the forked repository replacing 'YOUR_GITHUB_USERNAME' with your github username
+$ git clone https://github.com/YOUR_GITHUB_USERNAME/play2gether.git
+
+# change the directory
+$ cd play2gether
+
+# install needed packages
+$ npm install
+
+# run the app
+$ npm start
+```
 
 ## Learning hub
-
 - [TypeScript: JavaScript With Syntax For Types.](https://www.typescriptlang.org/)
 - [TypeScript - Material UI](https://mui.com/material-ui/guides/typescript/)
 - [Markdown Cheat Sheet | Markdown Guide](https://www.markdownguide.org/cheat-sheet/)

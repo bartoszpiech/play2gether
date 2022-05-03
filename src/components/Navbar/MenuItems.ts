@@ -24,8 +24,17 @@ export const MenuItems = [
         url: '#',
     },
     {
-        title: 'Sign up',
-        url: '#',
+        title: 'Nowe miejsce',
+        url: '/user/newPlace',
+    },
+    {
+        title: 'Rejestracja',
+        url: '/register',
+        isSignupButton: true,
+    },
+    {
+        title: 'Logowanie',
+        url: '/login',
         isSignupButton: true,
     }
 ]

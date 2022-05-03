@@ -5,6 +5,7 @@ import { Heading, SmallHeading, TinyHeading } from './styled/Heading';
 import SportType from './SportType';
 import AmountOfPeople from './AmountOfPeople';
 import Place from './Place';
+import SportsDatePicker from './SportsDatePicker';
 
 interface SearchBoxProps {
     title: string;
@@ -22,7 +23,9 @@ export default class SearchBox extends Component<SearchBoxProps> {
                     <SportType/>
                     <TinyHeading>Ilość wolnych miejsc:</TinyHeading>
                     <AmountOfPeople/>
-                    <TinyHeading>Zakres dat: TODO</TinyHeading>
+                    <TinyHeading>Zakres dat:</TinyHeading>
+                    <SportsDatePicker label="Od"/>
+                    <SportsDatePicker label="Do"/>
                     <TinyHeading>Dystans: TODO</TinyHeading>
                 </form>
             </PageSearchBox>

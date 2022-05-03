@@ -8,14 +8,13 @@ import { UserProvider } from "./context/UserContext";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import "moment/locale/pl";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-    <React.StrictMode>
-        <UserProvider>
-            <App />
-        </UserProvider>
-    </React.StrictMode>
+    <UserProvider>
+        <App />
+    </UserProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

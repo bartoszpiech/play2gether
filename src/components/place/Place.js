@@ -1,12 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
-
 import { useParams } from "react-router-dom";
-
 import { UserContext } from "../../context/UserContext";
 
+import Flash from "../partials/Flash"
 import NewEvent from "./NewEvent";
+import moment from "moment";
+
+import "moment/locale/pl"; // without this line it didn't work
+moment.locale("pl");
+
 
 function Place() {
+    const [error, setError] = useState("");
+    const [errorVisible, setErrorVisible] = useState(false);
+
     const [userContext, setUserContext] = useContext(UserContext);
 
     const [placeData, setPlaceData] = useState(false);
@@ -19,7 +26,8 @@ function Place() {
     }, []);
 
     const fetchData = () => {
-        console.log("czytam dane")
+        
+
         setLoading(true);
         fetch(process.env.REACT_APP_API_ENDPOINT + `user/getPlace/${id}`, {
             method: "GET",
@@ -32,29 +40,108 @@ function Place() {
             .then((response) => response.json())
             .then((data) => {
                 setPlaceData(data);
-                console.log(data)
+
                 setLoading(false);
             })
             .catch((error) => {
-                console.log(error);
+
                 setLoading(false);
             });
     };
 
-    const loadEvents = () => {
-        // console.log("siema")
-        // console.log(placeData.events)
-        return placeData.events.map(event => <li key={event._id} className="list-group-item">Wydarzenie dnia: {event.date}</li>)
+    const join = (id) => {
+
+        const genericErrorMessage = "Nie udało się Spróbuj później";
+
+        setLoading(true);
+        fetch(process.env.REACT_APP_API_ENDPOINT + `user/event/${id}/join`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userContext.token}`,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                setPlaceData(data);
+                if (data.message) setError(data.message || genericErrorMessage);
+                setErrorVisible(true);
+                setLoading(false);
+                fetchData()
+            })
+            .catch((error) => {
+                setLoading(false);
+                fetchData()
+            });
+    };
+
+    const leave = (id) => {
+
+        const genericErrorMessage = "Nie udało się Spróbuj później";
+
+        setLoading(true);
+        fetch(process.env.REACT_APP_API_ENDPOINT + `user/event/${id}/leave`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userContext.token}`,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                setPlaceData(data);
+                setLoading(false);
+                if (data.message) setError(data.message || genericErrorMessage);
+                setErrorVisible(true);
+                fetchData()
+            })
+            .catch((error) => {
+                setLoading(false);
+                fetchData()
+            });
+    };
+
+    const handleOnClick = () => {
+        setErrorVisible(false);
     }
+
+    const loadEvents = () => {
+        return placeData.events.map((event) => (
+            <div className="row border align-items-center" key={event._id}>
+                <div className="col-5">
+                    Wydarzenie <b>{moment(event.date).format("MMMM Do HH:MM")}</b>
+                </div>
+                <div className="col-3">
+                    {event.signedUp.length}/{event.maxSignedUp ? event.maxSignedUp : "∞"}
+                </div>
+                <div className="col-2">
+                    <div className="btn btn-success" onClick={() => join(event._id)}>
+                        Dołącz
+                    </div>
+                </div>
+                <div className="col-2">
+                    <div className="btn btn-danger block" onClick={() => leave(event._id)}>Wyjdź</div>
+                </div>
+            </div>
+        ));
+    };
 
     return (
         <>
             {loading && placeData ? (
                 <div className="text-white">Nie ma jeszcze danych</div>
             ) : (
+                <>
+                {errorVisible && <Flash text={error} status="fail" handleOnClick={handleOnClick}></Flash>}
                 <div className="row mt-xl-5 mt-1 mx-0">
                     {newEventView ? (
-                        <NewEvent setNewEventView={setNewEventView} fetchData={fetchData} placeId={id} />
+                        <NewEvent
+                            setNewEventView={setNewEventView}
+                            fetchData={fetchData}
+                            placeId={id}
+                        />
                     ) : (
                         <div className="col-xl-4 offset-xl-2 col-12 offset-0">
                             <div className="card m-0 p-0">
@@ -86,7 +173,7 @@ function Place() {
                         </div>
                     )}
                     <div
-                        className="col-xl-4 col-12 bg-white rounded-1 p-3"
+                        className="col-xl-4 col-12 bg-white rounded-1 p-3 border"
                         style={{ height: "40.8rem" }}
                     >
                         <h1 className="display-4 text-center border-bottom border-dark pb-4">
@@ -100,6 +187,7 @@ function Place() {
                         </ul>
                     </div>
                 </div>
+                </>
             )}
         </>
     );

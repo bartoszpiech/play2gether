@@ -41,7 +41,7 @@ export const MenuItems = [
     },
     {
         title: 'Wyloguj',
-        url: '/login',
+        url: '/home',
         isSignupButton: true,
         login: false,
         logout: true,

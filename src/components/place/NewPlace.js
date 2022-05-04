@@ -65,7 +65,7 @@ const NewPlace = () => {
     return (
         <>
         {errorVisible && <Flash text={error} status="fail" handleOnClick={handleOnClick}></Flash>}
-            <div className="row mt-xl-2 mt-1 mx-0">
+            <div className="row mt-xl-5 mt-1 mx-0" style={{ height: "1000px" }}>
                 <div className="col-xl-4 offset-xl-4 col-12 offset-0 rounded-3 shadow-lg bg-white p-4">
                     <h1 className="display-5 text-center">Tworzenie nowego obiektu</h1>
 
@@ -92,7 +92,7 @@ const NewPlace = () => {
                             ></textarea>
                         </div>
 
-                        <div className="mt-3" style={{ height: "400px" }}>
+                        <div className="mt-3" style={{ height: "600px" }}>
                             <NewPlaceMap newLocation={setMarker} />
                         </div>
 
@@ -104,6 +104,9 @@ const NewPlace = () => {
                             {isSubmitting ? "Dodawanie" : "Dodaj"}
                         </button>
                     </form>
+                </div>
+                <div className="col-xl-2 col-12 offset-xl-2 offset-0 bg-danger shadow-lg" style={{height: "1000px"}}>
+                    <h1 className="text-center text-white">Reklama</h1>
                 </div>
             </div>
         </>

@@ -56,9 +56,9 @@ const Navbar = (props: NavbarProps) => {
                         } else if (item.logout) {
                             return (
                                 <li key={index}>
-                                    <div onClick={() => props.logoutHandler()} className="btn p-1 myBtn text-white">
+                                    <StyledNavLink onClick={() => props.logoutHandler()} to={item.url} >
                                        {item.title}
-                                    </div>
+                                    </StyledNavLink>
                                 </li>
                             );
                         }

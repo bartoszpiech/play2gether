@@ -17,6 +17,7 @@ export const NavMenu = styled.ul<NavMenuProps>`
     justify-content: end;
     margin-right: 2rem;
     padding-left: 0;
+    margin-bottom: 0;
 
     @media screen and (max-width: 1200px) {
         display: flex;

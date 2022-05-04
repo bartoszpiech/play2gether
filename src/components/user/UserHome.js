@@ -4,6 +4,7 @@ import { UserContext } from "../../context/UserContext";
 
 import UserHomeMap from "./UserHomeMap";
 
+import SearchBox from "../SearchBox/SearchBox";
 
 
 
@@ -67,12 +68,12 @@ const UserHome = () => {
 
     return (
         <div className="row mt-xl-5 mt-1 mx-0">
-            <div className="col-xl-2 col-12 offset-0 rounded-3 shadow bg-white p-4 shadow-lg"></div>
-            <div className="col-xl-6 col-12 offset-xl-1 offset-0 p-0 shadow-lg" style={{height: "740px"}}>
+            <div className="col-xl-2 col-12 offset-0 rounded-3 shadow bg-white p-0 shadow-lg"><SearchBox title="Wyszukaj"/></div>
+            <div className="col-xl-6 col-12 offset-xl-1 offset-0 p-0 shadow-lg" style={{height: "1000px"}}>
             <UserHomeMap/>
             </div>
             
-            <div className="col-xl-2 col-12 offset-xl-1 offset-0 bg-danger shadow-lg" style={{height: "740px"}}>
+            <div className="col-xl-2 col-12 offset-xl-1 offset-0 bg-danger shadow-lg" style={{height: "1000px"}}>
                 <h1 className="text-center text-white">Reklama</h1>
             </div>
         </div>

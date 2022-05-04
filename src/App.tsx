@@ -10,6 +10,7 @@ import Login from "./components/main/Login";
 import NewPlace from "./components/place/NewPlace";
 import Place from "./components/place/Place";
 import Home from "./components/main/Home";
+import Premium from "./components/user/Premium";
 
 import UserHome from "./components/user/UserHome";
 
@@ -87,6 +88,14 @@ function App() {
                     element={
                         <RequireAuth redirectTo="/login">
                             <Place />
+                        </RequireAuth>
+                    }
+                />
+                <Route
+                    path="/user/premium"
+                    element={
+                        <RequireAuth redirectTo="/login">
+                            <Premium />
                         </RequireAuth>
                     }
                 />

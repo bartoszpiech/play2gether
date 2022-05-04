@@ -9,7 +9,7 @@ interface MenuItems {
 export const MenuItems = [
     {
         title: 'Premium',
-        url: '#',
+        url: 'user/premium',
         login: true,
     },
     {

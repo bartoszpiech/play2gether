@@ -2,11 +2,15 @@ import React, { Component } from "react";
 
 import { NavLink } from "react-router-dom";
 
+import Footer from "../Footer/Footer"
+
 class footer extends Component {
     render() {
         return (
-            <footer className="footer bg-light py-2 mt-auto">
-                <div className="container">
+            
+            <footer className="footer bg-light mt-auto">
+                <Footer creatorName="Play2Gether inc."/>
+                {/* <div className="container">
                     <div className="row">
                         <div className="col-9">
                             <span className="text-muted">&copy;Play2Gether</span>
@@ -20,7 +24,7 @@ class footer extends Component {
                             </NavLink>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </footer>
         );
     }

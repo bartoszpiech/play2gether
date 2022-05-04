@@ -17,7 +17,6 @@ export const StyledNavLink = styled(NavLink)<NavLinkProps>`
         ${ props => props.isSignupButton ? 'color: rgb(94, 63, 161)' : '' };
         transition: 0.4s ease-out;
     }
-
     @media screen and (max-width: 1200px) {
         display: table;
         padding: 2rem;

@@ -4,6 +4,7 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import SearchBox from "./components/SearchBox/SearchBox";
 import Footer from "./components/Footer/Footer";
+import KubaFooter from "./components/partials/Footer"
 import Register from "./components/main/Register";
 import Login from "./components/main/Login";
 import NewPlace from "./components/place/NewPlace";
@@ -15,6 +16,7 @@ import UserHome from "./components/user/UserHome";
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 
 import { UserContext } from "./context/UserContext";
+import { AnyRecord } from "dns";
 
 function App() {
     const [userContext, setUserContext]: any = useContext(UserContext);
@@ -41,9 +43,25 @@ function App() {
         };
     }, [syncLogout]);
 
+    const logoutHandler = () => {
+        console.log("wylogowuje")
+        fetch(process.env.REACT_APP_API_ENDPOINT + "logout", {
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userContext.token}`,
+            },
+        }).then(async (response) => {
+            setUserContext((oldValues:any) => {
+                return { ...oldValues, details: undefined, token: null };
+            });
+            window.localStorage.setItem("logout", Date.now().toString());
+        });
+    };
+
     return (
         <Router>
-            <Navbar title="PLAY2GETHER" icon="fa-solid fa-volleyball"></Navbar>
+            <Navbar title="PLAY2GETHER" icon="fa-solid fa-volleyball" logoutHandler={logoutHandler}></Navbar>
             <Routes>
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
@@ -73,6 +91,8 @@ function App() {
                     }
                 />
             </Routes>
+            
+            <KubaFooter creatorName="Play2Gether inc."/>
         </Router>
 
         // <div className="App">

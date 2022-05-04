@@ -1,0 +1,9 @@
+.btnp {
+    background-color: rgba(209,188,255,1);
+    border: rgba(209,188,255,1);
+}
+
+.btnp:hover{
+    background-color: rgba(94,63,161,1);
+    border: rgba(94,63,161,1);
+}

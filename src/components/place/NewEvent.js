@@ -9,6 +9,8 @@ import pl from "date-fns/locale/pl";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+import "./place.css";
+
 registerLocale("pl", pl);
 
 function NewEvent(props) {
@@ -69,7 +71,7 @@ function NewEvent(props) {
 
     return (
         <div
-            className="col-xl-4 offset-xl-2 col-12 offset-0 bg-white rounded-1"
+            className="col-xl-4 offset-xl-2 col-12 offset-0 bg-white rounded-1 border"
             style={{ height: "40.8rem" }}
         >
             <h1 className="display-4 text-center mt-4">Stwórz wydarzenie</h1>
@@ -112,12 +114,12 @@ function NewEvent(props) {
 
                 <button
                     type="submit"
-                    className="btn btn-secondary col-12 mt-4"
+                    className="btn btnp col-12 mt-4"
                     disabled={isSubmitting}
                 >
                     {isSubmitting ? "Tworzenie" : "Stwórz"}
                 </button>
-                <div onClick={() => props.setNewEventView(false)} className="btn btn-primary">
+                <div onClick={() => props.setNewEventView(false)} className="btn btnp mt-5">
                     Anuluj
                 </div>
             </form>

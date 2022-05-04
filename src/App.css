@@ -3,3 +3,16 @@
     margin: 0;
     padding: 0;
 }
+
+.myBtn {
+    background-color: rgba(209,188,255,1);
+    border: rgba(209,188,255,1);
+}
+
+.myBtn:hover{
+    background-color: rgba(94,63,161,1);
+    border: rgba(94,63,161,1);
+    color: white;
+}
+
+

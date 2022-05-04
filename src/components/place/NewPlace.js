@@ -66,7 +66,7 @@ const NewPlace = () => {
         <>
         {errorVisible && <Flash text={error} status="fail" handleOnClick={handleOnClick}></Flash>}
             <div className="row mt-xl-2 mt-1 mx-0">
-                <div className="col-xl-4 offset-xl-4 col-12 offset-0 rounded-3 shadow bg-white p-4">
+                <div className="col-xl-4 offset-xl-4 col-12 offset-0 rounded-3 shadow-lg bg-white p-4">
                     <h1 className="display-5 text-center">Tworzenie nowego obiektu</h1>
 
                     <form onSubmit={formSubmitHandler}>

@@ -56,7 +56,7 @@ const Navbar = (props: NavbarProps) => {
                         } else if (item.logout) {
                             return (
                                 <li key={index}>
-                                    <div onClick={() => props.logoutHandler()} className="btn p-1 btnp text-white">
+                                    <div onClick={() => props.logoutHandler()} className="btn p-1 myBtn text-white">
                                        {item.title}
                                     </div>
                                 </li>

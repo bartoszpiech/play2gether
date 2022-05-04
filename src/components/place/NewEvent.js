@@ -9,8 +9,6 @@ import pl from "date-fns/locale/pl";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import "./place.css";
-
 registerLocale("pl", pl);
 
 function NewEvent(props) {
@@ -22,7 +20,6 @@ function NewEvent(props) {
     const [maxPeopleDisabled, setMaxPeopleDisabled] = useState(false);
 
     const [startDate, setStartDate] = useState(new Date());
-
 
     let navigate = useNavigate();
 
@@ -53,8 +50,8 @@ function NewEvent(props) {
                     // setErrorVisible(true);
                 } else {
                     // navigate(`/user/place/${props.placeId}`, { replace: true });
-                    props.setNewEventView(false)
-                    props.fetchData()
+                    props.setNewEventView(false);
+                    props.fetchData();
                 }
             })
             .catch((error) => {
@@ -64,62 +61,58 @@ function NewEvent(props) {
             });
     };
 
-    const handleCheckBox = () =>{
-        setMaxPeopleDisabled(preValue => !preValue)
-        setMaxPeople("")
-    }
+    const handleCheckBox = () => {
+        setMaxPeopleDisabled((preValue) => !preValue);
+        setMaxPeople("");
+    };
 
     return (
         <div
-            className="col-xl-4 offset-xl-2 col-12 offset-0 bg-white rounded-1 border"
+            className="col-xl-4 offset-xl-2 col-12 offset-0 bg-white rounded-1 border p-4"
             style={{ height: "40.8rem" }}
         >
-            <h1 className="display-4 text-center mt-4">Stwórz wydarzenie</h1>
+            <h1 className="display-4 text-center my-4">Stwórz wydarzenie</h1>
 
             <form onSubmit={formSubmitHandler}>
-                <div className="mt-4 mx-1">
-                    <label className="form-label mb-1">Data</label>
+                <div className="mt-5">
+                    <label className="form-label mb-1">Wybierz date</label>
                     <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
                         locale="pl"
                         showTimeSelect
                         timeFormat="p"
-                        timeIntervals={1}
+                        timeIntervals={5}
                         dateFormat="Pp"
                     />
                 </div>
-
-                <label className="form-label mt-3">Brak limitu / Limit Miejsc</label>
-                <div className="input-group">
-                    
-                    <div className="input-group-text">
+                <div className="mt-4">
+                    <label className="form-label mb-1">Brak limitu / Limit Miejsc</label>
+                    <div className="input-group">
+                        <div className="input-group-text">
+                            <input
+                                className="form-check-input"
+                                type="checkbox"
+                                onClick={handleCheckBox}
+                                value=""
+                                aria-label="Checkbox for following text input"
+                            />
+                        </div>
                         <input
-                            className="form-check-input mt-0"
-                            type="checkbox"
-                            onClick={handleCheckBox}
-                            value=""
-                            aria-label="Checkbox for following text input"
+                            type="number"
+                            className="form-control"
+                            aria-label="Text input with checkbox"
+                            value={maxPeople}
+                            onChange={(e) => setMaxPeople(e.target.value)}
+                            disabled={maxPeopleDisabled ? true : false}
                         />
                     </div>
-                    <input
-                        type="number"
-                        className="form-control"
-                        aria-label="Text input with checkbox"
-                        value={maxPeople}
-                        onChange={(e) => setMaxPeople(e.target.value)}
-                        disabled={maxPeopleDisabled? true : false}
-                    />
                 </div>
 
-                <button
-                    type="submit"
-                    className="btn btnp col-12 mt-4"
-                    disabled={isSubmitting}
-                >
+                <button type="submit" className="btn btn myBtn col-12 mt-4" disabled={isSubmitting}>
                     {isSubmitting ? "Tworzenie" : "Stwórz"}
                 </button>
-                <div onClick={() => props.setNewEventView(false)} className="btn btnp mt-5">
+                <div onClick={() => props.setNewEventView(false)} className="btn btn myBtn mt-5">
                     Anuluj
                 </div>
             </form>

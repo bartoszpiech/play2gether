@@ -109,7 +109,7 @@ function Place() {
 
     const loadEvents = () => {
         return placeData.events.map((event) => (
-            <div className="row border my-1 align-items-center" key={event._id}>
+            <div className="row border my-1 mx-3 align-items-center" key={event._id}>
                 <div className="col-5">
                     Wydarzenie <b>{moment(event.date).format("MMMM Do HH:MM")}</b>
                 </div>
@@ -117,12 +117,12 @@ function Place() {
                     {event.signedUp.length}/{event.maxSignedUp ? event.maxSignedUp : "∞"}
                 </div>
                 <div className="col-2">
-                    <div className="btn btnp" onClick={() => join(event._id)}>
+                    <div className="btn myBtn" onClick={() => join(event._id)}>
                         Dołącz
                     </div>
                 </div>
                 <div className="col-2">
-                    <div className="btn btnp" onClick={() => leave(event._id)}>Wyjdź</div>
+                    <div className="btn myBtn" onClick={() => leave(event._id)}>Wyjdź</div>
                 </div>
             </div>
         ));
@@ -164,7 +164,7 @@ function Place() {
                                 <div className="card-body">
                                     <div
                                         onClick={() => setNewEventView(true)}
-                                        className="btn btnp"
+                                        className="btn myBtn"
                                     >
                                         Dodaj Wydarzenie
                                     </div>

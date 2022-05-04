@@ -5,14 +5,18 @@
 }
 
 .myBtn {
-    background-color: rgba(209,188,255,1);
-    border: rgba(209,188,255,1);
+    background-color: rgba(209, 188, 255, 1);
+    border: rgba(209, 188, 255, 1);
 }
 
-.myBtn:hover{
-    background-color: rgba(94,63,161,1);
-    border: rgba(94,63,161,1);
+.myBtn:hover {
+    background-color: rgba(94, 63, 161, 1);
+    border: rgba(94, 63, 161, 1);
     color: white;
 }
 
-
+.rainbow-text {
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+    -webkit-background-clip: text;
+    color: transparent;
+}

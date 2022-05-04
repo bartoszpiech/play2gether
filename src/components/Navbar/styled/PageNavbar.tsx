@@ -10,5 +10,6 @@ export const PageNavbar = styled.nav`
     font-size: 1.2rem;
     @media screen and (max-width: 1200px) {
         position: relative;
+        height: 80px;
     }
 `;

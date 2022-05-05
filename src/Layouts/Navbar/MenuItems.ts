@@ -1,49 +1,36 @@
-/*
-interface MenuItems {
-    title: string;
-    url: string;
-    isSignupButton?: boolean;
-};
-*/
-
 export const MenuItems = [
     {
-        title: 'Premium',
-        url: 'user/premium',
-        login: true,
+        title: "Home",
+        url: "/home",
     },
     {
-        title: 'Home',
-        url: 'user/home',
-        login: true,
+        title: "Rejestracja",
+        url: "/register",
+        isSignUpButton: true,
     },
     {
-        title: 'Home',
-        url: '/home',
-        login: false,
+        title: "Logowanie",
+        url: "/login",
+        isSignUpButton: true,
+    },
+];
+
+export const MenuItemsLoginIn = [
+    {
+        title: "Premium",
+        url: "user/premium",
     },
     {
-        title: 'Nowe miejsce',
-        url: '/user/newPlace',
-        login: true,
+        title: "Nowe miejsce",
+        url: "/user/newPlace",
     },
     {
-        title: 'Rejestracja',
-        url: '/register',
-        isSignupButton: true,
-        login: false,
+        title: "Home",
+        url: "user/home",
     },
     {
-        title: 'Logowanie',
-        url: '/login',
-        isSignupButton: true,
-        login: false,
-    },
-    {
-        title: 'Wyloguj',
-        url: '/home',
-        isSignupButton: true,
-        login: false,
+        title: "Wyloguj",
+        url: "/login",
         logout: true,
     },
-]
+];

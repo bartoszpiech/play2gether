@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
-import Flash from "../../Layouts/Flash"
+import Flash from "../Flash"
 import NewEvent from "./NewEvent";
 import moment from "moment";
 

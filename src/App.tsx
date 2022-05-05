@@ -3,16 +3,16 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import "./Assets/Styles/App.css"
 
 import Navbar from "./Layouts/Navbar/Navbar";
-import SearchBox from "./components/SearchBox/SearchBox";
+import SearchBox from "./Components/SearchBox/SearchBox";
 import Footer from "./Layouts/Footer";
-import Register from "./components/main/Register";
-import Login from "./components/main/Login";
-import NewPlace from "./components/place/NewPlace";
-import Place from "./components/place/Place";
-import Home from "./components/main/Home";
-import Premium from "./components/user/Premium";
+import Register from "./Components/main/Register";
+import Login from "./Components/main/Login";
+import NewPlace from "./Components/place/NewPlace";
+import Place from "./Components/place/Place";
+import Home from "./Components/main/Home";
+import Premium from "./Components/user/Premium";
 
-import UserHome from "./components/user/UserHome";
+import UserHome from "./Components/user/UserHome";
 
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 

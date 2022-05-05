@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 
 import { NavLink } from "react-router-dom";
 
-import Pin from "../../Layouts/Pin";
+import Pin from "../Pin";
 // import type {MarkerDragEvent, LngLat} from 'react-map-gl';
 
 import Map, {

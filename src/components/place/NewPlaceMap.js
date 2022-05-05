@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 
-import Pin from "../../Layouts/Pin";
+import Pin from "../Pin";
 
 // import type {MarkerDragEvent, LngLat} from 'react-map-gl';
 

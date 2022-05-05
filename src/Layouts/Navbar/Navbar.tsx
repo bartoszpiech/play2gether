@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext } from "react";
+import React, { Component, useState, useContext, useCallback, useEffect } from "react";
 
 import { PageNavbar } from "../../Assets/Styles/Navbar/PageNavbar";
 import { Heading } from "../../Assets/Styles/Navbar/Heading";
@@ -9,7 +9,7 @@ import { StyledNavLink } from "../../Assets/Styles/Navbar/NavLink";
 import { UserContext } from "../../Context/UserContext";
 
 import { MenuItems } from "./MenuItems";
-
+import { useNavigate } from "react-router-dom";
 
 interface NavbarProps {
     title?: string;
@@ -19,11 +19,10 @@ interface NavbarProps {
 }
 
 const Navbar = (props: NavbarProps) => {
-
     const [clicked, setClicked] = useState(false);
     const [userContext, setUserContext]: any = useContext(UserContext);
-
     const { token: isUser }: any = userContext;
+    const navigate = useNavigate();
 
     const handleClick = () => {
         setClicked(!clicked);
@@ -43,6 +42,21 @@ const Navbar = (props: NavbarProps) => {
             window.localStorage.setItem("logout", Date.now().toString());
         });
     };
+
+    const syncLogout = useCallback((event: any) => {
+        if (event.key === "logout") {
+            // If using react-router-dom, you may call history.push("/")
+            navigate("/home");
+            window.location.reload();
+        }
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener("storage", syncLogout);
+        return () => {
+            window.removeEventListener("storage", syncLogout);
+        };
+    }, [syncLogout]);
 
     return (
         <PageNavbar>
@@ -71,10 +85,7 @@ const Navbar = (props: NavbarProps) => {
                         } else if (item.logout) {
                             return (
                                 <li key={index}>
-                                    <StyledNavLink
-                                        onClick={() => logoutHandler()}
-                                        to={item.url}
-                                    >
+                                    <StyledNavLink onClick={() => logoutHandler()} to={item.url}>
                                         {item.title}
                                     </StyledNavLink>
                                 </li>

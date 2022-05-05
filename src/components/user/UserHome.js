@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect } from "react";
 
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../Context/UserContext";
 
 import UserHomeMap from "./UserHomeMap";
 

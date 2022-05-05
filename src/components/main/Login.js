@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../Context/UserContext";
 import Flash from "../Flash"
 
 import { NavLink ,useNavigate} from "react-router-dom";

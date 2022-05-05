@@ -6,27 +6,42 @@ import { MenuIcon } from "../../Assets/Styles/Navbar/MenuIcon";
 import { NavMenu } from "../../Assets/Styles/Navbar/NavMenu";
 import { StyledNavLink } from "../../Assets/Styles/Navbar/NavLink";
 
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../Context/UserContext";
 
 import { MenuItems } from "./MenuItems";
+
 
 interface NavbarProps {
     title?: string;
     icon?: string;
     logout?: boolean;
-    children?: React.ReactNode; // dunno why?
-    logoutHandler: any;
+    children?: React.ReactNode;
 }
-// const NewPlace = () => {
+
 const Navbar = (props: NavbarProps) => {
-    // state = { clicked: false };
+
     const [clicked, setClicked] = useState(false);
-    const [userContext, setUserContext] = useContext(UserContext);
+    const [userContext, setUserContext]: any = useContext(UserContext);
 
     const { token: isUser }: any = userContext;
 
     const handleClick = () => {
         setClicked(!clicked);
+    };
+
+    const logoutHandler = () => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "logout", {
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userContext.token}`,
+            },
+        }).then(async (response) => {
+            setUserContext((oldValues: any) => {
+                return { ...oldValues, details: undefined, token: null };
+            });
+            window.localStorage.setItem("logout", Date.now().toString());
+        });
     };
 
     return (
@@ -56,8 +71,11 @@ const Navbar = (props: NavbarProps) => {
                         } else if (item.logout) {
                             return (
                                 <li key={index}>
-                                    <StyledNavLink onClick={() => props.logoutHandler()} to={item.url} >
-                                       {item.title}
+                                    <StyledNavLink
+                                        onClick={() => logoutHandler()}
+                                        to={item.url}
+                                    >
+                                        {item.title}
                                     </StyledNavLink>
                                 </li>
                             );

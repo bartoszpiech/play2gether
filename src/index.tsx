@@ -6,7 +6,7 @@ import "moment/locale/pl";
 
 import ReactDOM from "react-dom/client";
 
-import { UserProvider } from "./context/UserContext";
+import { UserProvider } from "./Context/UserContext";
 import App from "./App";
 
 

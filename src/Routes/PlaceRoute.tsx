@@ -6,38 +6,33 @@ import { RequireAuth } from "../Middleware/RequireAuth";
 
 import { UserContext } from "../Context/UserContext";
 
-import UserHome from "../Components/User/UserHome";
 import NewPlace from "../Components/place/NewPlace";
 import Place from "../Components/place/Place";
-import Premium from "../Components/User/Premium";
 
-import { PlaceRoute } from "./PlaceRoute";
-
-export function UserRoute() {
+export function PlaceRoute() {
     const [userContext, setUserContext]: any = useContext(UserContext);
 
     return [
-        <Route key="/user" path="/user">
+        <Route key="place" path="place">
             <Route
-                key="home"
-                path="home"
+                key="newPlace"
+                path="newPlace"
                 element={
                     <RequireAuth token={userContext.token}>
-                        <UserHome />
+                        <NewPlace />
                     </RequireAuth>
                 }
             />
+            ,
             <Route
-                key="premium"
-                path="premium"
+                key="/place/:id"
+                path=":id"
                 element={
                     <RequireAuth token={userContext.token}>
-                        <Premium />
+                        <Place />
                     </RequireAuth>
                 }
             />
-            {PlaceRoute()}
         </Route>,
     ];
-    // return [{ PlaceRoute }];
 }

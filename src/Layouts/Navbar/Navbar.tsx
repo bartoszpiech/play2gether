@@ -97,53 +97,6 @@ const Navbar = (props: NavbarProps) => {
         return newMenu;
     };
 
-    // return (
-    //     <SignUpNavLink key={index} onClick={() => logoutHandler()} to={item.url}>
-    //         {item.title}
-    //     </SignUpNavLink>
-    // );
-
-    // const printMenuItems = () => {
-    //     if (isUser) {
-    //         let newItems = MenuItems.filter((item) => item.login || item.logout);
-
-    //         return newItems.map((item, index) => {
-    //             if (item.login) {
-    //                 return (
-    //                     <StyledNavLink key={index} to={item.url} onClick={handleClick}>
-    //                         {item.title}
-    //                     </StyledNavLink>
-    //                 );
-    //             } else if (item.logout) {
-    //                 return (
-    //                     <SignUpNavLink key={index} onClick={() => logoutHandler()} to={item.url}>
-    //                         {item.title}
-    //                     </SignUpNavLink>
-    //                 );
-    //             }
-    //         });
-    //     } else {
-    //         let newItems = MenuItems.filter((item) => !item.login && !item.logout);
-    //         return newItems.map((item, index) => {
-    //             if (!item.login) {
-    //                 if (item.isSignUpButton) {
-    //                     return (
-    //                         <SignUpNavLink key={index} to={item.url} onClick={handleClick}>
-    //                             {item.title}
-    //                         </SignUpNavLink>
-    //                     );
-    //                 } else {
-    //                     return (
-    //                         <StyledNavLink key={index} to={item.url} onClick={handleClick}>
-    //                             {item.title}
-    //                         </StyledNavLink>
-    //                     );
-    //                 }
-    //             }
-    //         });
-    //     }
-    // };
-
     return (
         <PageNavbar>
             <Heading>

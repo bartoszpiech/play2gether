@@ -2,10 +2,9 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import "./Assets/Styles/App.css"
 
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./Layouts/Navbar/Navbar";
 import SearchBox from "./components/SearchBox/SearchBox";
-import Footer from "./components/Footer/Footer";
-import KubaFooter from "./components/partials/Footer"
+import Footer from "./Layouts/Footer";
 import Register from "./components/main/Register";
 import Login from "./components/main/Login";
 import NewPlace from "./components/place/NewPlace";
@@ -102,7 +101,7 @@ function App() {
                 />
             </Routes>
             
-            <KubaFooter creatorName="Play2Gether inc."/>
+            <Footer creatorName="Play2Gether inc."/>
         </Router>
 
         // <div className="App">

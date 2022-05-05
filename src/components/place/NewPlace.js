@@ -4,7 +4,7 @@ import { UserContext } from "../../context/UserContext";
 import NewPlaceMap from "./NewPlaceMap";
 
 import { useNavigate } from "react-router-dom";
-import Flash from "../partials/Flash";
+import Flash from "../../Layouts/Flash";
 
 // let test = "test"
 

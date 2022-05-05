@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 
-import { PageSearchBox } from './styled/PageSearchBox';
-import { Heading, SmallHeading, TinyHeading } from './styled/Heading';
+
+import { PageSearchBox } from '../../Assets/Styles/SearchBox/PageSearchBox';
+
+import { Heading, SmallHeading, TinyHeading } from '../../Assets/Styles/SearchBox/Heading';
+
+
+
 import SportType from './SportType';
 import AmountOfPeople from './AmountOfPeople';
 import Place from './Place';

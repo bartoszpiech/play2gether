@@ -1,10 +1,10 @@
 import React, { Component, useState, useContext } from "react";
 
-import { PageNavbar } from "./styled/PageNavbar";
-import { Heading } from "./styled/Heading";
-import { MenuIcon } from "./styled/MenuIcon";
-import { NavMenu } from "./styled/NavMenu";
-import { StyledNavLink } from "./styled/NavLink";
+import { PageNavbar } from "../../Assets/Styles/Navbar/PageNavbar";
+import { Heading } from "../../Assets/Styles/Navbar/Heading";
+import { MenuIcon } from "../../Assets/Styles/Navbar/MenuIcon";
+import { NavMenu } from "../../Assets/Styles/Navbar/NavMenu";
+import { StyledNavLink } from "../../Assets/Styles/Navbar/NavLink";
 
 import { UserContext } from "../../context/UserContext";
 

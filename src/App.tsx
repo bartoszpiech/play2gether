@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import "./App.css";
+
+import "./Assets/Styles/App.css"
 
 import Navbar from "./components/Navbar/Navbar";
 import SearchBox from "./components/SearchBox/SearchBox";

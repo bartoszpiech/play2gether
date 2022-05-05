@@ -30,19 +30,19 @@ export const MenuItems = [
     {
         title: 'Rejestracja',
         url: '/register',
-        isSignupButton: true,
+        isSignUpButton: true,
         login: false,
     },
     {
         title: 'Logowanie',
         url: '/login',
-        isSignupButton: true,
+        isSignUpButton: true,
         login: false,
     },
     {
         title: 'Wyloguj',
         url: '/home',
-        isSignupButton: true,
+        isSignUpButton: true,
         login: false,
         logout: true,
     },

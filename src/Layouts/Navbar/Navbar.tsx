@@ -1,10 +1,12 @@
-import React, { Component, useState, useContext, useCallback, useEffect } from "react";
+import React, { useState, useContext, useCallback, useEffect } from "react";
 
 import { PageNavbar } from "../../Assets/Styles/Navbar/PageNavbar";
 import { Heading } from "../../Assets/Styles/Navbar/Heading";
 import { MenuIcon } from "../../Assets/Styles/Navbar/MenuIcon";
 import { NavMenu } from "../../Assets/Styles/Navbar/NavMenu";
-import { StyledNavLink } from "../../Assets/Styles/Navbar/NavLink";
+// import { StyledNavLink } from "../../Assets/Styles/Navbar/StyledNavLink";
+
+import { SignUpNavLink, StyledNavLink } from "../../Assets/Styles/Navbar/StyledNavLink";
 
 import { UserContext } from "../../Context/UserContext";
 
@@ -58,6 +60,47 @@ const Navbar = (props: NavbarProps) => {
         };
     }, [syncLogout]);
 
+    const printMenuItems = () => {
+        if (isUser) {
+            let newItems = MenuItems.filter((item) => item.login || item.logout);
+
+            return newItems.map((item, index) => {
+                if (item.login) {
+                    return (
+                        <StyledNavLink key={index} to={item.url} onClick={handleClick}>
+                            {item.title}
+                        </StyledNavLink>
+                    );
+                } else if (item.logout) {
+                    return (
+                        <SignUpNavLink key={index} onClick={() => logoutHandler()} to={item.url}>
+                            {item.title}
+                        </SignUpNavLink>
+                    );
+                }
+            });
+        } else {
+            let newItems = MenuItems.filter((item) => !item.login && !item.logout);
+            return newItems.map((item, index) => {
+                if (!item.login) {
+                    if (item.isSignUpButton) {
+                        return (
+                            <SignUpNavLink key={index} to={item.url} onClick={handleClick}>
+                                {item.title}
+                            </SignUpNavLink>
+                        );
+                    } else {
+                        return (
+                            <StyledNavLink key={index} to={item.url} onClick={handleClick}>
+                                {item.title}
+                            </StyledNavLink>
+                        );
+                    }
+                }
+            });
+        }
+    };
+
     return (
         <PageNavbar>
             <Heading>
@@ -68,45 +111,7 @@ const Navbar = (props: NavbarProps) => {
                 <i className={clicked ? "fa-solid fa-arrow-left" : "fa-solid fa-arrow-right"} />
             </MenuIcon>
             <NavMenu isActive={clicked} menuHeight={MenuItems.length * 100 + 20}>
-                {MenuItems.map((item, index) => {
-                    if (isUser) {
-                        if (item.login) {
-                            return (
-                                <li key={index}>
-                                    <StyledNavLink
-                                        to={item.url}
-                                        isSignupButton={item.isSignupButton}
-                                        onClick={handleClick}
-                                    >
-                                        {item.title}
-                                    </StyledNavLink>
-                                </li>
-                            );
-                        } else if (item.logout) {
-                            return (
-                                <li key={index}>
-                                    <StyledNavLink onClick={() => logoutHandler()} to={item.url}>
-                                        {item.title}
-                                    </StyledNavLink>
-                                </li>
-                            );
-                        }
-                    } else {
-                        if (!item.login && !item.logout) {
-                            return (
-                                <li key={index}>
-                                    <StyledNavLink
-                                        to={item.url}
-                                        isSignupButton={item.isSignupButton}
-                                        onClick={handleClick}
-                                    >
-                                        {item.title}
-                                    </StyledNavLink>
-                                </li>
-                            );
-                        }
-                    }
-                })}
+                {printMenuItems()}
             </NavMenu>
         </PageNavbar>
     );

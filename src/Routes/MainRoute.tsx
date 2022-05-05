@@ -13,9 +13,9 @@ import Login from "../Components/Main/Login";
 
 export function MainRoute() {
     return [
-        <Route path="/" element={<Navigate replace to="/home" />} />,
-        <Route path="/home" element={<Home />} />,
-        <Route path="/register" element={<Register />} />,
-        <Route path="/login" element={<Login />} />,
+        <Route key="/" path="/" element={<Navigate replace to="/home" />} />,
+        <Route key="/home" path="/home" element={<Home />} />,
+        <Route key="/register" path="/register" element={<Register />} />,
+        <Route key="/login" path="/login" element={<Login />} />,
     ];
 }

@@ -15,8 +15,9 @@ export function UserRoute() {
     const [userContext, setUserContext]: any = useContext(UserContext);
 
     return [
-        <Route path="/user">
+        <Route key="/user" path="/user">
             <Route
+                key="home"
                 path="home"
                 element={
                     <RequireAuth token={userContext.token}>
@@ -26,6 +27,7 @@ export function UserRoute() {
             />
             ,
             <Route
+                key="newPlace"
                 path="newPlace"
                 element={
                     <RequireAuth token={userContext.token}>
@@ -33,21 +35,22 @@ export function UserRoute() {
                     </RequireAuth>
                 }
             />
-            ,
             <Route
-                path="/user/place/:id"
+                key="premium"
+                path="premium"
                 element={
                     <RequireAuth token={userContext.token}>
-                        <Place />
+                        <Premium />
                     </RequireAuth>
                 }
             />
             ,
             <Route
-                path="/user/premium"
+                key="place/:id"
+                path="place/:id"
                 element={
                     <RequireAuth token={userContext.token}>
-                        <Premium />
+                        <Place />
                     </RequireAuth>
                 }
             />

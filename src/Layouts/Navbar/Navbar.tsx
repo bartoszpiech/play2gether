@@ -10,7 +10,7 @@ import { SignUpNavLink, StyledNavLink } from "../../Assets/Styles/Navbar/StyledN
 
 import { UserContext } from "../../Context/UserContext";
 
-import { MenuItems } from "./MenuItems";
+import { MenuItemsLoginIn, MenuItems } from "./MenuItems";
 import { useNavigate } from "react-router-dom";
 
 interface NavbarProps {
@@ -19,7 +19,6 @@ interface NavbarProps {
     logout?: boolean;
     children?: React.ReactNode;
 }
-
 const Navbar = (props: NavbarProps) => {
     const [clicked, setClicked] = useState(false);
     const [userContext, setUserContext]: any = useContext(UserContext);
@@ -61,45 +60,89 @@ const Navbar = (props: NavbarProps) => {
     }, [syncLogout]);
 
     const printMenuItems = () => {
-        if (isUser) {
-            let newItems = MenuItems.filter((item) => item.login || item.logout);
-
-            return newItems.map((item, index) => {
-                if (item.login) {
-                    return (
-                        <StyledNavLink key={index} to={item.url} onClick={handleClick}>
-                            {item.title}
-                        </StyledNavLink>
-                    );
-                } else if (item.logout) {
-                    return (
-                        <SignUpNavLink key={index} onClick={() => logoutHandler()} to={item.url}>
-                            {item.title}
-                        </SignUpNavLink>
-                    );
-                }
-            });
-        } else {
-            let newItems = MenuItems.filter((item) => !item.login && !item.logout);
-            return newItems.map((item, index) => {
-                if (!item.login) {
-                    if (item.isSignUpButton) {
-                        return (
-                            <SignUpNavLink key={index} to={item.url} onClick={handleClick}>
-                                {item.title}
-                            </SignUpNavLink>
-                        );
-                    } else {
-                        return (
-                            <StyledNavLink key={index} to={item.url} onClick={handleClick}>
-                                {item.title}
-                            </StyledNavLink>
-                        );
-                    }
-                }
-            });
-        }
+        return MenuItems.map((item, index) => {
+            if (item.isSignUpButton) {
+                return (
+                    <SignUpNavLink key={index} to={item.url} onClick={handleClick}>
+                        {item.title}
+                    </SignUpNavLink>
+                );
+            } else {
+                return (
+                    <StyledNavLink key={index} to={item.url} onClick={handleClick}>
+                        {item.title}
+                    </StyledNavLink>
+                );
+            }
+        });
     };
+
+    const printMenuItemsLogIn = () => {
+        let newMenu = MenuItemsLoginIn.map((item, index) => {
+            if (!item.logout) {
+                return (
+                    <StyledNavLink key={index} to={item.url} onClick={handleClick}>
+                        {item.title}
+                    </StyledNavLink>
+                );
+            } else {
+                return (
+                    <SignUpNavLink key={index} to={item.url} onClick={logoutHandler}>
+                        {item.title}
+                    </SignUpNavLink>
+                );
+            }
+        });
+
+        return newMenu;
+    };
+
+    // return (
+    //     <SignUpNavLink key={index} onClick={() => logoutHandler()} to={item.url}>
+    //         {item.title}
+    //     </SignUpNavLink>
+    // );
+
+    // const printMenuItems = () => {
+    //     if (isUser) {
+    //         let newItems = MenuItems.filter((item) => item.login || item.logout);
+
+    //         return newItems.map((item, index) => {
+    //             if (item.login) {
+    //                 return (
+    //                     <StyledNavLink key={index} to={item.url} onClick={handleClick}>
+    //                         {item.title}
+    //                     </StyledNavLink>
+    //                 );
+    //             } else if (item.logout) {
+    //                 return (
+    //                     <SignUpNavLink key={index} onClick={() => logoutHandler()} to={item.url}>
+    //                         {item.title}
+    //                     </SignUpNavLink>
+    //                 );
+    //             }
+    //         });
+    //     } else {
+    //         let newItems = MenuItems.filter((item) => !item.login && !item.logout);
+    //         return newItems.map((item, index) => {
+    //             if (!item.login) {
+    //                 if (item.isSignUpButton) {
+    //                     return (
+    //                         <SignUpNavLink key={index} to={item.url} onClick={handleClick}>
+    //                             {item.title}
+    //                         </SignUpNavLink>
+    //                     );
+    //                 } else {
+    //                     return (
+    //                         <StyledNavLink key={index} to={item.url} onClick={handleClick}>
+    //                             {item.title}
+    //                         </StyledNavLink>
+    //                     );
+    //                 }
+    //             }
+    //         });
+    //     }
+    // };
 
     return (
         <PageNavbar>
@@ -110,8 +153,8 @@ const Navbar = (props: NavbarProps) => {
             <MenuIcon onClick={handleClick}>
                 <i className={clicked ? "fa-solid fa-arrow-left" : "fa-solid fa-arrow-right"} />
             </MenuIcon>
-            <NavMenu isActive={clicked} menuHeight={MenuItems.length * 100 + 20}>
-                {printMenuItems()}
+            <NavMenu isActive={clicked} menuHeight={MenuItemsLoginIn.length * 100 + 20}>
+                {isUser ? printMenuItemsLogIn() : printMenuItems()}
             </NavMenu>
         </PageNavbar>
     );

@@ -96,11 +96,16 @@ const Navbar = (props: NavbarProps) => {
 
         return newMenu;
     };
+    const handleHomeClick = () => {
+        console.log("siema")
+        navigate("/home", { replace: true });
+
+    }
 
     return (
         <PageNavbar>
-            <Heading>
-                <i className={props.icon} />
+            <Heading onClick={handleHomeClick}>
+                <i className={props.icon}/>
                 {props.title}
             </Heading>
             <MenuIcon onClick={handleClick}>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import AD from "../../Components/AD";
+import AD from "../../Layouts/AD";
 import Login from "../../Components/Main/Login";
 
 function PageLogin() {

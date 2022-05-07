@@ -1,7 +1,5 @@
 import { Route, Navigate } from "react-router-dom";
 
-import Home from "../Components/Main/Home";
-
 import {PageRegister, PageLogin, PageHome} from "../Pages/index"
 
 export function MainRoute() {

@@ -4,25 +4,25 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./Layouts/Navbar/Navbar";
 import Footer from "./Layouts/Footer";
-import Notification from "./Components/Notification";
+import Notification from "./Layouts/Notification";
 
 import { MainRoute } from "./Routes/MainRoute";
 import { UserRoute } from "./Routes/UserRoute";
 
 import { PageNotFound } from "./Pages/index";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
 
-import React from "react";
-import { Button, Dialog, Alert, AlertTitle, Snackbar, SnackbarContent } from "@mui/material";
+function App() {
+    const notification = useSelector((state: RootState) => state.ui.notification);
 
-function App() {  
-    const notification = useSelector((state: any) => state.ui.notification);
-    
     return (
         <Router>
             <Navbar title="PLAY2GETHER" icon="fa-solid fa-volleyball"></Navbar>
-            {notification.open && <Notification type={notification.type} message={notification.message}/>}
+            {notification.open && (
+                <Notification type={notification.type} message={notification.message} />
+            )}
             <Routes>
                 {MainRoute()}
                 {UserRoute()}
@@ -31,7 +31,6 @@ function App() {
             <Footer creatorName="Play2Gether inc." />
         </Router>
     );
-
 }
 
 export default App;

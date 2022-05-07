@@ -7,7 +7,7 @@ interface UserState {
 }
 
 interface RegisterPayload {
-    token: string;
+    token: string | null;
 }
 
 // Define the initial state using that type
@@ -22,6 +22,9 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         register(state, action: PayloadAction<RegisterPayload>) {
+            state.token = action.payload.token;
+        },
+        login(state, action: PayloadAction<RegisterPayload>) {
             state.token = action.payload.token;
         },
         // logout(state){

@@ -11,7 +11,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props,
 
 interface NotificationProps {
     type: "success" | "info" | "warning" | "error" | undefined;
-    message: string;
+    message?: string;
 }
 
 const Notification = ({ type, message }: NotificationProps) => {
@@ -37,7 +37,7 @@ const Notification = ({ type, message }: NotificationProps) => {
                     horizontal: "left",
                 }}
                 open={true}
-                autoHideDuration={3000}
+                autoHideDuration={1500}
                 onClose={handleClose}
             >
                 <Alert onClose={handleClose} severity={type} sx={{ width: "100%" }}>

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Register from "../../Components/Main/Register";
-import AD from "../../Components/AD";
+import AD from "../../Layouts/AD";
 
 function PageRegister() {
     return (

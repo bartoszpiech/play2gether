@@ -4,6 +4,8 @@ import RequireAuth from "../Middleware/RequireAuth";
 import UserHome from "../Components/User/UserHome";
 import Premium from "../Components/User/Premium";
 
+import {PageUserHome} from "../Pages/index"
+
 import { PlaceRoute } from "./PlaceRoute";
 
 export function UserRoute() {
@@ -14,7 +16,7 @@ export function UserRoute() {
                 path="home"
                 element={
                     <RequireAuth>
-                        <UserHome />
+                        <PageUserHome />
                     </RequireAuth>
                 }
             />

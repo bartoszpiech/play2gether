@@ -19,19 +19,19 @@ interface SearchBoxProps {
 export default class SearchBox extends Component<SearchBoxProps> {
     render() {
         return (
-            <PageSearchBox>
+            <PageSearchBox className="rounded-3 shadow-lg">
                 <Heading>{this.props.title}</Heading>
                 <Place/>
                 <SmallHeading>Dodatkowe opcje:</SmallHeading>
                 <form>
                     <TinyHeading>Sport:</TinyHeading>
                     <SportType/>
-                    <TinyHeading>Ilość wolnych miejsc:</TinyHeading>
+                    <TinyHeading>Wolne miejsca:</TinyHeading>
                     <AmountOfPeople/>
                     <TinyHeading>Zakres dat:</TinyHeading>
                     <SportsDatePicker label="Od"/>
                     <SportsDatePicker label="Do"/>
-                    <TinyHeading>Dystans: TODO</TinyHeading>
+                    {/* <TinyHeading>Dystans: TODO</TinyHeading> */}
                 </form>
             </PageSearchBox>
         );

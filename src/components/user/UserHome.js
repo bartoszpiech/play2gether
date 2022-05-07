@@ -1,7 +1,5 @@
 import React, { useCallback, useContext, useEffect } from "react";
 
-import { UserContext } from "../../Context/UserContext";
-
 import UserHomeMap from "./UserHomeMap";
 
 import SearchBox from "../SearchBox/SearchBox";
@@ -9,7 +7,6 @@ import SearchBox from "../SearchBox/SearchBox";
 
 
 const UserHome = () => {
-    const [userContext, setUserContext] = useContext(UserContext);
 
     // const fetchUserDetails = useCallback(() => {
     //     fetch(process.env.REACT_APP_API_ENDPOINT + "me", {

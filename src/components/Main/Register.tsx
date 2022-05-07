@@ -23,7 +23,7 @@ const Register = () => {
     };
 
     return (
-        <form onSubmit={formSubmitHandler} className="rounded-3 bg-white shadow p-4">
+        <form onSubmit={formSubmitHandler} className="rounded-3 bg-white shadow-lg p-4">
             <h1 className="display-4 text-center mt-1">Stwórz konto</h1>
             <div className="mt-4">
                 <label className="form-label mb-1">Adres email</label>

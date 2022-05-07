@@ -1,7 +1,11 @@
-import React from "react";
+import { useLoadScript } from "@react-google-maps/api";
+// import Map from "./Map"
 
-const Home = () => {
-    return <div>Home</div>;
-};
+import React from "react";
+import Map from "../Maps/Map";
+
+function Home() {
+    return <Map />;
+}
 
 export default Home;

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import { UserContext } from "../../Context/UserContext";
+// import { UserContext } from "../../Context/UserContext";
 import NewPlaceMap from "./NewPlaceMap";
 
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 // let test = "test"
 
 const NewPlace = () => {
-    const [userContext, setUserContext] = useContext(UserContext);
+    // const [userContext, setUserContext] = useContext(UserContext);
 
     const [error, setError] = useState("");
     const [errorVisible, setErrorVisible] = useState(false);
@@ -32,7 +32,7 @@ const NewPlace = () => {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${userContext.token}`,
+                // Authorization: `Bearer ${userContext.token}`,
             },
             body: JSON.stringify({ name, description, location: marker }),
         })

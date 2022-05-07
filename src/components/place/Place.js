@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { UserContext } from "../../Context/UserContext";
+// import { UserContext } from "../../Context/UserContext";
 
 import NewEvent from "./NewEvent";
 import moment from "moment";
@@ -12,7 +12,6 @@ function Place() {
     const [error, setError] = useState("");
     const [errorVisible, setErrorVisible] = useState(false);
 
-    const [userContext, setUserContext] = useContext(UserContext);
 
     const [placeData, setPlaceData] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -30,7 +29,7 @@ function Place() {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${userContext.token}`,
+                // Authorization: `Bearer ${userContext.token}`,
             },
         })
             .then((response) => response.json())
@@ -53,7 +52,7 @@ function Place() {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${userContext.token}`,
+                // Authorization: `Bearer ${userContext.token}`,
             },
         })
             .then((response) => response.json())
@@ -79,7 +78,7 @@ function Place() {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${userContext.token}`,
+                // Authorization: `Bearer ${userContext.token}`,
             },
         })
             .then((response) => response.json())

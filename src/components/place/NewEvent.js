@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import { UserContext } from "../../Context/UserContext";
+// import { UserContext } from "../../Context/UserContext";
 import DatePicker, { registerLocale } from "react-datepicker";
 
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 registerLocale("pl", pl);
 
 function NewEvent(props) {
-    const [userContext, setUserContext] = useContext(UserContext);
+    // const [userContext, setUserContext] = useContext(UserContext);
     const [error, setError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -34,7 +34,7 @@ function NewEvent(props) {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${userContext.token}`,
+                // Authorization: `Bearer ${userContext.token}`,
             },
             body: JSON.stringify({ startDate, maxPeople }),
         })

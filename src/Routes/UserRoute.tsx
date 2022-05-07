@@ -1,10 +1,7 @@
 import { Route } from "react-router-dom";
 import RequireAuth from "../Middleware/RequireAuth";
 
-import UserHome from "../Components/User/UserHome";
-import Premium from "../Components/User/Premium";
-
-import {PageUserHome} from "../Pages/index"
+import {PagePremium, PageUserHome} from "../Pages/index"
 
 import { PlaceRoute } from "./PlaceRoute";
 
@@ -25,7 +22,7 @@ export function UserRoute() {
                 path="premium"
                 element={
                     <RequireAuth>
-                        <Premium />
+                        <PagePremium />
                     </RequireAuth>
                 }
             />

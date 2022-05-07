@@ -4,5 +4,6 @@ import PageLogin from "./MainPages/PageLogin/page-login";
 import PageHome from "./MainPages/PageHome/page-home";
 
 import PageUserHome from "./UserPages/PageHome/page-user-home"
+import PagePremium from "./UserPages/PagePremium/page-premium"
 
-export {PageNotFound, PageRegister, PageLogin, PageHome, PageUserHome};
+export {PageNotFound, PageRegister, PageLogin, PageHome, PageUserHome ,PagePremium};

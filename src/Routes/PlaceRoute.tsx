@@ -2,8 +2,8 @@ import { Route } from "react-router-dom";
 
 import RequireAuth from "../Middleware/RequireAuth";
 
-import NewPlace from "../Components/place/NewPlace";
-import Place from "../Components/place/Place";
+import NewPlace from "../Components/Place/NewPlace";
+import Place from "../Components/Place/Place";
 
 export function PlaceRoute() {
     return [

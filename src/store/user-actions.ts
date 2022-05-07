@@ -1,7 +1,13 @@
 import { userActions } from "./user-slice";
 import { uiActions } from "./ui-slice";
 
-// import type { AppDispatch } from "./index";
+import { AnyAction } from "redux";
+import { RootState } from "./index";
+import { ThunkAction } from "redux-thunk";
+
+import { AppDispatch } from "./index";
+
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, AnyAction>;
 
 export const registerUserRequest = (
     firstName: string,
@@ -88,7 +94,7 @@ export const registerUserRequest = (
 };
 
 export const LoginUserRequest = (email: string, password: string, navigate: any) => {
-    return async (dispatch:any) => {
+    return async (dispatch: any) => {
         const genericErrorMessage = "Nie udało się Spróbuj później";
 
         fetch(process.env.REACT_APP_API_ENDPOINT + "login", {
@@ -150,3 +156,79 @@ export const LoginUserRequest = (email: string, password: string, navigate: any)
             });
     };
 };
+
+// interface IAllAssets {
+//     assets?: IAsset[];
+//   }
+// interface IAllAssetsDispatch {
+//     dispatch: (arg: IAllAssets) => (IAllAssets)
+//   }
+
+export const RefreshTokenRequest = () => {
+    return async (dispatch: any) => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "refreshToken", {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+        }).then(async (response) => {
+            if (response.ok) {
+                const data = await response.json();
+                // setUserContext((oldValues) => {
+                //     return { ...oldValues, token: data.token };
+                // });
+                dispatch(
+                    userActions.register({
+                        token: data.token,
+                    })
+                );
+                dispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Automatyczne logowanie",
+                    })
+                );
+                // navigate("/user/home");
+            } else {
+                dispatch(
+                    userActions.register({
+                        token: null,
+                    })
+                );
+            }
+        });
+    };
+};
+
+export const refreshTokenThunk =
+    (navigate: any): AppThunk =>
+    async (AppDispatch) => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "refreshToken", {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+        }).then(async (response) => {
+            if (response.ok) {
+                const data = await response.json();
+                AppDispatch(
+                    userActions.register({
+                        token: data.token,
+                    })
+                );
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Automatyczne logowanie",
+                    })
+                );
+                navigate("/user/home");
+            } else {
+                AppDispatch(
+                    userActions.register({
+                        token: null,
+                    })
+                );
+            }
+        });
+    };

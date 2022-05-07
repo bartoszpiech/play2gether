@@ -1,13 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from ".";
 
 interface UserState {
     token: null | string;
     userType: null | string;
     user: null | Object;
-}
-
-interface RegisterPayload {
-    token: string | null;
 }
 
 // Define the initial state using that type
@@ -16,6 +13,10 @@ const initialState: UserState = {
     userType: null,
     user: null,
 };
+
+interface RegisterPayload {
+    token: string | null;
+}
 
 const userSlice = createSlice({
     name: "user",
@@ -35,4 +36,6 @@ const userSlice = createSlice({
 
 export const userActions = userSlice.actions;
 
-export default userSlice;
+// export const selectToken = (state: RootState) => state.user.token
+
+export default userSlice.reducer;

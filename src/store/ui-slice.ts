@@ -5,16 +5,16 @@ interface UiState {
     notification: { message?: string; type?: "success" | "info" | "warning" | "error" | undefined; open?: boolean };
 }
 
+// Define the initial state using that type
+const initialState: UiState = {
+    notification: {open: false, message: ""},
+};
+
 interface payLoad {
     message?: string;
     type?: "success" | "info" | "warning" | "error" | undefined;
     open?: boolean;
 }
-
-// Define the initial state using that type
-const initialState: UiState = {
-    notification: {open: false, message: ""},
-};
 
 const uiSlice = createSlice({
     name: "ui",

@@ -1,6 +1,6 @@
 import "./Assets/Styles/App.css";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
 import Navbar from "./Layouts/Navbar/Navbar";
 import Footer from "./Layouts/Footer";
@@ -13,12 +13,30 @@ import { PageNotFound } from "./Pages/index";
 
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
+import { useCallback, useEffect } from "react";
+import { useAppDispatch } from "./hooks";
+import { refreshTokenThunk } from "./store/user-actions";
 
 function App() {
     const notification = useSelector((state: RootState) => state.ui.notification);
+    const token = useSelector((state: RootState) => state.user.token);
+
+    let dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    const verifyUser = useCallback(() => {
+        dispatch(refreshTokenThunk(navigate));
+
+        // call refreshToken every 5 minutes to renew the authentication token.
+        setTimeout(verifyUser, 5 * 60 * 1000);
+    }, []);
+
+    useEffect(() => {
+        if (!token) verifyUser();
+    }, [token]);
 
     return (
-        <Router>
+        <>
             <Navbar title="PLAY2GETHER" icon="fa-solid fa-volleyball"></Navbar>
             {notification.open && (
                 <Notification type={notification.type} message={notification.message} />
@@ -29,7 +47,7 @@ function App() {
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
             <Footer creatorName="Play2Gether inc." />
-        </Router>
+        </>
     );
 }
 

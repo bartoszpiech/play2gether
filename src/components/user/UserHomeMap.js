@@ -23,7 +23,6 @@ const initialViewState = {
 };
 
 const UserHomeMap = (props) => {
-    console.log(TOKEN)
     const [popupInfo, setPopupInfo] = useState(null);
 
     const [dataMap, setDataMap] = useState(null);
@@ -43,13 +42,13 @@ const UserHomeMap = (props) => {
                 setLoading(false);
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
                 setLoading(false);
             });
     };
 
     const CreatPins = () => {
-        console.log(dataMap)
+        // console.log(dataMap)
         return dataMap.map((event) => (
             <Marker
                 key={`marker-${event._id}`}

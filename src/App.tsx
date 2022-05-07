@@ -1,120 +1,53 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import "./App.css";
+import "./Assets/Styles/App.css";
 
-import Navbar from "./components/Navbar/Navbar";
-import SearchBox from "./components/SearchBox/SearchBox";
-import Footer from "./components/Footer/Footer";
-import KubaFooter from "./components/partials/Footer"
-import Register from "./components/main/Register";
-import Login from "./components/main/Login";
-import NewPlace from "./components/place/NewPlace";
-import Place from "./components/place/Place";
-import Home from "./components/main/Home";
-import Premium from "./components/user/Premium";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
-import UserHome from "./components/user/UserHome";
+import Navbar from "./Layouts/Navbar/Navbar";
+import Footer from "./Layouts/Footer";
+import Notification from "./Layouts/Notification";
 
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { MainRoute } from "./Routes/MainRoute";
+import { UserRoute } from "./Routes/UserRoute";
 
-import { UserContext } from "./context/UserContext";
-import { AnyRecord } from "dns";
+import { PageNotFound } from "./Pages/index";
+
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
+import { useCallback, useEffect } from "react";
+import { useAppDispatch } from "./hooks";
+import { refreshTokenThunk } from "./store/user-actions";
 
 function App() {
-    const [userContext, setUserContext]: any = useContext(UserContext);
+    const notification = useSelector((state: RootState) => state.ui.notification);
+    const token = useSelector((state: RootState) => state.user.token);
 
-    function RequireAuth({ children, redirectTo }: any) {
-        console.log(children.props);
-        if (userContext.token) {
-            return children;
-        }
-        return <Navigate to={redirectTo} />;
-    }
+    let dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
-    const syncLogout = useCallback((event: any) => {
-        if (event.key === "logout") {
-            // If using react-router-dom, you may call history.push("/")
-            window.location.reload();
-        }
+    const verifyUser = useCallback(() => {
+        dispatch(refreshTokenThunk(navigate));
+
+        // call refreshToken every 5 minutes to renew the authentication token.
+        setTimeout(verifyUser, 5 * 60 * 1000);
     }, []);
 
     useEffect(() => {
-        window.addEventListener("storage", syncLogout);
-        return () => {
-            window.removeEventListener("storage", syncLogout);
-        };
-    }, [syncLogout]);
-
-    const logoutHandler = () => {
-        console.log("wylogowuje")
-        fetch(process.env.REACT_APP_API_ENDPOINT + "logout", {
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${userContext.token}`,
-            },
-        }).then(async (response) => {
-            setUserContext((oldValues:any) => {
-                return { ...oldValues, details: undefined, token: null };
-            });
-            window.localStorage.setItem("logout", Date.now().toString());
-        });
-    };
+        if (!token) verifyUser();
+    }, [token]);
 
     return (
-        <Router>
-            <Navbar title="PLAY2GETHER" icon="fa-solid fa-volleyball" logoutHandler={logoutHandler}></Navbar>
+        <>
+            <Navbar title="PLAY2GETHER" icon="fa-solid fa-volleyball"></Navbar>
+            {notification.open && (
+                <Notification type={notification.type} message={notification.message} />
+            )}
             <Routes>
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/home" element={<Home />} />
-                <Route
-                    path="/user/home"
-                    element={
-                        <RequireAuth redirectTo="/login">
-                            <UserHome />
-                        </RequireAuth>
-                    }
-                />
-                <Route
-                    path="/user/newPlace"
-                    element={
-                        <RequireAuth redirectTo="/login">
-                            <NewPlace />
-                        </RequireAuth>
-                    }
-                />
-                <Route
-                    path="/user/place/:id"
-                    element={
-                        <RequireAuth redirectTo="/login">
-                            <Place />
-                        </RequireAuth>
-                    }
-                />
-                <Route
-                    path="/user/premium"
-                    element={
-                        <RequireAuth redirectTo="/login">
-                            <Premium />
-                        </RequireAuth>
-                    }
-                />
+                {MainRoute()}
+                {UserRoute()}
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
-            
-            <KubaFooter creatorName="Play2Gether inc."/>
-        </Router>
-
-        // <div className="App">
-        //     <Navbar title="PLAY2GETHER" icon="fa-solid fa-volleyball"/>
-        //     <SearchBox title="Wyszukaj"/>
-        //     <div className="map" style={{textAlign: "center", height: "1000px", backgroundColor: "green", float: "left", width: "55%"}}>
-        //         Mapa
-        //     </div>
-        //     <div className="ad" style={{textAlign: "center", height: "1000px", backgroundColor: "red", float: "left", width: "20%"}}>
-        //         Miejsce na twoją reklamę
-        //     </div>
-        //     <Footer creatorName="Play2Gether inc."/>
-        // </div>
+            <Footer creatorName="Play2Gether inc." />
+        </>
     );
 }
 

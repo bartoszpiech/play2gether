@@ -1,9 +1,9 @@
 import { useState } from "react";
-
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { registerUserRequest } from "../../store/user-actions";
+import { useAppDispatch } from "../../hooks";
+
+import { registerUserThunk} from "../../store/user-actions";
 
 const Register = () => {
     const [email, setEmail] = useState("");
@@ -12,13 +12,14 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const formSubmitHandler = (e) => {
-        e.preventDefault();
+    const formSubmitHandler = (event: React.SyntheticEvent) => {
+        event.preventDefault();
 
-        dispatch(registerUserRequest(firstName, lastName, email, password, navigate));
+        dispatch(registerUserThunk(firstName, lastName, email, password, navigate));
+
     };
 
     return (

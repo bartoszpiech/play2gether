@@ -1,22 +1,20 @@
-import { useState, useContext } from "react";
-
-import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
-import { UserContext } from "../../Context/UserContext";
-import { LoginUserRequest } from "../../store/user-actions";
+import { useAppDispatch } from "../../hooks";
+import { loginUserThunk } from "../../store/user-actions";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
-    const formSubmitHandler = (e) => {
-        e.preventDefault();
+    const formSubmitHandler = (event: React.SyntheticEvent) => {
+        event.preventDefault();
 
-        dispatch(LoginUserRequest(email, password, navigate));
+        dispatch(loginUserThunk(email, password, navigate));
     };
 
     return (

@@ -37,7 +37,7 @@ const Notification = ({ type, message }: NotificationProps) => {
                     horizontal: "left",
                 }}
                 open={true}
-                autoHideDuration={1500}
+                autoHideDuration={2000}
                 onClose={handleClose}
             >
                 <Alert onClose={handleClose} severity={type} sx={{ width: "100%" }}>

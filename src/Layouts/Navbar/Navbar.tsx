@@ -1,29 +1,33 @@
-import React, { useState, useContext, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
+
+import { useDispatch,useSelector } from "react-redux";
+
+import { useNavigate } from "react-router-dom";
+
+import { RootState } from "../../store";
+import { userActions } from "../../store/user-slice";
 
 import { PageNavbar } from "../../Assets/Styles/Navbar/PageNavbar";
 import { Heading } from "../../Assets/Styles/Navbar/Heading";
 import { MenuIcon } from "../../Assets/Styles/Navbar/MenuIcon";
 import { NavMenu } from "../../Assets/Styles/Navbar/NavMenu";
-// import { StyledNavLink } from "../../Assets/Styles/Navbar/StyledNavLink";
 
 import { SignUpNavLink, StyledNavLink } from "../../Assets/Styles/Navbar/StyledNavLink";
-
-import { UserContext } from "../../Context/UserContext";
-
 import { MenuItemsLoginIn, MenuItems } from "./MenuItems";
-import { useNavigate } from "react-router-dom";
 
 interface NavbarProps {
-    title?: string;
-    icon?: string;
-    logout?: boolean;
-    children?: React.ReactNode;
+    title: string;
+    icon: string;
 }
 const Navbar = (props: NavbarProps) => {
     const [clicked, setClicked] = useState(false);
-    const [userContext, setUserContext]: any = useContext(UserContext);
-    const { token: isUser }: any = userContext;
+    const token = useSelector((state: RootState) => state.user.token);
+
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+
 
     const handleClick = () => {
         setClicked(!clicked);
@@ -34,12 +38,14 @@ const Navbar = (props: NavbarProps) => {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${userContext.token}`,
+                Authorization: `Bearer ${token}`,
             },
         }).then(async (response) => {
-            setUserContext((oldValues: any) => {
-                return { ...oldValues, details: undefined, token: null };
-            });
+            dispatch(
+                userActions.register({
+                    token: null,
+                })
+            );
             window.localStorage.setItem("logout", Date.now().toString());
         });
     };
@@ -50,7 +56,7 @@ const Navbar = (props: NavbarProps) => {
             navigate("/home");
             window.location.reload();
         }
-    }, []);
+    },[]);
 
     useEffect(() => {
         window.addEventListener("storage", syncLogout);
@@ -78,7 +84,7 @@ const Navbar = (props: NavbarProps) => {
     };
 
     const printMenuItemsLogIn = () => {
-        let newMenu = MenuItemsLoginIn.map((item, index) => {
+        return  MenuItemsLoginIn.map((item, index) => {
             if (!item.logout) {
                 return (
                     <StyledNavLink key={index} to={item.url} onClick={handleClick}>
@@ -93,21 +99,24 @@ const Navbar = (props: NavbarProps) => {
                 );
             }
         });
-
-        return newMenu;
     };
+    const handleHomeClick = () => {
+        console.log("siema")
+        navigate("/home", { replace: true });
+
+    }
 
     return (
         <PageNavbar>
-            <Heading>
-                <i className={props.icon} />
+            <Heading onClick={handleHomeClick}>
+                <i className={props.icon}/>
                 {props.title}
             </Heading>
             <MenuIcon onClick={handleClick}>
                 <i className={clicked ? "fa-solid fa-arrow-left" : "fa-solid fa-arrow-right"} />
             </MenuIcon>
             <NavMenu isActive={clicked} menuHeight={MenuItemsLoginIn.length * 100 + 20}>
-                {isUser ? printMenuItemsLogIn() : printMenuItems()}
+                {token ? printMenuItemsLogIn() : printMenuItems()}
             </NavMenu>
         </PageNavbar>
     );

@@ -179,6 +179,7 @@ export const refreshTokenThunk =
                         message: "Automatyczne logowanie",
                     })
                 );
+                console.log(data)
                 navigate("/user/home");
             } else {
                 AppDispatch(

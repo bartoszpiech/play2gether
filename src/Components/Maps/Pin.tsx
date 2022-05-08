@@ -9,7 +9,7 @@ const pinStyle = {
     stroke: "none",
 };
 
-function Pin(props) {
+function Pin(props: {size?: number}) {
     const { size = 20 } = props;
 
     return (

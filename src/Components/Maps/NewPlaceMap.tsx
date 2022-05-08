@@ -1,8 +1,6 @@
 import React, { useState, useCallback } from "react";
 
-import Pin from "../Pin";
-
-// import type {MarkerDragEvent, LngLat} from 'react-map-gl';
+import Pin from "./Pin";
 
 import Map, { NavigationControl, Marker } from "react-map-gl";
 
@@ -14,13 +12,13 @@ const initialViewState = {
     zoom: 12.5,
 };
 
-const NewPlaceMap = (props) => {
+const NewPlaceMap = (props:any) => {
     const [marker, setMarker] = useState({
         latitude: 51.107883,
         longitude: 17.038538,
     });
 
-    const onMarkerDrag = useCallback((event) => {
+    const onMarkerDrag = useCallback((event:any) => {
         setMarker({
             longitude: event.lngLat.lng,
             latitude: event.lngLat.lat,
@@ -29,9 +27,24 @@ const NewPlaceMap = (props) => {
         props.newLocation({
             longitude: event.lngLat.lng,
             latitude: event.lngLat.lat,
-        })
+        });
     }, []);
 
+    const onWheel = (event:any) => {
+        if (event.originalEvent.ctrlKey) {
+            return;
+        }
+
+        if (event.originalEvent.metaKey) {
+            return;
+        }
+
+        if (event.originalEvent.altKey) {
+            return;
+        }
+
+        event.preventDefault();
+    };
 
     return (
         <Map
@@ -39,12 +52,14 @@ const NewPlaceMap = (props) => {
             mapStyle="mapbox://styles/mapbox/streets-v11"
             mapboxAccessToken={TOKEN}
             attributionControl={false}
+            onWheel={onWheel}
         >
             <Marker
                 longitude={marker.longitude}
                 latitude={marker.latitude}
                 anchor="bottom"
                 draggable
+
                 onDrag={onMarkerDrag}
             >
                 <Pin size={20} />
@@ -53,6 +68,6 @@ const NewPlaceMap = (props) => {
             <NavigationControl />
         </Map>
     );
-}
+};
 
 export default NewPlaceMap;

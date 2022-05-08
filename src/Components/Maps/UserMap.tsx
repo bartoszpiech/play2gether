@@ -1,10 +1,5 @@
-import React, { useState, useCallback, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-
-import Pin from "../Pin";
-// import type {MarkerDragEvent, LngLat} from 'react-map-gl';
-
 import Map, {
     Marker,
     Popup,
@@ -14,6 +9,13 @@ import Map, {
     GeolocateControl,
 } from "react-map-gl";
 
+import Pin from "./Pin";
+import CSS from "csstype";
+
+const userMapColStyle: CSS.Properties = {
+    minHeight: "400px"
+};
+
 const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
 
 const initialViewState = {
@@ -22,8 +24,18 @@ const initialViewState = {
     zoom: 12.5,
 };
 
-const UserHomeMap = (props) => {
-    const [popupInfo, setPopupInfo] = useState(null);
+interface TypePopupInfo {
+    _id: string;
+    name: string;
+    description: string;
+    geometry: {
+        type: string;
+        coordinates: number[];
+    };
+}
+
+function UserMap() {
+    const [popupInfo, setPopupInfo] = useState<TypePopupInfo | null>(null);
 
     const [dataMap, setDataMap] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -33,7 +45,6 @@ const UserHomeMap = (props) => {
     }, []);
 
     const fetchData = () => {
-        // console.log("siema")
         setLoading(true);
         fetch(process.env.REACT_APP_API_ENDPOINT + "user/getPlaces")
             .then((response) => response.json())
@@ -47,9 +58,8 @@ const UserHomeMap = (props) => {
             });
     };
 
-    const CreatPins = () => {
-        // console.log(dataMap)
-        return dataMap.map((event) => (
+    const CreatPins = (dataMap: any) => {
+        return dataMap.map((event: TypePopupInfo) => (
             <Marker
                 key={`marker-${event._id}`}
                 longitude={event.geometry.coordinates[0]}
@@ -67,6 +77,22 @@ const UserHomeMap = (props) => {
         ));
     };
 
+    const onWheel = (event :any) => {
+        if (event.originalEvent.ctrlKey) {
+            return;
+        }
+
+        if (event.originalEvent.metaKey) {
+            return;
+        }
+
+        if (event.originalEvent.altKey) {
+            return;
+        }
+
+        event.preventDefault();
+    };
+
     return (
         <>
             {loading ? (
@@ -77,13 +103,15 @@ const UserHomeMap = (props) => {
                     mapboxAccessToken={TOKEN}
                     mapStyle="mapbox://styles/mapbox/streets-v11"
                     attributionControl={false}
+                    onWheel={onWheel}
+                    style={userMapColStyle}
                 >
                     <GeolocateControl position="top-left" />
                     <FullscreenControl position="top-left" />
                     <NavigationControl position="top-left" />
                     <ScaleControl />
 
-                    {dataMap ? CreatPins() : ""}
+                    {dataMap ? CreatPins(dataMap) : ""}
 
                     {popupInfo && (
                         <Popup
@@ -101,8 +129,12 @@ const UserHomeMap = (props) => {
                                 >
                                     Wejdź
                                 </a> */}
-                                <NavLink to={`/user/place/${popupInfo._id}`} className="btn btn-info">Wejdź</NavLink>
-
+                                <NavLink
+                                    to={`/user/place/${popupInfo._id}`}
+                                    className="btn btn-info"
+                                >
+                                    Wejdź
+                                </NavLink>
                             </div>
                             {/* <img width="100%" src={popupInfo.image} /> */}
                         </Popup>
@@ -111,6 +143,6 @@ const UserHomeMap = (props) => {
             )}
         </>
     );
-};
+}
 
-export default UserHomeMap;
+export default UserMap;

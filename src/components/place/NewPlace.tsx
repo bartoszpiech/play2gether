@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
 
 // import { UserContext } from "../../Context/UserContext";
-import NewPlaceMap from "./NewPlaceMap";
+import NewPlaceMap from "../Maps/NewPlaceMap";
 
 import { useNavigate } from "react-router-dom";
 
 import CSS from "csstype";
 
-const newPlaceMapStyle: CSS.Properties = {
-    minHeight: "200px",
+const newLocationMap: CSS.Properties = {
+    minHeight: "200px"
 };
 
 const NewPlace = () => {
@@ -67,7 +67,7 @@ const NewPlace = () => {
 
     return (
         <form onSubmit={formSubmitHandler} className="d-flex flex-column rounded-3 shadow-lg bg-white h-100 p-4">
-            <h1 className="display-5 text-center">Tworzenie nowego obiektu</h1>
+            <h1 className="display-5 text-center">Nowy Obiekt</h1>
             <div className="mt-4">
                 <label className="form-label mb-1">Nazwa</label>
                 <input
@@ -90,7 +90,7 @@ const NewPlace = () => {
                 ></textarea>
             </div>
 
-            <div className="my-3 flex-grow-1" style={newPlaceMapStyle}><NewPlaceMap newLocation={setMarker} /></div>
+            <div className="my-3 flex-grow-1" style={newLocationMap}><NewPlaceMap newLocation={setMarker} /></div>
 
             <button type="submit" className="btn btn-secondary mt-auto" disabled={isSubmitting}>
                 {isSubmitting ? "Dodawanie" : "Dodaj"}

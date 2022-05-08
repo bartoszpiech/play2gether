@@ -5,20 +5,14 @@ import UserMap from "../../../Components/Maps/UserMap";
 
 import AD from "../../../Layouts/AD";
 
-import CSS from "csstype";
-
-const userMapColStyle: CSS.Properties = {
-    minHeight: "400px"
-};
-
 function PageUserHome() {
     return (
         <div className="row py-xl-5 py-0 m-0 h-100">
             <div className="col-xl-2 col-12 offset-0 p-0">
                 <SearchBox title="Wyszukaj" />
             </div>
-            <div className="col-xl-8 col-12 offset-0 p-0" style={userMapColStyle}>
-                <UserMap />
+            <div className="col-xl-8 col-12 offset-0 p-0">
+                <UserMap/>
             </div>
             <div className="col-xl-2 col-12 offset-0 p-0">
                 <AD />

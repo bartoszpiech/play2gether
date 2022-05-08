@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { NavLink } from "react-router-dom";
 
-import Pin from "./Pin";
-
 import Map, {
     Marker,
     Popup,
@@ -12,6 +10,15 @@ import Map, {
     ScaleControl,
     GeolocateControl,
 } from "react-map-gl";
+
+import Pin from "./Pin";
+
+
+import CSS from "csstype";
+
+const userMapColStyle: CSS.Properties = {
+    minHeight: "400px"
+};
 
 const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
 
@@ -56,7 +63,7 @@ function UserMap() {
             });
     };
 
-    const CreatPins = (dataMap : any) => {
+    const CreatPins = (dataMap: any) => {
         // console.log(dataMap)
         return dataMap.map((event: TypePopupInfo) => (
             <Marker
@@ -76,6 +83,22 @@ function UserMap() {
         ));
     };
 
+    const onWheel = (event :any) => {
+        if (event.originalEvent.ctrlKey) {
+            return;
+        }
+
+        if (event.originalEvent.metaKey) {
+            return;
+        }
+
+        if (event.originalEvent.altKey) {
+            return;
+        }
+
+        event.preventDefault();
+    };
+
     return (
         <>
             {loading ? (
@@ -86,6 +109,8 @@ function UserMap() {
                     mapboxAccessToken={TOKEN}
                     mapStyle="mapbox://styles/mapbox/streets-v11"
                     attributionControl={false}
+                    onWheel={onWheel}
+                    style={userMapColStyle}
                 >
                     <GeolocateControl position="top-left" />
                     <FullscreenControl position="top-left" />

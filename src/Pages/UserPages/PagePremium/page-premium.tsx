@@ -1,4 +1,4 @@
-import Premium from "../../../Components/user/Premium";
+import Premium from "../../../Components/User/Premium";
 import AD from "../../../Layouts/AD";
 
 function PagePremium() {

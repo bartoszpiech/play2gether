@@ -9,5 +9,6 @@ export const PageSearchBox = styled.div`
     text-align: center;
     @media screen and (max-width: 1200px) {
         width: 100%;
+        padding-bottom: 30px;
     }
 `;

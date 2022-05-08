@@ -1,3 +1,14 @@
+/* TODO:
+ * można dać atrybut userLoggedIn: boolean, żeby sprawdzać czy wyświetlać itemy
+ * tylko dla zalogowanych użytkoników
+ */
+export interface MenuItemsInterface {
+    title: string;
+    url: string;
+    isSignUpButton?: boolean;
+    logout?: boolean;
+}
+
 export const MenuItems = [
     {
         title: "Home",
@@ -15,7 +26,7 @@ export const MenuItems = [
     },
 ];
 
-export const MenuItemsLoginIn = [
+export const MenuItemsLoggedIn = [
     {
         title: "Premium",
         url: "user/premium",
@@ -32,5 +43,6 @@ export const MenuItemsLoginIn = [
         title: "Wyloguj",
         url: "/login",
         logout: true,
+        isSignUpButton: true,
     },
 ];

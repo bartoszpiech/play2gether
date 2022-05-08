@@ -1,21 +1,21 @@
 import "./Assets/Styles/App.css";
 
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
-import Navbar from "./Layouts/Navbar/Navbar";
-import Footer from "./Layouts/Footer";
-import Notification from "./Layouts/Notification";
+import Navbar from "Layouts/Navbar/Navbar";
+import Footer from "Layouts/Footer";
+import Notification from "Layouts/Notification";
 
-import { MainRoute } from "./Routes/MainRoute";
-import { UserRoute } from "./Routes/UserRoute";
+import { MainRoute } from "Routes/MainRoute";
+import { UserRoute } from "Routes/UserRoute";
 
-import { PageNotFound } from "./Pages/index";
+import { PageNotFound } from "Pages/index";
 
 import { useSelector } from "react-redux";
-import { RootState } from "./Store";
+import { RootState } from "Store";
 import { useCallback, useEffect } from "react";
-import { useAppDispatch } from "./hooks";
-import { refreshTokenThunk } from "./Store/user-actions";
+import { useAppDispatch } from "hooks";
+import { refreshTokenThunk } from "Store/user-actions";
 
 function App() {
     const notification = useSelector((state: RootState) => state.ui.notification);
@@ -29,11 +29,11 @@ function App() {
 
         // call refreshToken every 5 minutes to renew the authentication token.
         setTimeout(verifyUser, 5 * 60 * 1000);
-    }, []);
+    }, [dispatch, navigate]);
 
     useEffect(() => {
         if (!token) verifyUser();
-    }, [token]);
+    }, [token, verifyUser]);
 
     return (
         <>

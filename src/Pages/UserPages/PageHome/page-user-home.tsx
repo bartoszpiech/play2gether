@@ -1,9 +1,9 @@
 import React from "react";
 
-import SearchBox from "../../../Components/SearchBox/SearchBox";
-import UserMap from "../../../Components/Maps/UserMap";
+import SearchBox from "Components/SearchBox/SearchBox";
+import UserMap from "Components/Maps/UserMap";
 
-import AD from "../../../Layouts/AD";
+import AD from "Layouts/AD";
 
 function PageUserHome() {
     return (

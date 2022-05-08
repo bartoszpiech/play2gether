@@ -1,6 +1,6 @@
 import { Route, Navigate } from "react-router-dom";
 
-import {PageRegister, PageLogin, PageHome} from "../Pages/index"
+import {PageRegister, PageLogin, PageHome} from "Pages/index"
 
 export function MainRoute() {
     return [

@@ -1,5 +1,5 @@
 import React from "react";
-import { PageFooter } from "../Assets/Styles/Footer/PageFooter";
+import { PageFooter } from "Assets/Styles/Footer/PageFooter";
 
 export interface FooterProps {
     creatorName: string;

@@ -4,15 +4,15 @@ import { useDispatch,useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 
-import { RootState } from "../../Store";
-import { userActions } from "../../Store/user-slice";
+import { RootState } from "Store";
+import { userActions } from "Store/user-slice";
 
-import { PageNavbar } from "../../Assets/Styles/Navbar/PageNavbar";
-import { Heading } from "../../Assets/Styles/Navbar/Heading";
-import { MenuIcon } from "../../Assets/Styles/Navbar/MenuIcon";
-import { NavMenu } from "../../Assets/Styles/Navbar/NavMenu";
+import { PageNavbar } from "Assets/Styles/Navbar/PageNavbar";
+import { Heading } from "Assets/Styles/Navbar/Heading";
+import { MenuIcon } from "Assets/Styles/Navbar/MenuIcon";
+import { NavMenu } from "Assets/Styles/Navbar/NavMenu";
 
-import { SignUpNavLink, StyledNavLink } from "../../Assets/Styles/Navbar/StyledNavLink";
+import { SignUpNavLink, StyledNavLink } from "Assets/Styles/Navbar/StyledNavLink";
 import { MenuItemsLoginIn, MenuItems } from "./MenuItems";
 
 interface NavbarProps {

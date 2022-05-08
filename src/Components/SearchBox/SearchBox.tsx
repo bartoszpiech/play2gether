@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 
-import { PageSearchBox } from '../../Assets/Styles/SearchBox/PageSearchBox';
+import { PageSearchBox } from 'Assets/Styles/SearchBox/PageSearchBox';
 
-import { Heading, SmallHeading, TinyHeading } from '../../Assets/Styles/SearchBox/Heading';
+import { Heading, SmallHeading, TinyHeading } from 'Assets/Styles/SearchBox/Heading';
 
 
 

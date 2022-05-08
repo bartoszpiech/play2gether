@@ -1,9 +1,7 @@
 import React from "react";
 
-import AD from "../../../Layouts/AD";
-import Home from "../../../Components/Main/Home";
-
-
+import AD from "Layouts/AD";
+import Home from "Components/Main/Home";
 
 function PageHome() {
     return (

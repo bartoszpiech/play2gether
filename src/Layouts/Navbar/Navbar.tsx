@@ -12,22 +12,20 @@ import { Heading } from "../../Assets/Styles/Navbar/Heading";
 import { MenuIcon } from "../../Assets/Styles/Navbar/MenuIcon";
 import { NavMenu } from "../../Assets/Styles/Navbar/NavMenu";
 
-import { SignUpNavLink, StyledNavLink } from "../../Assets/Styles/Navbar/StyledNavLink";
-import { MenuItemsLoginIn, MenuItems } from "./MenuItems";
+import { StyledNavLink } from "../../Assets/Styles/Navbar/StyledNavLink";
+import { MenuItemsLoggedIn, MenuItems, MenuItemsInterface } from "./MenuItems";
 
 interface NavbarProps {
     title: string;
     icon: string;
 }
+
 const Navbar = (props: NavbarProps) => {
     const [clicked, setClicked] = useState(false);
     const token = useSelector((state: RootState) => state.user.token);
 
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
-
 
     const handleClick = () => {
         setClicked(!clicked);
@@ -56,7 +54,7 @@ const Navbar = (props: NavbarProps) => {
             navigate("/home");
             window.location.reload();
         }
-    },[]);
+    },[navigate]);
 
     useEffect(() => {
         window.addEventListener("storage", syncLogout);
@@ -65,45 +63,23 @@ const Navbar = (props: NavbarProps) => {
         };
     }, [syncLogout]);
 
-    const printMenuItems = () => {
-        return MenuItems.map((item, index) => {
-            if (item.isSignUpButton) {
+    const printMenuItems = (Items: MenuItemsInterface[]) => {
+        return Items.map((item, index) => {
                 return (
-                    <SignUpNavLink key={index} to={item.url} onClick={handleClick}>
-                        {item.title}
-                    </SignUpNavLink>
-                );
-            } else {
-                return (
-                    <StyledNavLink key={index} to={item.url} onClick={handleClick}>
+                    <StyledNavLink 
+                    key={index} 
+                    to={item.url} 
+                    onClick={item.logout ? logoutHandler : handleClick}
+                    isSignUpButton={item.isSignUpButton}
+                    >
                         {item.title}
                     </StyledNavLink>
                 );
-            }
         });
     };
 
-    const printMenuItemsLogIn = () => {
-        return  MenuItemsLoginIn.map((item, index) => {
-            if (!item.logout) {
-                return (
-                    <StyledNavLink key={index} to={item.url} onClick={handleClick}>
-                        {item.title}
-                    </StyledNavLink>
-                );
-            } else {
-                return (
-                    <SignUpNavLink key={index} to={item.url} onClick={logoutHandler}>
-                        {item.title}
-                    </SignUpNavLink>
-                );
-            }
-        });
-    };
     const handleHomeClick = () => {
-        console.log("siema")
         navigate("/home", { replace: true });
-
     }
 
     return (
@@ -115,8 +91,8 @@ const Navbar = (props: NavbarProps) => {
             <MenuIcon onClick={handleClick}>
                 <i className={clicked ? "fa-solid fa-arrow-left" : "fa-solid fa-arrow-right"} />
             </MenuIcon>
-            <NavMenu isActive={clicked} menuHeight={MenuItemsLoginIn.length * 100 + 20}>
-                {token ? printMenuItemsLogIn() : printMenuItems()}
+            <NavMenu isActive={clicked} menuHeight={(token ? MenuItemsLoggedIn.length : MenuItems.length) * 100 + 50}>
+                {token ? printMenuItems(MenuItemsLoggedIn) : printMenuItems(MenuItems)}
             </NavMenu>
         </PageNavbar>
     );

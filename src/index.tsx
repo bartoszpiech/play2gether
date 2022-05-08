@@ -14,13 +14,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
-declare namespace NodeJS {
-    interface ProcessEnv {
-        NODE_ENV: "development" | "production" | "test";
-        PUBLIC_URL: string;
-    }
-}
-
 root.render(
     <React.StrictMode>
         <Provider store={store}>

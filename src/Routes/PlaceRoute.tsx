@@ -2,7 +2,6 @@ import { Route } from "react-router-dom";
 
 import RequireAuth from "../Middleware/RequireAuth";
 
-import NewPlace from "../Components/Place/NewPlace";
 import Place from "../Components/Place/Place";
 
 import { PageNewPlace } from "../Pages";
@@ -10,7 +9,7 @@ import { PageNewPlace } from "../Pages";
 
 export function PlaceRoute() {
     return [
-        <Route key="place" path="">
+        <Route key="place" path="place">
             <Route
                 key="newPlace"
                 path="newPlace"
@@ -22,7 +21,7 @@ export function PlaceRoute() {
             />
             ,
             <Route
-                key="/place/:id"
+                key=":id"
                 path=":id"
                 element={
                     <RequireAuth>

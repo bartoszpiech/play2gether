@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-
 import { NavLink } from "react-router-dom";
-
 import Map, {
     Marker,
     Popup,
@@ -12,8 +10,6 @@ import Map, {
 } from "react-map-gl";
 
 import Pin from "./Pin";
-
-
 import CSS from "csstype";
 
 const userMapColStyle: CSS.Properties = {
@@ -49,7 +45,6 @@ function UserMap() {
     }, []);
 
     const fetchData = () => {
-        // console.log("siema")
         setLoading(true);
         fetch(process.env.REACT_APP_API_ENDPOINT + "user/getPlaces")
             .then((response) => response.json())
@@ -64,7 +59,6 @@ function UserMap() {
     };
 
     const CreatPins = (dataMap: any) => {
-        // console.log(dataMap)
         return dataMap.map((event: TypePopupInfo) => (
             <Marker
                 key={`marker-${event._id}`}

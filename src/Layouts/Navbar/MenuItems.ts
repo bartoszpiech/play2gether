@@ -22,7 +22,7 @@ export const MenuItemsLoginIn = [
     },
     {
         title: "Nowe miejsce",
-        url: "/user/newPlace",
+        url: "/user/place/newPlace",
     },
     {
         title: "Home",

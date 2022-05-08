@@ -7,8 +7,8 @@ export interface FooterProps {
 
 export default function Footer(props: FooterProps) {
     return (
-        <footer className="bd-footer mt-5 bg-light">
+        <div className="footer mt-auto bg-light">
             <PageFooter>Strona wykonana przez: {props.creatorName}</PageFooter>
-        </footer>
+        </div>
     );
 }

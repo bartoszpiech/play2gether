@@ -1,9 +1,15 @@
 import React from "react";
 
 import SearchBox from "../../../Components/SearchBox/SearchBox";
-import UserHomeMap from "../../../Components/User/UserHomeMap";
+import UserMap from "../../../Components/Maps/UserMap";
 
 import AD from "../../../Layouts/AD";
+
+import CSS from "csstype";
+
+const userMapColStyle: CSS.Properties = {
+    minHeight: "400px"
+};
 
 function PageUserHome() {
     return (
@@ -11,8 +17,8 @@ function PageUserHome() {
             <div className="col-xl-2 col-12 offset-0 p-0">
                 <SearchBox title="Wyszukaj" />
             </div>
-            <div className="col-xl-8 col-12 offset-0 p-0">
-                <UserHomeMap />
+            <div className="col-xl-8 col-12 offset-0 p-0" style={userMapColStyle}>
+                <UserMap />
             </div>
             <div className="col-xl-2 col-12 offset-0 p-0">
                 <AD />

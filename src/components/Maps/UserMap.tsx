@@ -1,9 +1,8 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { NavLink } from "react-router-dom";
 
-import Pin from "../Pin";
-// import type {MarkerDragEvent, LngLat} from 'react-map-gl';
+import Pin from "./Pin";
 
 import Map, {
     Marker,
@@ -22,8 +21,18 @@ const initialViewState = {
     zoom: 12.5,
 };
 
-const UserHomeMap = (props) => {
-    const [popupInfo, setPopupInfo] = useState(null);
+interface TypePopupInfo {
+    _id: string;
+    name: string;
+    description: string;
+    geometry: {
+        type: string;
+        coordinates: number[];
+    };
+}
+
+function UserMap() {
+    const [popupInfo, setPopupInfo] = useState<TypePopupInfo | null>(null);
 
     const [dataMap, setDataMap] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -47,9 +56,9 @@ const UserHomeMap = (props) => {
             });
     };
 
-    const CreatPins = () => {
+    const CreatPins = (dataMap : any) => {
         // console.log(dataMap)
-        return dataMap.map((event) => (
+        return dataMap.map((event: TypePopupInfo) => (
             <Marker
                 key={`marker-${event._id}`}
                 longitude={event.geometry.coordinates[0]}
@@ -83,7 +92,7 @@ const UserHomeMap = (props) => {
                     <NavigationControl position="top-left" />
                     <ScaleControl />
 
-                    {dataMap ? CreatPins() : ""}
+                    {dataMap ? CreatPins(dataMap) : ""}
 
                     {popupInfo && (
                         <Popup
@@ -101,8 +110,12 @@ const UserHomeMap = (props) => {
                                 >
                                     Wejdź
                                 </a> */}
-                                <NavLink to={`/user/place/${popupInfo._id}`} className="btn btn-info">Wejdź</NavLink>
-
+                                <NavLink
+                                    to={`/user/place/${popupInfo._id}`}
+                                    className="btn btn-info"
+                                >
+                                    Wejdź
+                                </NavLink>
                             </div>
                             {/* <img width="100%" src={popupInfo.image} /> */}
                         </Popup>
@@ -111,6 +124,6 @@ const UserHomeMap = (props) => {
             )}
         </>
     );
-};
+}
 
-export default UserHomeMap;
+export default UserMap;

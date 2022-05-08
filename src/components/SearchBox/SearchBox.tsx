@@ -24,7 +24,7 @@ export default class SearchBox extends Component<SearchBoxProps> {
                 <Place/>
                 <SmallHeading>Dodatkowe opcje:</SmallHeading>
                 <form>
-                    <TinyHeading>Sport:</TinyHeading>
+                    <SmallHeading>Sport:</SmallHeading>
                     <SportType/>
                     <TinyHeading>Wolne miejsca:</TinyHeading>
                     <AmountOfPeople/>

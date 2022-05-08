@@ -1,8 +1,6 @@
 import React, { useState, useCallback } from "react";
 
-import Pin from "../Pin";
-
-// import type {MarkerDragEvent, LngLat} from 'react-map-gl';
+import Pin from "../Maps/Pin";
 
 import Map, { NavigationControl, Marker } from "react-map-gl";
 

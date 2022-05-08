@@ -24,7 +24,7 @@ function MyComponent() {
     );
 
     return (
-        <LoadScript googleMapsApiKey={process.env.REACT_APP_API_MAP_GOOGLE_TOKEN}>
+        <LoadScript googleMapsApiKey={`${process.env.REACT_APP_API_MAP_GOOGLE_TOKEN}`}>
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}

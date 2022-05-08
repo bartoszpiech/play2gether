@@ -12,10 +12,10 @@ import { UserRoute } from "./Routes/UserRoute";
 import { PageNotFound } from "./Pages/index";
 
 import { useSelector } from "react-redux";
-import { RootState } from "./store";
+import { RootState } from "./Store";
 import { useCallback, useEffect } from "react";
 import { useAppDispatch } from "./hooks";
-import { refreshTokenThunk } from "./store/user-actions";
+import { refreshTokenThunk } from "./Store/user-actions";
 
 function App() {
     const notification = useSelector((state: RootState) => state.ui.notification);

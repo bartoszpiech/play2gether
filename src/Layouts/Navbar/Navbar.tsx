@@ -4,8 +4,8 @@ import { useDispatch,useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 
-import { RootState } from "../../store";
-import { userActions } from "../../store/user-slice";
+import { RootState } from "../../Store";
+import { userActions } from "../../Store/user-slice";
 
 import { PageNavbar } from "../../Assets/Styles/Navbar/PageNavbar";
 import { Heading } from "../../Assets/Styles/Navbar/Heading";

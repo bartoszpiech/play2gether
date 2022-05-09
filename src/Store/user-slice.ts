@@ -6,6 +6,10 @@ interface AccountType {
     username: string;
     firstName: string;
     lastName: string;
+    image: {
+        url: string,
+        id: string
+    };
     activeEvents: [];
     authStrategy: string;
     __v: number;
@@ -33,6 +37,9 @@ const userSlice = createSlice({
     reducers: {
         login(state, action: PayloadAction<RegisterPayload>) {
             state.token = action.payload.token;
+            state.account = action.payload.account;
+        },
+        updateUser(state, action: PayloadAction<{account: AccountType}>) {
             state.account = action.payload.account;
         },
         logout(state) {

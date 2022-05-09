@@ -18,7 +18,7 @@ function Account() {
                 <>
                     <div className="flex-grow-1 bg-black mx-5">
                         <img
-                            src={require("../../Assets/Images/dzik.jpeg")}
+                            src={account?.image.url}
                             className="mainImage"
                             alt="elo"
                         />
@@ -49,28 +49,5 @@ function Account() {
         </div>
     );
 }
-
-/* <div className="col-xl col-12">
-                    <img
-                        src={require("../../Assets/Images/dzik.jpeg")}
-                        className="img-fluid imageSizeAccount rounded-3"
-                    />
-                    <form
-                        action="/patient/account/photo"
-                        method="post"
-                        encType="multipart/form-data"
-                    >
-                        <input
-                            className="form-control"
-                            type="file"
-                            id="image"
-                            name="image"
-                            required
-                        />
-                        <button disabled className="btn btn-secondary col-12">
-                            Ustaw zdjęcie
-                        </button>
-                    </form>
-                </div> */
 
 export default Account;

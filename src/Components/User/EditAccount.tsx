@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { updateUserThunk } from "../../Store/user-actions";
 
 interface EditAccountProps {
     setEditVisible: any;
@@ -13,12 +14,63 @@ function EditAccount(props: EditAccountProps) {
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
+    const [selectedFile, setSelectedFile] = useState();
+    const [fileInputState, setFileInputState] = useState("");
+    const [previewSource, setPreviewSource]: any = useState();
+
     const account = useAppSelector((state) => state.user.account);
+    const token = useAppSelector((state) => state.user.token);
+
+    const dispatch = useAppDispatch();
+
+    // const formData = new FormData();
 
     const formSubmitHandler = (event: React.SyntheticEvent) => {
         event.preventDefault();
 
-        // dispatch(registerUserThunk(firstName, lastName, email, password, navigate));
+        dispatch(updateUserThunk(firstName, lastName, token));
+    };
+
+    const handleFileInputChange = (e: any) => {
+        const file = e.target.files[0];
+        previewFile(file);
+        setSelectedFile(file);
+        setFileInputState(e.target.value);
+    };
+
+    const previewFile = (file: any) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setPreviewSource(reader.result);
+        };
+    };
+
+    const handleSubmitFile = (e: any) => {
+        e.preventDefault();
+        if (!selectedFile) return;
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onloadend = () => {
+            uploadImage(reader.result);
+        };
+        reader.onerror = () => {
+            console.error("AHHHHHHHH!!");
+        };
+    };
+
+    const uploadImage = async (base64EncodedImage: any) => {
+        try {
+            await fetch(process.env.REACT_APP_API_ENDPOINT + "user/accountImage", {
+                method: "POST",
+                body: JSON.stringify({ data: base64EncodedImage }),
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+            });
+            setFileInputState("");
+            setPreviewSource("");
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -57,22 +109,16 @@ function EditAccount(props: EditAccountProps) {
                         </button>
                     </form>
                     <div className="flex-grow-1 bg-black mt-3">
-                        <img
-                            src={require("../../Assets/Images/dzik.jpeg")}
-                            className="mainImage"
-                            alt="elo"
-                        />
+                        <img src={previewSource} className="mainImage" alt="elo" />
                     </div>
-                    <form
-                        action="/patient/account/photo"
-                        method="post"
-                        encType="multipart/form-data"
-                    >
+                    <form onSubmit={handleSubmitFile} encType="multipart/form-data">
                         <input
-                            className="form-control"
+                            id="fileInput"
                             type="file"
-                            id="image"
                             name="image"
+                            className="form-control"
+                            value={fileInputState}
+                            onChange={handleFileInputChange}
                             required
                         />
                         <button className="btn myBtn col-12">Ustaw zdjęcie</button>
@@ -117,7 +163,7 @@ function EditAccount(props: EditAccountProps) {
                             <div className="form-text">Hasła muszą być takie same.</div>
                         </div>
 
-                        <button type="submit" className="btn myBtn col-12 mt-4">
+                        <button disabled type="submit" className="btn myBtn col-12 mt-4">
                             Nowe hasło
                         </button>
                     </form>

@@ -65,7 +65,7 @@ export const registerUserThunk =
                     AppDispatch(
                         userActions.login({
                             token: data.token,
-                            account: data.user
+                            account: data.user,
                         })
                     );
                     AppDispatch(
@@ -128,7 +128,7 @@ export const loginUserThunk =
                     AppDispatch(
                         userActions.login({
                             token: data.token,
-                            account: data.user
+                            account: data.user,
                         })
                     );
                     AppDispatch(
@@ -163,7 +163,7 @@ export const refreshTokenThunk =
                 AppDispatch(
                     userActions.login({
                         token: data.token,
-                        account: data.user
+                        account: data.user,
                     })
                 );
                 AppDispatch(
@@ -175,16 +175,53 @@ export const refreshTokenThunk =
                 );
                 navigate("/user/home");
             } else {
-                AppDispatch(
-                    userActions.logout()
-                );
+                AppDispatch(userActions.logout());
                 AppDispatch(
                     uiActions.showNotification({
                         open: true,
                         type: "success",
                         message: "Sesja nieaktywna",
                     })
-                )
+                );
+            }
+        });
+    };
+
+export const updateUserThunk =
+    (firstName: string, lastName: string, token:string | null): AppThunk =>
+    async (AppDispatch) => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "user/account", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ firstName, lastName }),
+        }).then(async (response) => {
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data)
+                AppDispatch(
+                    userActions.updateUser({
+                        account: data
+                    })
+                );
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Dane zaktualizowane",
+                    })
+                );
+            } else {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Nie udało się zaktualizować danych",
+                    })
+                );
             }
         });
     };

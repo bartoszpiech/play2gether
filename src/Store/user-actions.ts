@@ -63,8 +63,9 @@ export const registerUserThunk =
                 } else {
                     const data = await response.json();
                     AppDispatch(
-                        userActions.register({
+                        userActions.login({
                             token: data.token,
+                            account: data.user
                         })
                     );
                     AppDispatch(
@@ -74,9 +75,6 @@ export const registerUserThunk =
                             message: "Udało się utworzyć konto",
                         })
                     );
-                    // setUserContext((oldValues) => {
-                    //     return { ...oldValues, token: data.token };
-                    // });
                     navigate("/user/home", { replace: true });
                 }
             })
@@ -130,6 +128,7 @@ export const loginUserThunk =
                     AppDispatch(
                         userActions.login({
                             token: data.token,
+                            account: data.user
                         })
                     );
                     AppDispatch(
@@ -139,10 +138,6 @@ export const loginUserThunk =
                             message: "Udało się zalogować",
                         })
                     );
-
-                    // setUserContext((oldValues) => {
-                    //     return { ...oldValues, token: data.token };
-                    // });
                     navigate("/user/home", { replace: true });
                 }
             })
@@ -166,25 +161,30 @@ export const refreshTokenThunk =
             if (response.ok) {
                 const data = await response.json();
                 AppDispatch(
-                    userActions.register({
+                    userActions.login({
                         token: data.token,
+                        account: data.user
                     })
                 );
                 AppDispatch(
                     uiActions.showNotification({
                         open: true,
                         type: "success",
-                        message: "Automatyczne logowanie",
+                        message: "Sesja aktywna",
                     })
                 );
-                console.log(data)
                 navigate("/user/home");
             } else {
                 AppDispatch(
-                    userActions.register({
-                        token: null,
-                    })
+                    userActions.logout()
                 );
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Sesja nieaktywna",
+                    })
+                )
             }
         });
     };

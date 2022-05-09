@@ -27,6 +27,11 @@ input:-webkit-autofill:active {
     color: white;
 }
 
+.myBtn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(209, 188, 255, 0.25);
+}
+
 .form-control {
     /* border: rgba(94, 63, 161, 1); */
     background-color: white;
@@ -43,3 +48,8 @@ input:-webkit-autofill:active {
     -webkit-background-clip: text;
     color: transparent;
 }
+
+.mainImage {
+    width: 50%;
+}
+

@@ -1,7 +1,7 @@
 import { Route } from "react-router-dom";
 import RequireAuth from "../Middleware/RequireAuth";
 
-import {PagePremium, PageUserHome} from "../Pages/index"
+import {PagePremium, PageUserHome, PageAccount} from "../Pages/index"
 
 import { PlaceRoute } from "./PlaceRoute";
 
@@ -23,6 +23,15 @@ export function UserRoute() {
                 element={
                     <RequireAuth>
                         <PagePremium />
+                    </RequireAuth>
+                }
+            />
+                        <Route
+                key="account"
+                path="account"
+                element={
+                    <RequireAuth>
+                        <PageAccount />
                     </RequireAuth>
                 }
             />

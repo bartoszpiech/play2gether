@@ -1,10 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
 
-import { useDispatch,useSelector } from "react-redux";
-
-import { useNavigate } from "react-router-dom";
-
-import { RootState } from "../../Store";
 import { userActions } from "../../Store/user-slice";
 
 import { PageNavbar } from "../../Assets/Styles/Navbar/PageNavbar";
@@ -14,6 +9,8 @@ import { NavMenu } from "../../Assets/Styles/Navbar/NavMenu";
 
 import { StyledNavLink } from "../../Assets/Styles/Navbar/StyledNavLink";
 import { MenuItemsLoggedIn, MenuItems, MenuItemsInterface } from "./MenuItems";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 interface NavbarProps {
     title: string;
@@ -22,10 +19,10 @@ interface NavbarProps {
 
 const Navbar = (props: NavbarProps) => {
     const [clicked, setClicked] = useState(false);
-    const token = useSelector((state: RootState) => state.user.token);
+    const token = useAppSelector(state => state.user.token)
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
     const handleClick = () => {
         setClicked(!clicked);
@@ -40,9 +37,7 @@ const Navbar = (props: NavbarProps) => {
             },
         }).then(async (response) => {
             dispatch(
-                userActions.register({
-                    token: null,
-                })
+                userActions.logout()
             );
             window.localStorage.setItem("logout", Date.now().toString());
         });

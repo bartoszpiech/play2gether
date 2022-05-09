@@ -28,6 +28,10 @@ export const MenuItems = [
 
 export const MenuItemsLoggedIn = [
     {
+        title: "Home",
+        url: "user/home",
+    },
+    {
         title: "Premium",
         url: "user/premium",
     },
@@ -36,8 +40,8 @@ export const MenuItemsLoggedIn = [
         url: "/user/place/newPlace",
     },
     {
-        title: "Home",
-        url: "user/home",
+        title: "Konto",
+        url: "user/account",
     },
     {
         title: "Wyloguj",

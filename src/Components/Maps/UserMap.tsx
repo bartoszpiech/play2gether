@@ -13,7 +13,7 @@ import Pin from "./Pin";
 import CSS from "csstype";
 
 const userMapColStyle: CSS.Properties = {
-    minHeight: "400px"
+    minHeight: "400px",
 };
 
 const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
@@ -77,7 +77,7 @@ function UserMap() {
         ));
     };
 
-    const onWheel = (event :any) => {
+    const onWheel = (event: any) => {
         if (event.originalEvent.ctrlKey) {
             return;
         }
@@ -119,24 +119,21 @@ function UserMap() {
                             longitude={Number(popupInfo.geometry.coordinates[0])}
                             latitude={Number(popupInfo.geometry.coordinates[1])}
                             onClose={() => setPopupInfo(null)}
+                            closeButton={false}
                         >
-                            <div>
-                                <h5>{popupInfo.name}</h5>
+                            <div className="p-1" style={{ height: "125px",width:"200px" }}>
+                                <h5 className="mt-1">{popupInfo.name}</h5>
                                 <p>{popupInfo.description}</p>
-                                {/* <a
-                                    target="_new"
-                                    href={`http://en.wikipedia.org/w/index.php?title=Special:Search&search=${popupInfo.city}, ${popupInfo.state}`}
-                                >
-                                    Wejdź
-                                </a> */}
-                                <NavLink
+                                
+                                <div className="d-grid gap-2">
+                                    <NavLink
                                     to={`/user/place/${popupInfo._id}`}
-                                    className="btn btn-info"
+                                    className="btn myBtn"
                                 >
                                     Wejdź
                                 </NavLink>
+                                </div>
                             </div>
-                            {/* <img width="100%" src={popupInfo.image} /> */}
                         </Popup>
                     )}
                 </Map>

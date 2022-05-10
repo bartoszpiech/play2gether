@@ -52,7 +52,7 @@ function EditAccount(props: EditAccountProps) {
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);
         reader.onloadend = () => {
-            dispatch(sendUserImageThunk(reader.result,token))
+            dispatch(sendUserImageThunk(reader.result, token));
         };
         reader.onerror = () => {
             dispatch(

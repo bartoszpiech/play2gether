@@ -17,11 +17,7 @@ function Account() {
             ) : (
                 <>
                     <div className="align-self-center bg-black mx-5 ">
-                        <img
-                            src={account?.image.url}
-                            className=" userImage"
-                            alt="elo"
-                        />
+                        <img src={account?.image.url} className=" userImage" alt="elo" />
                     </div>
 
                     <ul className="list-group list-group-horizontal mt-3 mb-1">

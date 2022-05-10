@@ -50,10 +50,6 @@ function Login() {
             <button type="submit" className="btn myBtn col-12 mt-4">
                 Zaloguj się
             </button>
-
-            {/* <button type="submit" className="btn myBtn col-12 mt-4" disabled={isSubmitting}>
-                {isSubmitting ? "Logowanie" : "Zaloguj się"}
-            </button> */}
         </form>
     );
 }

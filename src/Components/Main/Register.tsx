@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../hooks";
 
-import { registerUserThunk} from "../../Store/user-actions";
+import { registerUserThunk } from "../../Store/user-actions";
 
 const Register = () => {
     const [email, setEmail] = useState("");
@@ -19,7 +19,6 @@ const Register = () => {
         event.preventDefault();
 
         dispatch(registerUserThunk(firstName, lastName, email, password, navigate));
-
     };
 
     return (
@@ -47,10 +46,6 @@ const Register = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                {/* <div class="form-text">
-                            Hasło musi zawierać 8-20 znaków, nie może zawierać spacji, znaków
-                            specjalnych, oraz emoji.
-                        </div> */}
             </div>
 
             <div className="mt-3">
@@ -93,9 +88,6 @@ const Register = () => {
             <button type="submit" className="btn myBtn col-12 mt-4">
                 Załóż konto
             </button>
-            {/* <button type="submit" className="btn btn-secondary col-12 mt-4" disabled={isSubmitting}>
-                {isSubmitting ? "Rejestruje" : "Załóż konto"}
-            </button> */}
         </form>
     );
 };

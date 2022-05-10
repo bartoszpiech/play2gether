@@ -1,14 +1,15 @@
-import { useState, useCallback, useEffect } from "react";
-import Map, { NavigationControl, Marker } from "react-map-gl";
+import { useCallback } from "react";
+import Map, { NavigationControl, Marker, GeolocateControl } from "react-map-gl";
+import GeocoderControl from "./GeocoderControl";
 
 import Pin from "./Pin";
 
 const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
 
 const initialViewState = {
-    longitude: 17.038538,
-    latitude: 51.107883,
-    zoom: 12.5,
+    longitude: 19.1343786,
+    latitude: 51.9189046,
+    zoom: 4.6,
 };
 
 function NewPlaceMap(props: any) {
@@ -56,6 +57,8 @@ function NewPlaceMap(props: any) {
                     <Pin size={25} />
                 </Marker>
             )}
+            <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" />
+            <GeolocateControl showAccuracyCircle={false} position="top-left" />
             <NavigationControl />
         </Map>
     );

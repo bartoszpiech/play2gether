@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 
 // import { UserContext } from "../../Context/UserContext";
-import DatePicker, { registerLocale } from "react-datepicker";
+// import DatePicker, { registerLocale } from "react-datepicker";
 
 import { useNavigate } from "react-router-dom";
 
-import pl from "date-fns/locale/pl";
+// import pl from "date-fns/locale/pl";
 
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 
-registerLocale("pl", pl);
+// registerLocale("pl", pl);
 
 function NewEvent(props) {
     // const [userContext, setUserContext] = useContext(UserContext);
@@ -76,7 +76,7 @@ function NewEvent(props) {
             <form onSubmit={formSubmitHandler}>
                 <div className="mt-5">
                     <label className="form-label mb-1">Wybierz date</label>
-                    <DatePicker
+                    {/* <DatePicker
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
                         locale="pl"
@@ -84,7 +84,7 @@ function NewEvent(props) {
                         timeFormat="p"
                         timeIntervals={5}
                         dateFormat="Pp"
-                    />
+                    /> */}
                 </div>
                 <div className="mt-4">
                     <label className="form-label mb-1">Brak limitu / Limit Miejsc</label>

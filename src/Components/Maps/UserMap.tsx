@@ -11,6 +11,7 @@ import Map, {
 
 import Pin from "./Pin";
 import CSS from "csstype";
+import GeocoderControl from "./GeocoderControl";
 
 const userMapColStyle: CSS.Properties = {
     minHeight: "400px",
@@ -35,10 +36,9 @@ interface TypePopupInfo {
 }
 
 function UserMap() {
-    const [popupInfo, setPopupInfo] = useState<TypePopupInfo | null>(null);
-
     const [dataMap, setDataMap] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [popupInfo, setPopupInfo] = useState<TypePopupInfo | null>(null);
 
     useEffect(() => {
         fetchData();
@@ -106,9 +106,11 @@ function UserMap() {
                     onWheel={onWheel}
                     style={userMapColStyle}
                 >
-                    <GeolocateControl position="top-left" />
-                    <FullscreenControl position="top-left" />
-                    <NavigationControl position="top-left" />
+                    <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" />
+                    <GeolocateControl showAccuracyCircle={false} position="top-left" />
+                    <FullscreenControl position="bottom-right" />
+                    <NavigationControl position="bottom-right" />
+
                     <ScaleControl />
 
                     {dataMap ? CreatPins(dataMap) : ""}
@@ -121,17 +123,17 @@ function UserMap() {
                             onClose={() => setPopupInfo(null)}
                             closeButton={false}
                         >
-                            <div className="p-1" style={{ height: "125px",width:"200px" }}>
+                            <div className="p-1" style={{ height: "125px", width: "200px" }}>
                                 <h5 className="mt-1">{popupInfo.name}</h5>
                                 <p>{popupInfo.description}</p>
-                                
+
                                 <div className="d-grid gap-2">
                                     <NavLink
-                                    to={`/user/place/${popupInfo._id}`}
-                                    className="btn myBtn"
-                                >
-                                    Wejdź
-                                </NavLink>
+                                        to={`/user/place/${popupInfo._id}`}
+                                        className="btn myBtn"
+                                    >
+                                        Wejdź
+                                    </NavLink>
                                 </div>
                             </div>
                         </Popup>

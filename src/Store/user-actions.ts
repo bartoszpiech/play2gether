@@ -138,11 +138,13 @@ export const loginUserThunk =
                 }
             })
             .catch((error) => {
-                uiActions.showNotification({
-                    open: true,
-                    type: "error",
-                    message: error,
-                });
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: error,
+                    })
+                );
             });
     };
 

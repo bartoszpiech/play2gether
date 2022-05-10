@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // import { UserContext } from "../../Context/UserContext";
 
@@ -11,7 +11,6 @@ moment.locale("pl");
 function Place() {
     const [error, setError] = useState("");
     const [errorVisible, setErrorVisible] = useState(false);
-
 
     const [placeData, setPlaceData] = useState(false);
     const [loading, setLoading] = useState(false);

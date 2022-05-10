@@ -1,6 +1,6 @@
 import "./Assets/Styles/App.css";
 
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Navbar from "./Layouts/Navbar/Navbar";
 import Footer from "./Layouts/Footer";

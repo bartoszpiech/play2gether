@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { uiActions } from "../../Store/ui-slice";
-import { getUserDateThunk, sendUserImageThunk, updateUserThunk } from "../../Store/user-actions";
-import { userActions } from "../../Store/user-slice";
+import { sendUserImageThunk, updateUserThunk } from "../../Store/user-actions";
 
 interface EditAccountProps {
     setEditVisible: any;

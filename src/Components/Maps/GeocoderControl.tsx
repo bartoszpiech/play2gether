@@ -1,6 +1,5 @@
-import * as React from "react";
 import { useState } from "react";
-import { useControl, Marker, MarkerProps, ControlPosition } from "react-map-gl";
+import { useControl, ControlPosition } from "react-map-gl";
 // import MapboxGeocoder, { GeocoderOptions } from "@mapbox/mapbox-gl-geocoder";
 import MapboxGeocoder, { GeocoderOptions } from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
@@ -17,7 +16,7 @@ type GeocoderControlProps = Omit<GeocoderOptions, "accessToken" | "mapboxgl" | "
 
 /* eslint-disable complexity,max-statements */
 export default function GeocoderControl(props: GeocoderControlProps) {
-    const [marker, setMarker] = useState(null);
+    const [marker] = useState(null);
 
     const geocoder = useControl<MapboxGeocoder>(
         () => {

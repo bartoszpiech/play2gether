@@ -188,7 +188,7 @@ export const refreshTokenThunk =
     };
 
 export const updateUserThunk =
-    (firstName: string, lastName: string, token:string | null): AppThunk =>
+    (firstName: string, lastName: string, token: string | null): AppThunk =>
     async (AppDispatch) => {
         fetch(process.env.REACT_APP_API_ENDPOINT + "user/account", {
             method: "POST",
@@ -200,13 +200,12 @@ export const updateUserThunk =
             body: JSON.stringify({ firstName, lastName }),
         }).then(async (response) => {
             if (response.ok) {
-                const data = await response.json();
-                console.log(data)
-                AppDispatch(
-                    userActions.updateUser({
-                        account: data
-                    })
-                );
+                // const data = await response.json();
+                // AppDispatch(
+                //     userActions.updateUser({
+                //         account: data,
+                //     })
+                // );
                 AppDispatch(
                     uiActions.showNotification({
                         open: true,
@@ -214,12 +213,80 @@ export const updateUserThunk =
                         message: "Dane zaktualizowane",
                     })
                 );
+                AppDispatch(getUserDateThunk(token));
             } else {
                 AppDispatch(
                     uiActions.showNotification({
                         open: true,
-                        type: "success",
+                        type: "error",
                         message: "Nie udało się zaktualizować danych",
+                    })
+                );
+            }
+        });
+    };
+
+export const sendUserImageThunk =
+    (base64EncodedImage: any, token: string | null): AppThunk =>
+    async (AppDispatch) => {
+        AppDispatch(
+            uiActions.showNotification({
+                open: true,
+                type: "success",
+                message: "Wysyłam zdjęcie",
+            })
+        );
+        fetch(process.env.REACT_APP_API_ENDPOINT + "user/accountImage", {
+            method: "POST",
+            body: JSON.stringify({ data: base64EncodedImage }),
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        }).then(async (response) => {
+            if (response.ok) {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Udało się zaktualizować zdjęcie",
+                    })
+                );
+                AppDispatch(getUserDateThunk(token));
+            } else {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "error",
+                        message: "Nie udało się zaktualizować zdjęcie",
+                    })
+                );
+            }
+        });
+    };
+
+export const getUserDateThunk =
+    (token: string | null): AppThunk =>
+    async (AppDispatch) => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "getUser", {
+            method: "GET",
+            credentials: "include",
+            // Pass authentication token as bearer token in header
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        }).then(async (response) => {
+            if (response.ok) {
+                const data = await response.json();
+                AppDispatch(
+                    userActions.updateUser({
+                        account: data,
+                    })
+                );
+            } else {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "error",
+                        message: "Nie udało się pobrać danych",
                     })
                 );
             }

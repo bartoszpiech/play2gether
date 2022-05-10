@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { updateUserThunk } from "../../Store/user-actions";
+import { uiActions } from "../../Store/ui-slice";
+import { getUserDateThunk, sendUserImageThunk, updateUserThunk } from "../../Store/user-actions";
+import { userActions } from "../../Store/user-slice";
 
 interface EditAccountProps {
     setEditVisible: any;
@@ -23,9 +25,7 @@ function EditAccount(props: EditAccountProps) {
 
     const dispatch = useAppDispatch();
 
-    // const formData = new FormData();
-
-    const formSubmitHandler = (event: React.SyntheticEvent) => {
+    const handleSubmitUpdateUser = (event: React.SyntheticEvent) => {
         event.preventDefault();
 
         dispatch(updateUserThunk(firstName, lastName, token));
@@ -52,32 +52,24 @@ function EditAccount(props: EditAccountProps) {
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);
         reader.onloadend = () => {
-            uploadImage(reader.result);
+            dispatch(sendUserImageThunk(reader.result,token))
         };
         reader.onerror = () => {
-            console.error("AHHHHHHHH!!");
+            dispatch(
+                uiActions.showNotification({
+                    open: true,
+                    type: "error",
+                    message: "Błąd wczytania zdjęcia",
+                })
+            );
         };
-    };
-
-    const uploadImage = async (base64EncodedImage: any) => {
-        try {
-            await fetch(process.env.REACT_APP_API_ENDPOINT + "user/accountImage", {
-                method: "POST",
-                body: JSON.stringify({ data: base64EncodedImage }),
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-            });
-            setFileInputState("");
-            setPreviewSource("");
-        } catch (err) {
-            console.error(err);
-        }
     };
 
     return (
         <div className="d-flex flex-column h-100">
             <div className="row flex-grow-1 mb-3">
                 <div className="col-xl-6 col-12 d-flex flex-column">
-                    <form onSubmit={formSubmitHandler}>
+                    <form onSubmit={handleSubmitUpdateUser}>
                         <div className="mt-3">
                             <label className="form-label mb-1">Imię</label>
                             <input
@@ -108,8 +100,8 @@ function EditAccount(props: EditAccountProps) {
                             Edytuj Dane
                         </button>
                     </form>
-                    <div className="flex-grow-1 bg-black mt-3">
-                        <img src={previewSource} className="mainImage" alt="elo" />
+                    <div className="align-self-center bg-black mt-3">
+                        <img src={previewSource} className="mainImage userNewImage" alt="elo" />
                     </div>
                     <form onSubmit={handleSubmitFile} encType="multipart/form-data">
                         <input
@@ -125,7 +117,7 @@ function EditAccount(props: EditAccountProps) {
                     </form>
                 </div>
                 <div className="col-xl-6 col-12">
-                    <form onSubmit={formSubmitHandler}>
+                    <form onSubmit={handleSubmitUpdateUser}>
                         <div className="mt-3">
                             <label className="form-label mb-1">Aktualne Hasło</label>
                             <input

@@ -49,7 +49,11 @@ input:-webkit-autofill:active {
     color: transparent;
 }
 
-.mainImage {
-    width: 50%;
+.userImage {
+    height: 400px;
 }
 
+.userNewImage {
+    height: 230px;
+    width: 450px;
+}

@@ -16,10 +16,10 @@ function Account() {
                 <EditAccount setEditVisible={setEditVisible} />
             ) : (
                 <>
-                    <div className="flex-grow-1 bg-black mx-5">
+                    <div className="align-self-center bg-black mx-5 ">
                         <img
                             src={account?.image.url}
-                            className="mainImage"
+                            className=" userImage"
                             alt="elo"
                         />
                     </div>

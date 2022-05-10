@@ -7,8 +7,8 @@ interface AccountType {
     firstName: string;
     lastName: string;
     image: {
-        url: string,
-        id: string
+        url: string;
+        id: string;
     };
     activeEvents: [];
     authStrategy: string;
@@ -39,7 +39,7 @@ const userSlice = createSlice({
             state.token = action.payload.token;
             state.account = action.payload.account;
         },
-        updateUser(state, action: PayloadAction<{account: AccountType}>) {
+        updateUser(state, action: PayloadAction<{ account: AccountType }>) {
             state.account = action.payload.account;
         },
         logout(state) {

@@ -1,8 +1,7 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import Map, { NavigationControl, Marker } from "react-map-gl";
 
 import Pin from "./Pin";
-
-import Map, { NavigationControl, Marker } from "react-map-gl";
 
 const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
 
@@ -12,38 +11,29 @@ const initialViewState = {
     zoom: 12.5,
 };
 
-const NewPlaceMap = (props:any) => {
-    const [marker, setMarker] = useState({
-        latitude: 51.107883,
-        longitude: 17.038538,
-    });
-
-    const onMarkerDrag = useCallback((event:any) => {
-        setMarker({
-            longitude: event.lngLat.lng,
-            latitude: event.lngLat.lat,
-        });
-        // console.log(props.text)
-        props.newLocation({
+function NewPlaceMap(props: any) {
+    const onMarkerDrag = useCallback((event: any) => {
+        props.setMarker({
             longitude: event.lngLat.lng,
             latitude: event.lngLat.lat,
         });
     }, []);
 
-    const onWheel = (event:any) => {
-        if (event.originalEvent.ctrlKey) {
-            return;
-        }
+    const onWheel = (event: any) => {
+        if (event.originalEvent.ctrlKey) return;
 
-        if (event.originalEvent.metaKey) {
-            return;
-        }
+        if (event.originalEvent.metaKey) return;
 
-        if (event.originalEvent.altKey) {
-            return;
-        }
+        if (event.originalEvent.altKey) return;
 
         event.preventDefault();
+    };
+
+    const onMapClick = (event: any) => {
+        props.setMarker({
+            latitude: event.lngLat.lat,
+            longitude: event.lngLat.lng,
+        });
     };
 
     return (
@@ -53,21 +43,22 @@ const NewPlaceMap = (props:any) => {
             mapboxAccessToken={TOKEN}
             attributionControl={false}
             onWheel={onWheel}
+            onClick={onMapClick}
         >
-            <Marker
-                longitude={marker.longitude}
-                latitude={marker.latitude}
-                anchor="bottom"
-                draggable
-
-                onDrag={onMarkerDrag}
-            >
-                <Pin size={20} />
-            </Marker>
-            {/* <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" /> */}
+            {props.marker && (
+                <Marker
+                    longitude={props.marker.longitude}
+                    latitude={props.marker.latitude}
+                    anchor="bottom"
+                    draggable
+                    onDrag={onMarkerDrag}
+                >
+                    <Pin size={25} />
+                </Marker>
+            )}
             <NavigationControl />
         </Map>
     );
-};
+}
 
 export default NewPlaceMap;

@@ -1,11 +1,7 @@
 import { userActions } from "./user-slice";
 import { uiActions } from "./ui-slice";
 
-import { AnyAction } from "redux";
-import { RootState } from "./index";
-import { ThunkAction } from "redux-thunk";
-
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, AnyAction>;
+import { AppThunk } from "./index";
 
 export const registerUserThunk =
     (

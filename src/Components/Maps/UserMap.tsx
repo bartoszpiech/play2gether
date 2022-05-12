@@ -112,11 +112,11 @@ function UserMap() {
                         onClose={() => setPopupInfo(null)}
                         closeButton={false}
                     >
-                        <div className="p-1" style={{ height: "125px", width: "200px" }}>
+                        <div className="d-flex flex-column p-1" style={{ height: "125px", width: "200px" }}>
                             <h5 className="mt-1">{popupInfo.name}</h5>
                             <p>{popupInfo.description}</p>
 
-                            <div className="d-grid gap-2">
+                            <div className="d-grid gap-2 mt-auto">
                                 <NavLink to={`/user/place/${popupInfo._id}`} className="btn myBtn">
                                     Wejdź
                                 </NavLink>

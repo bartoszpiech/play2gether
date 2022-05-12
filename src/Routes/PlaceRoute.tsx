@@ -2,9 +2,7 @@ import { Route } from "react-router-dom";
 
 import RequireAuth from "../Middleware/RequireAuth";
 
-import Place from "../Components/Place/Place";
-
-import { PageNewPlace } from "../Pages";
+import { PageNewPlace, PagePlace } from "../Pages";
 
 
 export function PlaceRoute() {
@@ -25,7 +23,7 @@ export function PlaceRoute() {
                 path=":id"
                 element={
                     <RequireAuth>
-                        <Place />
+                        <PagePlace />
                     </RequireAuth>
                 }
             />

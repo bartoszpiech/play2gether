@@ -14,11 +14,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import pl from "date-fns/locale/pl";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { newEventThunk } from "../../Store/place-actions";
-// import pl from "date-fns/locale/pl";
-
-// import "react-datepicker/dist/react-datepicker.css";
-
-// registerLocale("pl", pl);
 
 function NewEvent(props: any) {
     const [maxPeople, setMaxPeople] = useState("");
@@ -101,3 +96,4 @@ function NewEvent(props: any) {
 }
 
 export default NewEvent;
+

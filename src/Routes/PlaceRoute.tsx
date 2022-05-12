@@ -4,7 +4,6 @@ import RequireAuth from "../Middleware/RequireAuth";
 
 import { PageNewPlace, PagePlace } from "../Pages";
 
-
 export function PlaceRoute() {
     return [
         <Route key="place" path="place">
@@ -19,8 +18,8 @@ export function PlaceRoute() {
             />
             ,
             <Route
-                key=":id"
-                path=":id"
+                key=":placeId"
+                path=":placeId"
                 element={
                     <RequireAuth>
                         <PagePlace />

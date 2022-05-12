@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import moment from "moment";
 import "moment/locale/pl"; // without this line it didn't work
@@ -17,20 +17,26 @@ function Place() {
     const token = useAppSelector((state) => state.user.token);
     const currentPlace = useAppSelector((state) => state.place.currentPlace);
 
-    let { id } = useParams();
+    let { placeId } = useParams();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchData();
     }, []);
 
     const fetchData = () => {
-        dispatch(getCurrentPlaceThunk(id, token));
+        dispatch(getCurrentPlaceThunk(placeId, token));
     };
+
+    const cardClickHandler = (eventId: string) => {
+        navigate(`/user/event/${eventId}`, { replace: true });
+    }
+
 
     const loadEvents = (events: [object]) => {
         return events.map((event: any) => (
-            <div className="card border-secondary col-6 p-0" key={event._id}>
+            <div className="card border-secondary col-6 p-0" key={event._id} onClick={() => cardClickHandler(event._id)}>
                 <div className="card-header">Koszykówka</div>
                 <div className="card-body text-secondary">
                     <h5 className="card-title">{moment(event.date).format("D MMMM  H:mm")}</h5>
@@ -52,7 +58,7 @@ function Place() {
                     <NewEvent
                         setNewEventView={setNewEventView}
                         fetchData={fetchData}
-                        placeId={id}
+                        placeId={placeId}
                     />
                 ) : (
                     <div className="card">

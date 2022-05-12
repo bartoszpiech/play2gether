@@ -1,5 +1,5 @@
-import Premium from "../../../Components/User/Premium";
-import AD from "../../../Layouts/AD";
+import Premium from "Components/User/Premium";
+import AD from "Layouts/AD";
 
 function PagePremium() {
     return (

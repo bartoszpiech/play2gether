@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
-import { useAppDispatch } from "../../hooks";
-import { loginUserThunk } from "../../Store/user-actions";
+import { useAppDispatch } from "hooks";
+import { loginUserThunk } from "Store/user-actions";
 
 function Login() {
     const [email, setEmail] = useState("");

@@ -1,8 +1,10 @@
 import { Route } from "react-router-dom";
 
-import RequireAuth from "../Middleware/RequireAuth";
+import RequireAuth from "Middleware/RequireAuth";
 
-import { PageNewPlace, PagePlace } from "../Pages";
+
+import { PageNewPlace, PagePlace } from "Pages";
+
 
 export function PlaceRoute() {
     return [

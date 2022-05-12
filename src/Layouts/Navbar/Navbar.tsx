@@ -72,7 +72,7 @@ const Navbar = (props: NavbarProps) => {
                     key={index} 
                     to={item.url} 
                     onClick={item.logout ? logoutHandler : handleClick}
-                    isSignUpButton={item.isSignUpButton}
+                    issignupbutton={item.isSignUpButton ? "yes" : "no"}
                     >
                         {item.title}
                     </StyledNavLink>

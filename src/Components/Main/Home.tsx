@@ -5,7 +5,8 @@ import React from "react";
 import Map from "Components/Maps/GoogleMap";
 
 function Home() {
-    return <Map />;
+    // return <Map />;
+    return <div>Map</div>;
 }
 
 export default Home;

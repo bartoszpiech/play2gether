@@ -1,72 +1,49 @@
+
 import React, { useState } from "react";
 
-// import { UserContext } from "../../Context/UserContext";
-import NewPlaceMap from "Components/Maps/NewPlaceMap";
 
 import { useNavigate } from "react-router-dom";
 
-import CSS from "csstype";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { newPlaceThunk } from "../../Store/place-actions";
 
+import NewPlaceMap from "../Maps/NewPlaceMap";
+
+import CSS from "csstype";
+import { uiActions } from "../../Store/ui-slice";
 const newLocationMap: CSS.Properties = {
-    minHeight: "200px"
+    minHeight: "200px",
 };
 
-const NewPlace = () => {
-    // const [userContext, setUserContext] = useContext(UserContext);
-
-    const [error, setError] = useState("");
-    const [errorVisible, setErrorVisible] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-
+function NewPlace() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [marker, setMarker] = useState("");
+    const [marker, setMarker] = useState(null);
 
     let navigate = useNavigate();
+    let dispatch = useAppDispatch();
+    const token = useAppSelector((state) => state.user.token);
 
     const formSubmitHandler = (e: any) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        setError("");
-
-        const genericErrorMessage = "Nie udało się utworzyć miejsca Spróbuj później";
-
-        fetch(process.env.REACT_APP_API_ENDPOINT + "user/newPlace", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-                // Authorization: `Bearer ${userContext.token}`,
-            },
-            body: JSON.stringify({ name, description, location: marker }),
-        })
-            .then(async (response) => {
-                console.log(response);
-                setIsSubmitting(false);
-                if (!response.ok) {
-                    if (response.status === 500) {
-                        setError("Please fill all the fields correctly!");
-                    } else {
-                        setError(genericErrorMessage);
-                    }
-                    setErrorVisible(true);
-                } else {
-                    navigate("/user/home", { replace: true });
-                }
-            })
-            .catch((error) => {
-                setIsSubmitting(false);
-                setError(genericErrorMessage);
-                setErrorVisible(true);
-            });
-    };
-
-    const handleOnClick = () => {
-        setErrorVisible(false);
+        if (marker) {
+            dispatch(newPlaceThunk(name, description, marker, navigate, token));
+        } else {
+            dispatch(
+                uiActions.showNotification({
+                    open: true,
+                    type: "error",
+                    message: "Ustaw lokalizacje klikając w mapę",
+                })
+            );
+        }
     };
 
     return (
-        <form onSubmit={formSubmitHandler} className="d-flex flex-column rounded-3 shadow-lg bg-white h-100 p-4">
+        <form
+            onSubmit={formSubmitHandler}
+            className="d-flex flex-column rounded-3 shadow-lg bg-white h-100 p-4"
+        >
             <h1 className="display-5 text-center">Nowy Obiekt</h1>
             <div className="mt-4">
                 <label className="form-label mb-1">Nazwa</label>
@@ -90,13 +67,13 @@ const NewPlace = () => {
                 ></textarea>
             </div>
 
-            <div className="my-3 flex-grow-1" style={newLocationMap}><NewPlaceMap newLocation={setMarker} /></div>
+            <div className="my-3 flex-grow-1" style={newLocationMap}>
+                <NewPlaceMap marker={marker} setMarker={setMarker} />
+            </div>
 
-            <button type="submit" className="btn btn-secondary mt-auto" disabled={isSubmitting}>
-                {isSubmitting ? "Dodawanie" : "Dodaj"}
-            </button>
+            <button className="btn myBtn mt-auto">Dodaj</button>
         </form>
     );
-};
+}
 
 export default NewPlace;

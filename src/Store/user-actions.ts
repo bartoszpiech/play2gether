@@ -1,11 +1,7 @@
 import { userActions } from "./user-slice";
 import { uiActions } from "./ui-slice";
 
-import { AnyAction } from "redux";
-import { RootState } from "./index";
-import { ThunkAction } from "redux-thunk";
-
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, AnyAction>;
+import { AppThunk } from "./index";
 
 export const registerUserThunk =
     (
@@ -63,8 +59,9 @@ export const registerUserThunk =
                 } else {
                     const data = await response.json();
                     AppDispatch(
-                        userActions.register({
+                        userActions.login({
                             token: data.token,
+                            account: data.user,
                         })
                     );
                     AppDispatch(
@@ -74,9 +71,6 @@ export const registerUserThunk =
                             message: "Udało się utworzyć konto",
                         })
                     );
-                    // setUserContext((oldValues) => {
-                    //     return { ...oldValues, token: data.token };
-                    // });
                     navigate("/user/home", { replace: true });
                 }
             })
@@ -130,6 +124,7 @@ export const loginUserThunk =
                     AppDispatch(
                         userActions.login({
                             token: data.token,
+                            account: data.user,
                         })
                     );
                     AppDispatch(
@@ -139,19 +134,17 @@ export const loginUserThunk =
                             message: "Udało się zalogować",
                         })
                     );
-
-                    // setUserContext((oldValues) => {
-                    //     return { ...oldValues, token: data.token };
-                    // });
                     navigate("/user/home", { replace: true });
                 }
             })
             .catch((error) => {
-                uiActions.showNotification({
-                    open: true,
-                    type: "error",
-                    message: error,
-                });
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: error,
+                    })
+                );
             });
     };
 
@@ -166,23 +159,132 @@ export const refreshTokenThunk =
             if (response.ok) {
                 const data = await response.json();
                 AppDispatch(
-                    userActions.register({
+                    userActions.login({
                         token: data.token,
+                        account: data.user,
                     })
                 );
                 AppDispatch(
                     uiActions.showNotification({
                         open: true,
                         type: "success",
-                        message: "Automatyczne logowanie",
+                        message: "Sesja aktywna",
                     })
                 );
-                console.log(data)
                 navigate("/user/home");
             } else {
+                AppDispatch(userActions.logout());
                 AppDispatch(
-                    userActions.register({
-                        token: null,
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Sesja nieaktywna",
+                    })
+                );
+            }
+        });
+    };
+
+export const updateUserThunk =
+    (firstName: string, lastName: string, token: string | null): AppThunk =>
+    async (AppDispatch) => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "user/account", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ firstName, lastName }),
+        }).then(async (response) => {
+            if (response.ok) {
+                // const data = await response.json();
+                // AppDispatch(
+                //     userActions.updateUser({
+                //         account: data,
+                //     })
+                // );
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Dane zaktualizowane",
+                    })
+                );
+                AppDispatch(getUserDateThunk(token));
+            } else {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "error",
+                        message: "Nie udało się zaktualizować danych",
+                    })
+                );
+            }
+        });
+    };
+
+export const sendUserImageThunk =
+    (base64EncodedImage: any, token: string | null): AppThunk =>
+    async (AppDispatch) => {
+        AppDispatch(
+            uiActions.showNotification({
+                open: true,
+                type: "success",
+                message: "Wysyłam zdjęcie",
+            })
+        );
+        fetch(process.env.REACT_APP_API_ENDPOINT + "user/accountImage", {
+            method: "POST",
+            body: JSON.stringify({ data: base64EncodedImage }),
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        }).then(async (response) => {
+            if (response.ok) {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Udało się zaktualizować zdjęcie",
+                    })
+                );
+                AppDispatch(getUserDateThunk(token));
+            } else {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "error",
+                        message: "Nie udało się zaktualizować zdjęcie",
+                    })
+                );
+            }
+        });
+    };
+
+export const getUserDateThunk =
+    (token: string | null): AppThunk =>
+    async (AppDispatch) => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "getUser", {
+            method: "GET",
+            credentials: "include",
+            // Pass authentication token as bearer token in header
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        }).then(async (response) => {
+            if (response.ok) {
+                const data = await response.json();
+                AppDispatch(
+                    userActions.updateUser({
+                        account: data,
+                    })
+                );
+            } else {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "error",
+                        message: "Nie udało się pobrać danych",
                     })
                 );
             }

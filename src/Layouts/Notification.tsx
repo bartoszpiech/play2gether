@@ -3,7 +3,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
 import { useDispatch } from "react-redux";
-import { uiActions } from "../Store/ui-slice";
+import { uiActions } from "Store/ui-slice";
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
     return <MuiAlert elevation={15} ref={ref} variant="filled" {...props} />;

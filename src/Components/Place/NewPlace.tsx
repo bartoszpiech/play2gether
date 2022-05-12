@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 // import { UserContext } from "../../Context/UserContext";
-import NewPlaceMap from "../Maps/NewPlaceMap";
+import NewPlaceMap from "Components/Maps/NewPlaceMap";
 
 import { useNavigate } from "react-router-dom";
 

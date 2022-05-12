@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch } from "hooks";
 
-import { registerUserThunk} from "../../Store/user-actions";
+import { registerUserThunk} from "Store/user-actions";
 
 const Register = () => {
     const [email, setEmail] = useState("");

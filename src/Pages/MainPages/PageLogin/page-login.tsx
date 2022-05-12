@@ -1,7 +1,7 @@
 import React from "react";
 
-import AD from "../../../Layouts/AD";
-import Login from "../../../Components/Main/Login";
+import AD from "Layouts/AD";
+import Login from "Components/Main/Login";
 
 function PageLogin() {
     return (

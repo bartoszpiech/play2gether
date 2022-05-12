@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import { ThemeProvider } from '@mui/material/styles';
 import { Theme } from './Theme';
 
-import { SmallHeading } from '../../Assets/Styles/SearchBox/Heading';
+import { SmallHeading } from 'Assets/Styles/SearchBox/Heading';
 
 const Places = [
     'Wrocław',

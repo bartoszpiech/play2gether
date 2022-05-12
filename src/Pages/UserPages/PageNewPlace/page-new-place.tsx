@@ -1,8 +1,8 @@
 import React from "react";
 
 
-import NewPlace from "../../../Components/Place/NewPlace";
-import AD from "../../../Layouts/AD";
+import NewPlace from "Components/Place/NewPlace";
+import AD from "Layouts/AD";
 
 function PageNewPlace() {
     return (

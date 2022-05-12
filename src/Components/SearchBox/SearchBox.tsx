@@ -19,7 +19,7 @@ interface SearchBoxProps {
 export default class SearchBox extends Component<SearchBoxProps> {
     render() {
         return (
-            <PageSearchBox className="rounded-3 shadow-lg">
+            <PageSearchBox>
                 <Heading>{this.props.title}</Heading>
                 <Place/>
                 <SmallHeading>Dodatkowe opcje:</SmallHeading>

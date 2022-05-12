@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "hooks";
 import { getCurrentPlaceThunk } from "Store/place-actions";
 
 import NewEvent from "./NewEvent";
+import Event from "./Event";
 
 moment.locale("pl");
 
@@ -30,13 +31,16 @@ function Place() {
     };
 
     const cardClickHandler = (eventId: string) => {
-        navigate(`/user/event/${eventId}`, { replace: true });
-    }
-
+        navigate(`/user/event/${eventId}`);
+    };
 
     const loadEvents = (events: [object]) => {
         return events.map((event: any) => (
-            <div className="card border-secondary col-6 p-0" key={event._id} onClick={() => cardClickHandler(event._id)}>
+            <div
+                className="card border-secondary p-0 myCard"
+                key={event._id}
+                onClick={() => cardClickHandler(event._id)}
+            >
                 <div className="card-header">Koszykówka</div>
                 <div className="card-body text-secondary">
                     <h5 className="card-title">{moment(event.date).format("D MMMM  H:mm")}</h5>
@@ -53,7 +57,7 @@ function Place() {
 
     return (
         <div className="row rounded-3 shadow-lg bg-white h-100">
-            <div className="col-xl-6 col-12 p-0">
+            <div className="col-xl-4 col-12 p-0">
                 {newEventView ? (
                     <NewEvent
                         setNewEventView={setNewEventView}
@@ -86,11 +90,15 @@ function Place() {
                     </div>
                 )}
             </div>
-            <div className="col-xl-6 col-12">
-                <h1 className="display-4 text-center py-4">Nadchodzące wydarzenia</h1>
-                <ul className="row overflow-auto p-0" style={{ height: "530px" }}>
+            <div className="col-xl-2 col-12 d-flex flex-column">
+                <div
+                    className="row overflow-auto p-0" style={{height: "auto"}}
+                >
                     {currentPlace ? loadEvents(currentPlace.events) : ""}
-                </ul>
+                </div>
+            </div>
+            <div className="col-xl-6">
+                <Event />
             </div>
         </div>
     );

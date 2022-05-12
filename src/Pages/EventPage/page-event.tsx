@@ -1,11 +1,11 @@
 import React from "react";
 
-import Event from "Components/Event/Event";
+import Event from "Components/Place/Event";
 import AD from "Layouts/AD";
 
 function PageEvent() {
     return (
-        <div className="row py-xl-5 py-0 m-0 h-100">
+        <div className="row py-xl-5 py-0 p-0 m-0 h-100">
             <div className="col-xl-6 col-12 offset-xl-3 offset-0 p-0">
                 <Event />
             </div>

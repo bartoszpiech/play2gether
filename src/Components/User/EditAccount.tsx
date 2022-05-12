@@ -65,8 +65,8 @@ function EditAccount(props: EditAccountProps) {
     };
 
     return (
-        <div className="d-flex flex-column h-100">
-            <div className="row flex-grow-1 mb-3">
+        <div className="container-fluid d-flex flex-column flex-grow-1">
+            <div className="row mt-4">
                 <div className="col-xl-6 col-12 d-flex flex-column">
                     <form onSubmit={handleSubmitUpdateUser}>
                         <div className="mt-3">
@@ -95,7 +95,7 @@ function EditAccount(props: EditAccountProps) {
                             />
                         </div>
 
-                        <button type="submit" className="btn myBtn col-12 mt-4">
+                        <button type="submit" className="btn myBtn col-12 mt-3">
                             Edytuj Dane
                         </button>
                     </form>
@@ -154,7 +154,7 @@ function EditAccount(props: EditAccountProps) {
                             <div className="form-text">Hasła muszą być takie same.</div>
                         </div>
 
-                        <button disabled type="submit" className="btn myBtn col-12 mt-4">
+                        <button disabled type="submit" className="btn myBtn col-12">
                             Nowe hasło
                         </button>
                     </form>

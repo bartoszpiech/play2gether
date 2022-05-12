@@ -42,9 +42,9 @@ function NewPlace() {
     return (
         <form
             onSubmit={formSubmitHandler}
-            className="d-flex flex-column rounded-3 shadow-lg bg-white h-100 p-4"
+            className="bg-white container-fluid d-flex flex-column rounded-3 shadow my-xl-5 my-0 p-5"
         >
-            <h1 className="display-5 text-center">Nowy Obiekt</h1>
+            <h1 className="display-3 text-center">Nowy Obiekt</h1>
             <div className="mt-4">
                 <label className="form-label mb-1">Nazwa</label>
                 <input
@@ -57,7 +57,7 @@ function NewPlace() {
             </div>
 
             <div className="mt-3">
-                <label className="form-label">Opis</label>
+                <label className="form-label mb-1">Opis</label>
                 <textarea
                     className="form-control"
                     value={description}
@@ -67,7 +67,7 @@ function NewPlace() {
                 ></textarea>
             </div>
 
-            <div className="my-3 flex-grow-1" style={newLocationMap}>
+            <div className="my-2 flex-grow-1" style={newLocationMap}>
                 <NewPlaceMap marker={marker} setMarker={setMarker} />
             </div>
 

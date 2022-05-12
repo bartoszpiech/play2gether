@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAppSelector } from "hooks";
 
 import EditAccount from "./EditAccount";
@@ -9,16 +9,23 @@ function Account() {
     const account = useAppSelector((state) => state.user.account);
 
     return (
-        <div className="d-flex flex-column h-100 p-3 shadow-lg">
+        <div className="container-fluid d-flex flex-column rounded-3 shadow my-xl-5 my-0 p-5">
             <h1 className="display-1 text-center">Konto</h1>
 
             {editVisible ? (
                 <EditAccount setEditVisible={setEditVisible} />
             ) : (
                 <>
-                    <div className="align-self-center bg-black mx-5 ">
-                        <img src={account?.image.url} className=" userImage" alt="elo" />
-                    </div>
+                    <div
+                        className="flex-grow-1"
+                        style={{
+                            backgroundSize: "contain",
+                            backgroundRepeat: "no-repeat",
+                            backgroundPositionX: "center",
+                            backgroundPositionY: "center",
+                            backgroundImage: `url(${account?.image.url})`
+                        }}
+                    />
 
                     <ul className="list-group list-group-horizontal mt-3 mb-1">
                         <div className="col-4 list-group-item">Imię</div>

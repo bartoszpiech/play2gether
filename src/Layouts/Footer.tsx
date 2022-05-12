@@ -7,7 +7,7 @@ export interface FooterProps {
 
 export default function Footer(props: FooterProps) {
     return (
-        <div className="footer mt-auto bg-light">
+        <div className="container-fluid flex-grow-0 flex-shrink-1 p-0">
             <PageFooter>Strona wykonana przez: {props.creatorName}</PageFooter>
         </div>
     );

@@ -1,8 +1,8 @@
 import { Route } from "react-router-dom";
 
-import RequireAuth from "../Middleware/RequireAuth";
+import RequireAuth from "Middleware/RequireAuth";
 
-import { PageEvent } from "../Pages";
+import { PageEvent } from "Pages";
 
 
 export function EventRoute() {

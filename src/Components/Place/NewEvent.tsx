@@ -1,8 +1,5 @@
 import React, { useState, useContext } from "react";
 
-// import { UserContext } from "../../Context/UserContext";
-// import DatePicker, { registerLocale } from "react-datepicker";
-
 import { useNavigate } from "react-router-dom";
 
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
@@ -12,8 +9,8 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import pl from "date-fns/locale/pl";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { newEventThunk } from "../../Store/place-actions";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { newEventThunk } from "Store/place-actions";
 
 function NewEvent(props: any) {
     const [maxPeople, setMaxPeople] = useState("");
@@ -96,4 +93,3 @@ function NewEvent(props: any) {
 }
 
 export default NewEvent;
-

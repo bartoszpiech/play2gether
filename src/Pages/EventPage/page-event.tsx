@@ -1,7 +1,7 @@
 import React from "react";
 
-import Event from "../../Components/Event/Event";
-import AD from "../../Layouts/AD";
+import Event from "Components/Event/Event";
+import AD from "Layouts/AD";
 
 function PageEvent() {
     return (

@@ -4,8 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/pl"; // without this line it didn't work
 
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getCurrentPlaceThunk } from "../../Store/place-actions";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { getCurrentPlaceThunk } from "Store/place-actions";
 
 import NewEvent from "./NewEvent";
 

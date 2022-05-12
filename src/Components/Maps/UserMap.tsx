@@ -12,8 +12,8 @@ import Map, {
 import Pin from "./Pin";
 import CSS from "csstype";
 import GeocoderControl from "./GeocoderControl";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getAllPlacesThunk } from "../../Store/place-actions";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { getAllPlacesThunk } from "Store/place-actions";
 
 const userMapColStyle: CSS.Properties = {
     minHeight: "400px",

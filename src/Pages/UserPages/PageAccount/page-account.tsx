@@ -1,7 +1,7 @@
 import React from "react";
 
-import AD from "../../../Layouts/AD";
-import Account from "../../../Components/User/Account";
+import AD from "Layouts/AD";
+import Account from "Components/User/Account";
 
 function PageAccount() {
     return (

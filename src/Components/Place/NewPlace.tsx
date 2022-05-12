@@ -4,13 +4,13 @@ import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { newPlaceThunk } from "../../Store/place-actions";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { newPlaceThunk } from "Store/place-actions";
 
-import NewPlaceMap from "../Maps/NewPlaceMap";
+import NewPlaceMap from "Components/Maps/NewPlaceMap";
 
 import CSS from "csstype";
-import { uiActions } from "../../Store/ui-slice";
+import { uiActions } from "Store/ui-slice";
 const newLocationMap: CSS.Properties = {
     minHeight: "200px",
 };

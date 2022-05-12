@@ -22,5 +22,5 @@ export {
     PageNewPlace,
     PagePlace,
     PageAccount,
-    PageEvent
+    PageEvent,
 };

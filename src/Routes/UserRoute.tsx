@@ -1,7 +1,7 @@
 import { Route } from "react-router-dom";
-import RequireAuth from "../Middleware/RequireAuth";
+import RequireAuth from "Middleware/RequireAuth";
 
-import {PagePremium, PageUserHome, PageAccount} from "../Pages/index"
+import {PagePremium, PageUserHome, PageAccount} from "Pages/index"
 import { EventRoute } from "./EventRoute";
 
 import { PlaceRoute } from "./PlaceRoute";

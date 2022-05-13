@@ -290,3 +290,36 @@ export const getUserDateThunk =
             }
         });
     };
+
+
+    export const buyPremiumThunk =
+    (token: string | null): AppThunk =>
+    async (AppDispatch) => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "user/premium", {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        }).then(async (response) => {
+            if (response.ok) {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Jesteś użytkownikiem premium dzięki :)",
+                    })
+                );
+                AppDispatch(getUserDateThunk(token))
+            } else {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "error",
+                        message: "Coś poszło nie tak",
+                    })
+                );
+            }
+        });
+    };

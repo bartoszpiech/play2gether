@@ -6,7 +6,7 @@ const AD = () => {
 
     return (
         <div className="container-fluid bg-warning py-3" style={{minHeight: "500px"}}>
-            {account?.type === "user" &&<h1 className="text-center">Reklama</h1>}
+            {account?.type !== "premium" &&<h1 className="text-center">Reklama</h1>}
         </div>
     );
 };

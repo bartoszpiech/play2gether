@@ -10,6 +10,7 @@ function PageAccount() {
                 <Account />
             </div>
             <div className="col-xl-2 col-12 offset-xl-1 offset-0 d-flex p-0">
+
                 <AD />
             </div>
         </div>

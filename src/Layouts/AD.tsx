@@ -1,9 +1,12 @@
+import { useAppSelector } from "hooks";
 import React from "react";
 
 const AD = () => {
+    const account = useAppSelector((state) => state.user.account)
+
     return (
         <div className="container-fluid bg-warning py-3" style={{minHeight: "500px"}}>
-            <h1 className="text-center">Reklama</h1>
+            {account?.type === "user" &&<h1 className="text-center">Reklama</h1>}
         </div>
     );
 };

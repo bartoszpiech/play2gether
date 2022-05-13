@@ -10,8 +10,6 @@ import PagePremium from "./UserPages/PagePremium/page-premium";
 import PageNewPlace from "./PlacePages/PageNewPlace/page-new-place";
 import PagePlace from "./PlacePages/PagePlace/page-place";
 
-import PageEvent from "./EventPage/page-event";
-
 export {
     PageNotFound,
     PageRegister,
@@ -22,5 +20,4 @@ export {
     PageNewPlace,
     PagePlace,
     PageAccount,
-    PageEvent,
 };

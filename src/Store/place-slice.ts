@@ -6,23 +6,30 @@ interface CurrentPlace {
     description: string;
     events: [object];
     geometry: {
-        type: {
-            type: String;
-        };
-        coordinates: {
-            type: [Number];
-        };
+        type: string;
+        coordinates: number[];
     };
+}
+
+interface CurrentEvent {
+    _id: string;
+    owner: string;
+    place: string;
+    date: Date;
+    signedUp: [string];
+    maxSignedUp: number;
 }
 
 interface PlaceState {
     places: null | object;
     currentPlace: null | CurrentPlace;
+    currentEvent: null | CurrentEvent;
 }
 
 const initialState: PlaceState = {
     places: null,
     currentPlace: null,
+    currentEvent: null,
 };
 
 interface arrayPlaces {
@@ -38,7 +45,12 @@ const placeSlice = createSlice({
         },
         setCurrentPlace(state, action: PayloadAction<CurrentPlace>) {
             state.currentPlace = action.payload;
+            state.currentEvent = null;
         },
+        setCurrentEvent(state, action: PayloadAction<CurrentEvent>) {
+            state.currentEvent = action.payload;
+        },
+        
     },
 });
 

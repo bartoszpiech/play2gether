@@ -58,10 +58,11 @@ input:-webkit-autofill:active {
     cursor: pointer;
 }
 
-.divImage {
+/* .divImage {
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
     background-image: url("https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp");
-}
+} */
+

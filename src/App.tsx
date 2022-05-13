@@ -28,7 +28,7 @@ function App() {
         dispatch(refreshTokenThunk(navigate));
 
         // call refreshToken every 5 minutes to renew the authentication token.
-        setTimeout(verifyUser, 5 * 60 * 1000);
+        setTimeout(verifyUser, 15 * 60 * 1000);
     }, [dispatch, navigate]);
 
     useEffect(() => {

@@ -6,6 +6,7 @@ export const newPlaceThunk =
     (
         name: string,
         description: string,
+        sports: string[],
         marker: any,
         navigate: any,
         token: string | null
@@ -18,7 +19,7 @@ export const newPlaceThunk =
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ name, description, location: marker }),
+            body: JSON.stringify({ name, description, sports ,location: marker }),
         }).then(async (response) => {
             if (response.ok) {
                 AppDispatch(
@@ -100,6 +101,7 @@ export const newEventThunk =
         token: string | null,
         startDate: any,
         maxPeople: any,
+        sport: any,
         setNewEventView: any
     ): AppThunk =>
     async (AppDispatch) => {
@@ -110,7 +112,7 @@ export const newEventThunk =
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ startDate, maxPeople }),
+            body: JSON.stringify({ startDate, maxPeople, sport }),
         })
             .then(async (response) => {
                 if (!response.ok) {

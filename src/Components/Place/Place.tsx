@@ -35,7 +35,7 @@ function Place() {
     };
 
     const loadEvents = (events: [object]) => {
-        console.log(events)
+ 
         return events.map((event: any) => (
             <div
                 className="card border-secondary p-0 myCard"

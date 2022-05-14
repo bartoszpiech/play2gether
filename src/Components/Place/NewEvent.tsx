@@ -11,6 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import pl from "date-fns/locale/pl";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { newEventThunk } from "Store/place-actions";
+import MultipleSelect from "./Selector";
 
 function NewEvent(props: any) {
     const [maxPeople, setMaxPeople] = useState("");
@@ -18,8 +19,10 @@ function NewEvent(props: any) {
 
     // const [startDate, setStartDate] = useState(new Date());
     const token = useAppSelector((state) => state.user.token);
+    const place = useAppSelector(state => state.place.currentPlace)
 
     const [startDate, setStartDate] = React.useState<Date | null>(new Date());
+    const [sport, setSport] = React.useState<string[]>([]);
 
     const handleChange = (newValue: Date | null) => {
         setStartDate(newValue);
@@ -30,7 +33,16 @@ function NewEvent(props: any) {
 
     const formSubmitHandler = (e: any) => {
         e.preventDefault();
-        dispatch(newEventThunk(props.placeId, token, startDate, maxPeople, props.setNewEventView));
+        dispatch(
+            newEventThunk(
+                props.placeId,
+                token,
+                startDate,
+                maxPeople,
+                sport[0],
+                props.setNewEventView
+            )
+        );
     };
 
     const handleCheckBox = () => {
@@ -44,8 +56,10 @@ function NewEvent(props: any) {
 
             <form onSubmit={formSubmitHandler}>
                 <div className="mt-5">
+                    <MultipleSelect multiple={false} sportsType={place!.sports} sports={sport} setSports={setSport} />
+                </div>
+                <div className="mt-4">
                     <label className="form-label mb-1">Wybierz date</label>
-
                     <div className="container-flex mt-3">
                         <LocalizationProvider dateAdapter={AdapterDateFns} locale={pl}>
                             <DateTimePicker

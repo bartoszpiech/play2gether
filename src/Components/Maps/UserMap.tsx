@@ -89,7 +89,7 @@ function UserMap() {
             onWheel={onWheel}
             style={{ minHeight: "500px" }}
         >
-            <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" />
+            <GeocoderControl mapboxAccessToken={`${TOKEN}`} position="top-left" />
             <GeolocateControl showAccuracyCircle={false} position="top-left" />
             <FullscreenControl position="bottom-right" />
             <NavigationControl position="bottom-right" />

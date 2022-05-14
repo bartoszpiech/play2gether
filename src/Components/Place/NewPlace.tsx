@@ -1,6 +1,4 @@
-
 import React, { useState } from "react";
-
 
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +9,8 @@ import NewPlaceMap from "Components/Maps/NewPlaceMap";
 
 import CSS from "csstype";
 import { uiActions } from "Store/ui-slice";
+import SportType from "Components/SearchBox/SportType";
+import MultipleSelect from "./Selector";
 const newLocationMap: CSS.Properties = {
     minHeight: "200px",
 };
@@ -19,6 +19,7 @@ function NewPlace() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [marker, setMarker] = useState(null);
+    const [sports, setSports] = React.useState<string[]>([]);
 
     let navigate = useNavigate();
     let dispatch = useAppDispatch();
@@ -27,7 +28,7 @@ function NewPlace() {
     const formSubmitHandler = (e: any) => {
         e.preventDefault();
         if (marker) {
-            dispatch(newPlaceThunk(name, description, marker, navigate, token));
+            dispatch(newPlaceThunk(name, description, sports, marker, navigate, token));
         } else {
             dispatch(
                 uiActions.showNotification({
@@ -65,6 +66,10 @@ function NewPlace() {
                     id="exampleFormControlTextarea1"
                     rows={3}
                 ></textarea>
+            </div>
+
+            <div className="mt-3">
+                <MultipleSelect multiple={true} sportsType={null} sports={sports} setSports={setSports} />
             </div>
 
             <div className="my-2 flex-grow-1" style={newLocationMap}>

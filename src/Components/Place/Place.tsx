@@ -35,14 +35,14 @@ function Place() {
     };
 
     const loadEvents = (events: [object]) => {
- 
         return events.map((event: any) => (
             <div
-                className="card border-secondary p-0 myCard"
+                className={`card p-0 ${event._id != currentEvent?._id ? "myCard": "mySelectedCard"}`}
                 key={event._id}
                 onClick={() => getEventHandler(event._id)}
             >
-                <div className="card-header">Koszykówka</div>
+                <div className="card-header">{event.sport}</div>
+
                 <div className="card-body text-secondary">
                     <h5 className="card-title">{moment(event.date).format("D MMMM  H:mm")}</h5>
                     <p className="card-text">
@@ -104,7 +104,7 @@ function Place() {
                     )}
                 </div>
                 <div className="col-xl-2 col-12 p-0 m-0">
-                    <div className="row overflow-auto m-0 p-0" style={{ height: "825px" }}>
+                    <div className="row overflow-auto m-0 p-0" style={{ maxHeight: "825px" }}>
                         {currentPlace ? loadEvents(currentPlace.events) : ""}
                     </div>
                 </div>

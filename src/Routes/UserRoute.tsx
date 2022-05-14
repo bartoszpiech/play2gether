@@ -1,8 +1,7 @@
 import { Route } from "react-router-dom";
 import RequireAuth from "Middleware/RequireAuth";
 
-import {PagePremium, PageUserHome, PageAccount} from "Pages/index"
-import { EventRoute } from "./EventRoute";
+import { PagePremium, PageUserHome, PageAccount } from "Pages/index";
 
 import { PlaceRoute } from "./PlaceRoute";
 
@@ -27,7 +26,7 @@ export function UserRoute() {
                     </RequireAuth>
                 }
             />
-                        <Route
+            <Route
                 key="account"
                 path="account"
                 element={
@@ -37,7 +36,6 @@ export function UserRoute() {
                 }
             />
             {PlaceRoute()}
-            {EventRoute()}
         </Route>,
     ];
     // return [{ PlaceRoute }];

@@ -1,13 +1,12 @@
 export const Sports = [
+    "Koszykówka",
     "Piłka nożna",
     "Piłka siatkowa",
-    "Sport żużlowy",
-    "Skoki narciarskie",
     "Piłka ręczna",
-    "Koszykówka",
     "Futsal",
     "Hokej na lodzie",
     "Hokej na trawie",
     "Rugby",
+    "Sport żużlowy",
     "Pozostałe",
 ];

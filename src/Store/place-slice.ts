@@ -4,6 +4,7 @@ interface CurrentPlace {
     owner: string;
     name: string;
     description: string;
+    sports: string[];
     events: [object];
     geometry: {
         type: string;

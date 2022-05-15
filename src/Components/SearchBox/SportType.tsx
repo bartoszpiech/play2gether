@@ -6,11 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { Theme } from "./Theme";
 import { SportsType } from "./Sports";
 
-export default function SportType(props:any) {
-    const handleChange = (event: any, value: string[]) => {
-        props.setSports(value)
-    };
-
+function SportType(props: any) {
     return (
         <ThemeProvider theme={Theme}>
             <Autocomplete
@@ -21,9 +17,10 @@ export default function SportType(props:any) {
                 id="combo-box-demo"
                 value={props.sports}
                 options={SportsType}
-                onChange={(event, value) => handleChange(event,value)}
+                onChange={(event, value) => props.setSports(value)}
                 renderInput={(params) => <TextField {...params} label="Sport" />}
             />
         </ThemeProvider>
     );
 }
+export default SportType;

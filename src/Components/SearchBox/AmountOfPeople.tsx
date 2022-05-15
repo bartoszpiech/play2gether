@@ -1,12 +1,12 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
 
-import { ThemeProvider } from '@mui/material/styles';
-import { Theme } from './Theme';
+import { ThemeProvider } from "@mui/material/styles";
+import { Theme } from "./Theme";
 
 function valuetext(value: number) {
-  return `${value}°C`;
+    return `${value}°C`;
 }
 
 /*
@@ -22,21 +22,23 @@ const marks = [
 ];
 */
 
-export default function AmountOfPeople() {
-  return (
-    <ThemeProvider theme={ Theme }>
-        <Box>
-            <Slider
-                aria-label="Temperature"
-                defaultValue={1}
-                getAriaValueText={valuetext}
-                step={1}
-                //marks={marks}
-                min={1}
-                max={15}
-                valueLabelDisplay="on"
+function AmountOfPeople(props: any) {
+    return (
+        <ThemeProvider theme={Theme}>
+            <Box>
+                <Slider
+                    aria-label="Temperature"
+                    getAriaValueText={valuetext}
+                    step={1}
+                    value={props.placesAvailable}
+                    onChange={(event, value) => props.setPlacesAvailable(value)}
+                    min={1}
+                    max={30}
+                    valueLabelDisplay="on"
                 />
-        </Box>
-    </ThemeProvider>
-  );
+            </Box>
+        </ThemeProvider>
+    );
 }
+
+export default AmountOfPeople;

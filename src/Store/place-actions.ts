@@ -259,7 +259,7 @@ export const leaveFromEventThunk =
     };
 
 export const searchEngineThunk =
-    (places: any | null, sports: string[]): AppThunk =>
+    (places: any | null, sports: string[], placesAvailable: number): AppThunk =>
     async (AppDispatch) => {
         let allPlaces = places?.filter((place: any) => {
             let placeCoby = { ...place };
@@ -275,14 +275,23 @@ export const searchEngineThunk =
                 });
             }
 
+            placeCoby.events = place.events.filter((event: any) => {
+                if (event.maxSignedUp) {
+                    let eventAvailable = event.maxSignedUp - event.signedUp.length;
+
+                    if (placesAvailable > eventAvailable) {
+                        return false;
+                    }
+                    return true;
+                }
+                return true;
+            });
+
             if (placeCoby.events.length === 0) {
                 return false;
             } else {
                 return true;
             }
         });
-        console.log(allPlaces)
-        AppDispatch(placeActions.setSelectedPlaces(allPlaces))
-
-        
+        AppDispatch(placeActions.setSelectedPlaces(allPlaces));
     };

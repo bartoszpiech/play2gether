@@ -57,6 +57,10 @@ const placeSlice = createSlice({
         setCurrentEvent(state, action: PayloadAction<CurrentEvent>) {
             state.currentEvent = action.payload;
         },
+        leavePlace(state){
+            state.currentPlace = null;
+            state.currentEvent = null;
+        }
         
     },
 });

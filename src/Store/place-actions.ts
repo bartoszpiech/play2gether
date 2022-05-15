@@ -57,6 +57,7 @@ export const getAllPlacesThunk =
             if (response.ok) {
                 const data = await response.json();
                 AppDispatch(placeActions.setPlaces(data));
+                AppDispatch(placeActions.leavePlace());
             } else {
                 AppDispatch(
                     uiActions.showNotification({

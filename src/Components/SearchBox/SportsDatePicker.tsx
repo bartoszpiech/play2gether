@@ -30,7 +30,7 @@ function SportsDatePicker(props: any) {
                 <DateTimePicker
                     label={props.label}
                     value={props.date}
-                    minutesStep={30}
+                    minutesStep={15}
                     onChange={(newValue) => {
                         props.setDate(newValue);
                     }}

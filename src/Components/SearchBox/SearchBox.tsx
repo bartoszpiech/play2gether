@@ -17,32 +17,33 @@ interface SearchBoxProps {
 
 function SearchBox(props: SearchBoxProps) {
     const [sports, setSports] = useState<string[]>([]);
-    const [placesAvailable,setPlacesAvailable] = useState(1);
-    const [fromDate, setFromDate] = useState<Date | null>(new Date());
-    const [toDate,setToDate] = useState<Date | null>(null);
-
+    const [placesAvailable, setPlacesAvailable] = useState(1);
+    const [fromDate, setFromDate] = useState<Date | null>(null);
+    const [toDate, setToDate] = useState<Date | null>(null);
 
     const dispatch = useAppDispatch();
-    const places = useAppSelector(state => state.place.places)
+    const places = useAppSelector((state) => state.place.places);
 
     useEffect(() => {
-        dispatch(searchEngineThunk(places,sports,placesAvailable,fromDate,toDate))
-        
+        dispatch(searchEngineThunk(places, sports, placesAvailable, fromDate, toDate));
     });
 
     return (
         <PageSearchBox>
-            {/* <Heading>{this.props.title}</Heading> */}
             {/* <Place/> */}
             {/* <SmallHeading>Dodatkowe opcje:</SmallHeading> */}
             <form>
+                <Heading>Wyszukaj</Heading>
                 <SmallHeading>Sport:</SmallHeading>
                 <SportType sports={sports} setSports={setSports} />
                 <TinyHeading>Wolne miejsca:</TinyHeading>
-                <AmountOfPeople placesAvailable={placesAvailable} setPlacesAvailable={setPlacesAvailable} />
+                <AmountOfPeople
+                    placesAvailable={placesAvailable}
+                    setPlacesAvailable={setPlacesAvailable}
+                />
                 <TinyHeading>Zakres dat:</TinyHeading>
-                <SportsDatePicker label="Od" date={fromDate} setDate={setFromDate}/>
-                <SportsDatePicker label="Do" date={toDate} setDate={setToDate}/>
+                <SportsDatePicker label="Od" date={fromDate} setDate={setFromDate} />
+                <SportsDatePicker label="Do" date={toDate} setDate={setToDate} />
                 {/* <TinyHeading>Dystans: TODO</TinyHeading> */}
             </form>
         </PageSearchBox>

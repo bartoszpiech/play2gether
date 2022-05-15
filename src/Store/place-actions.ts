@@ -281,7 +281,7 @@ export const searchEngineThunk =
                 });
             }
 
-            placeCoby.events = place.events.filter((event: any) => {
+            placeCoby.events = placeCoby.events.filter((event: any) => {
                 if (event.maxSignedUp) {
                     let eventAvailable = event.maxSignedUp - event.signedUp.length;
 
@@ -292,7 +292,7 @@ export const searchEngineThunk =
                 return true;
             });
 
-            placeCoby.events = place.events.filter((event: any) => {
+            placeCoby.events = placeCoby.events.filter((event: any) => {
                 if (new Date(event.date) >= fromDate!) {
                     if (toDate === null || new Date(event.date) <= toDate!) {
                         return true;

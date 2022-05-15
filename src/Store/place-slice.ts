@@ -5,7 +5,7 @@ interface CurrentPlace {
     name: string;
     description: string;
     sports: string[];
-    events: [object];
+    events: object[];
     geometry: {
         type: string;
         coordinates: number[];
@@ -22,27 +22,33 @@ interface CurrentEvent {
 }
 
 interface PlaceState {
-    places: null | object;
+    places: null | object[];
+    selectedPlaces: null | object;
     currentPlace: null | CurrentPlace;
     currentEvent: null | CurrentEvent;
 }
 
 const initialState: PlaceState = {
     places: null,
+    selectedPlaces: null,
     currentPlace: null,
     currentEvent: null,
 };
 
 interface arrayPlaces {
-    places: [object];
+    places: Array<object>;
 }
 
 const placeSlice = createSlice({
     name: "place",
     initialState,
     reducers: {
-        setPlaces(state, action: PayloadAction<arrayPlaces>) {
+        setPlaces(state, action: PayloadAction<arrayPlaces[]>) {
             state.places = action.payload;
+            state.selectedPlaces = action.payload;
+        },
+        setSelectedPlaces(state, action: PayloadAction<arrayPlaces[]>) {
+            state.selectedPlaces = action.payload;
         },
         setCurrentPlace(state, action: PayloadAction<CurrentPlace>) {
             state.currentPlace = action.payload;

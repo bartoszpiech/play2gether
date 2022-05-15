@@ -35,7 +35,7 @@ interface TypePopupInfo {
 function UserMap() {
     const [popupInfo, setPopupInfo] = useState<TypePopupInfo | null>(null);
 
-    const places = useAppSelector((state) => state.place.places);
+    const selectedPlaces = useAppSelector((state) => state.place.selectedPlaces);
 
     const dispatch = useAppDispatch();
 
@@ -96,7 +96,7 @@ function UserMap() {
 
             <ScaleControl />
 
-            {places ? CreatPins(places) : ""}
+            {selectedPlaces ? CreatPins(selectedPlaces) : ""}
 
             {popupInfo && (
                 <Popup

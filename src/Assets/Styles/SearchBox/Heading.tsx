@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Heading = styled.h1`
-    padding-top: 25px;
+    padding-top: 75px;
     padding-bottom: 25px;
 `;
 

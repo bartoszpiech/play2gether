@@ -34,7 +34,7 @@ function Place() {
         dispatch(getCurrentPlaceThunk(placeId, token));
     };
 
-    const loadEvents = (events: [object]) => {
+    const loadEvents = (events: object[]) => {
         return events.map((event: any) => (
             <div
                 className={`card p-0 ${event._id != currentEvent?._id ? "myCard": "mySelectedCard"}`}

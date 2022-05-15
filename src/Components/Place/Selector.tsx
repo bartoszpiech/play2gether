@@ -6,7 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-import { Sports } from "Components/SearchBox/Sports";
+import { SportsType } from "Components/SearchBox/Sports";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -60,7 +60,7 @@ export default function MultipleSelect(props: any) {
                     MenuProps={MenuProps}
                 >
 
-                    {props.sportsType ? printSports(props.sportsType) : printSports(Sports)}
+                    {props.sportsType ? printSports(props.sportsType) : printSports(SportsType)}
                     
                 </Select>
             </FormControl>

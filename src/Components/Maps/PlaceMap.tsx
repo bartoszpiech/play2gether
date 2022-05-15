@@ -19,16 +19,6 @@ const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
 function PlaceMap() {
     const place = useAppSelector((state) => state.place.currentPlace);
 
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = () => {
-        dispatch(getAllPlacesThunk());
-    };
-
     const onWheel = (event: any) => {
         if (event.originalEvent.ctrlKey) {
             return;
@@ -44,7 +34,6 @@ function PlaceMap() {
 
         event.preventDefault();
     };
-    
 
     return (
         <>

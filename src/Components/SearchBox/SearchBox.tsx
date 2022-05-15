@@ -18,12 +18,15 @@ interface SearchBoxProps {
 function SearchBox(props: SearchBoxProps) {
     const [sports, setSports] = useState<string[]>([]);
     const [placesAvailable,setPlacesAvailable] = useState(1);
+    const [fromDate, setFromDate] = useState<Date | null>(new Date());
+    const [toDate,setToDate] = useState<Date | null>(null);
+
 
     const dispatch = useAppDispatch();
     const places = useAppSelector(state => state.place.places)
 
     useEffect(() => {
-        dispatch(searchEngineThunk(places,sports,placesAvailable))
+        dispatch(searchEngineThunk(places,sports,placesAvailable,fromDate,toDate))
         
     });
 
@@ -38,8 +41,8 @@ function SearchBox(props: SearchBoxProps) {
                 <TinyHeading>Wolne miejsca:</TinyHeading>
                 <AmountOfPeople placesAvailable={placesAvailable} setPlacesAvailable={setPlacesAvailable} />
                 <TinyHeading>Zakres dat:</TinyHeading>
-                <SportsDatePicker label="Od" />
-                <SportsDatePicker label="Do" />
+                <SportsDatePicker label="Od" date={fromDate} setDate={setFromDate}/>
+                <SportsDatePicker label="Do" date={toDate} setDate={setToDate}/>
                 {/* <TinyHeading>Dystans: TODO</TinyHeading> */}
             </form>
         </PageSearchBox>

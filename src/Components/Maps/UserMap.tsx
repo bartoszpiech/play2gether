@@ -35,7 +35,7 @@ interface TypePopupInfo {
 function UserMap() {
     const [popupInfo, setPopupInfo] = useState<TypePopupInfo | null>(null);
 
-    const places = useAppSelector((state) => state.place.places);
+    const selectedPlaces = useAppSelector((state) => state.place.selectedPlaces);
 
     const dispatch = useAppDispatch();
 
@@ -89,14 +89,14 @@ function UserMap() {
             onWheel={onWheel}
             style={{ minHeight: "500px" }}
         >
-            <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" />
+            <GeocoderControl mapboxAccessToken={`${TOKEN}`} position="top-left" />
             <GeolocateControl showAccuracyCircle={false} position="top-left" />
             <FullscreenControl position="bottom-right" />
             <NavigationControl position="bottom-right" />
 
             <ScaleControl />
 
-            {places ? CreatPins(places) : ""}
+            {selectedPlaces ? CreatPins(selectedPlaces) : ""}
 
             {popupInfo && (
                 <Popup

@@ -20,8 +20,12 @@ function Event(props: any) {
 
     const loadSignUp = () => {
         return event?.signedUp.map((person: any) => (
-            <div key={person._id} className="d-flex justify-content-between p-0 m-0" style={{ height: "50px" }}>
-                <div className="">
+            <div
+                key={person._id}
+                className="d-flex justify-content-between p-0 m-0"
+                style={{ height: "50px" }}
+            >
+                <div className={person.type === "premium" ? "rainbow-text" : ""}>
                     {person.firstName} {person.lastName}
                 </div>
                 <div
@@ -36,16 +40,20 @@ function Event(props: any) {
             </div>
         ));
     };
-    
 
     return (
         <div className="container-fluid d-flex flex-column p-5">
-            <h1 className="display-4 text-center">Wydarzenie</h1>
+            <h1 className="display-3 text-center">Wydarzenie</h1>
 
-            <h1 className="display-6 text-center py-4">Obecni</h1>
-            <div className="row overflow-auto">
-                {event && loadSignUp()}
-            </div>
+            <p className="display-6 mt-3">
+                Ilość wolnych miejsc:{"  "}
+                <b>
+                    {event?.signedUp.length}/{event?.maxSignedUp ? event?.maxSignedUp : "∞"}
+                </b>
+            </p>
+
+            <h1 className="display-6 text-center py-4 m-0 p-0">Obecni</h1>
+            <div className="row overflow-auto  m-0 p-0">{event && loadSignUp()}</div>
 
             <div className="container-fluid mt-auto">
                 <button type="button" className="btn myBtn col-12 mt" onClick={join}>
@@ -55,9 +63,9 @@ function Event(props: any) {
                     opuść
                 </button>
                 {account?._id === event?.owner && (
-                <button type="button" className="btn myBtn col-12 mt-2">
-                    Ustawienia
-                </button>
+                    <button type="button" className="btn myBtn col-12 mt-2">
+                        Ustawienia
+                    </button>
                 )}
             </div>
         </div>

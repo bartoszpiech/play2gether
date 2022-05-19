@@ -56,6 +56,14 @@ input:-webkit-autofill:active {
 
 .myCard {
     cursor: pointer;
+    border-color: #6c757d !important;
+}
+
+.mySelectedCard {
+    cursor: pointer;
+    /* border: red; */
+    border-width: 3px;
+    border-color: rgb(94,63,161) !important;
 }
 
 /* .divImage {
@@ -65,4 +73,3 @@ input:-webkit-autofill:active {
     background-position-y: center;
     background-image: url("https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp");
 } */
-

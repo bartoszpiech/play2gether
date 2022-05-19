@@ -57,7 +57,7 @@ function NewPlaceMap(props: any) {
                     <Pin size={25} />
                 </Marker>
             )}
-            <GeocoderControl mapboxAccessToken={TOKEN} position="top-left" />
+            <GeocoderControl mapboxAccessToken={`${TOKEN}`} position="top-left" />
             <GeolocateControl showAccuracyCircle={false} position="top-left" />
             <NavigationControl />
         </Map>

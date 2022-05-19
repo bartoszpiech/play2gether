@@ -12,6 +12,7 @@ import pl from "date-fns/locale/pl";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { newEventThunk } from "Store/place-actions";
 import MultipleSelect from "./Selector";
+import moment from "moment";
 
 function NewEvent(props: any) {
     const [maxPeople, setMaxPeople] = useState("");
@@ -37,7 +38,7 @@ function NewEvent(props: any) {
             newEventThunk(
                 props.placeId,
                 token,
-                startDate,
+                moment(startDate).second(0).millisecond(0),
                 maxPeople,
                 sport[0],
                 props.setNewEventView

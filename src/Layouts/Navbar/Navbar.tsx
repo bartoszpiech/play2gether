@@ -23,6 +23,7 @@ interface NavbarProps {
 const Navbar = (props: NavbarProps) => {
     const [clicked, setClicked] = useState(false);
     const token = useAppSelector((state) => state.user.token);
+    const account = useAppSelector((state) => state.user.account);
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();

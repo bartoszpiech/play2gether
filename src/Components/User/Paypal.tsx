@@ -8,6 +8,13 @@ interface productInterface {
     description: string;
 }
 
+/*
+ * sdk:
+ * https://developer.paypal.com/sdk/js/
+ * orders api:
+ * https://developer.paypal.com/docs/api/orders/v2/
+ */
+
 export default function Paypal() {
     const [paidFor, setPaidFor] = useState(false);
     const [error, setError] = useState(null);
@@ -17,7 +24,6 @@ export default function Paypal() {
     const token = useAppSelector((state) => state.user.token);
 
     const dispatch = useAppDispatch();
-
 
     const product: productInterface = {
         price: 9.99, // 9,99pln
@@ -54,17 +60,9 @@ export default function Paypal() {
         .render(paypalRef.current);
     }, [product.description, product.price]);
 
-    if (paidFor) {
-        return(
-            <div>
-                <h1>Dziękujemy za kupno premium na naszym portalu!</h1>
-            </div>
-        );
-    }
-
     return(
         <div>
-            { error && <div>Ups, wystąpił błąd</div> }
+            { error && <div>Ups, wystąpił nieoczekiwany błąd</div> }
             <div ref={ paypalRef } />
         </div>
     );

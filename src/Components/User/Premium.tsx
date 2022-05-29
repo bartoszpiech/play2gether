@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "hooks";
 import { buyPremiumThunk } from "Store/user-actions";
+import Paypal from "Components/User/Paypal";
 
 function Premium() {
     const account = useAppSelector((state) => state.user.account);
@@ -26,9 +27,7 @@ function Premium() {
                     <>
                         {" "}
                         <h5 className="text-center">Już od 9.99 zł miesięcznie</h5>
-                        <button className="btn btn-primary myBtn" type="button" onClick={buyPremiumHandler}>
-                            Kup
-                        </button>
+                        <Paypal />
                     </>
                 )}
             </div>

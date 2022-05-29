@@ -12,7 +12,10 @@ export default function AD(props: ADprops)  {
         return(null);
     }
     return (
-        <div className={`${props.variant === "secondary" ? "offset-xl-2 d-flex" : ""} col-xl-2 col-12 offset-0 p-0`}>
+        <div className={`
+        ${props.variant === "secondary" ? "offset-xl-2" : ""}
+        ${props.variant === "tertiary" ? "offset-xl-1" : ""} 
+        col-xl-2 col-12 offset-0 d-flex p-0`}>
             <div className="container-fluid bg-warning py-3" style={{minHeight: "500px"}}>
                 {account?.type !== "premium" &&<h1 className="text-center">Reklama</h1>}
             </div>

@@ -9,7 +9,7 @@ function PageAccount() {
             <div className="col-xl-6 col-12 offset-xl-3 offset-0 d-flex p-0">
                 <Account />
             </div>
-            <AD />
+            <AD variant="tertiary"/>
         </div>
     );
 }

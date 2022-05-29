@@ -9,7 +9,7 @@ function PageLogin() {
             <div className="col-xl-4 col-12 offset-xl-4 offset-0 p-0">
                 <Login />
             </div>
-            <AD />
+            <AD variant="secondary" />
         </div>
     );
 }

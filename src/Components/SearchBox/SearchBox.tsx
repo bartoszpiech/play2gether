@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { searchEngineThunk } from "Store/place-actions";
 import { SportsType } from "./Sports";
+import { Checkbox } from "@mui/material";
 
 interface SearchBoxProps {
     title: string;
@@ -20,12 +21,13 @@ function SearchBox(props: SearchBoxProps) {
     const [placesAvailable, setPlacesAvailable] = useState(1);
     const [fromDate, setFromDate] = useState<Date | null>(null);
     const [toDate, setToDate] = useState<Date | null>(null);
+    const [showAllPlaces, setShowAllPlaces] = useState(false);
 
     const dispatch = useAppDispatch();
     const places = useAppSelector((state) => state.place.places);
 
     useEffect(() => {
-        dispatch(searchEngineThunk(places, sports, placesAvailable, fromDate, toDate));
+        dispatch(searchEngineThunk(places, sports, placesAvailable, fromDate, toDate,showAllPlaces));
     });
 
     return (
@@ -44,6 +46,15 @@ function SearchBox(props: SearchBoxProps) {
                 <TinyHeading>Zakres dat:</TinyHeading>
                 <SportsDatePicker label="Od" date={fromDate} setDate={setFromDate} />
                 <SportsDatePicker label="Do" date={toDate} setDate={setToDate} />
+                <TinyHeading>Wszystkie miejsca</TinyHeading>
+                <Checkbox
+                    checked={showAllPlaces}
+                    sx={{
+                        color: "white",
+                    }}
+                    onChange={(event) => setShowAllPlaces(event.target.checked)}
+                    inputProps={{ "aria-label": "controlled" }}
+                />
                 {/* <TinyHeading>Dystans: TODO</TinyHeading> */}
             </form>
         </PageSearchBox>

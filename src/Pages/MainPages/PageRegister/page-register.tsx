@@ -9,9 +9,7 @@ function PageRegister() {
             <div className="col-xl-4 col-12 offset-xl-4 offset-0 p-0">
                 <Register />
             </div>
-            <div className="col-xl-2 col-12 offset-xl-2 offset-0 d-flex p-0">
-                <AD />
-            </div>
+            <AD />
         </div>
     );
 }

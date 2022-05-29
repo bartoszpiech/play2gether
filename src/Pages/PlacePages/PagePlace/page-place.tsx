@@ -7,9 +7,7 @@ function PagePlace() {
             <div className="col-xl-10 col-12 d-flex p-0">
                 <Place />
             </div>
-            <div className="col-xl-2 col-12 d-flex p-0">
-                <AD />
-            </div>
+            <AD />
         </div>
     );
 }

@@ -57,7 +57,6 @@ export const getAllPlacesThunk =
             if (response.ok) {
                 const data = await response.json();
                 AppDispatch(placeActions.setPlaces(data));
-                AppDispatch(placeActions.leavePlace());
             } else {
                 AppDispatch(
                     uiActions.showNotification({
@@ -265,10 +264,11 @@ export const searchEngineThunk =
         sports: string[],
         placesAvailable: number,
         fromDate: Date | null,
-        toDate: Date | null
+        toDate: Date | null,
+        showAllPlaces: boolean
     ): AppThunk =>
     async (AppDispatch) => {
-        let allPlaces = places?.filter((place: any) => {
+        let selectedPlaces = places?.filter((place: any) => {
             let placeCoby = { ...place };
 
             if (sports.length !== 0) {
@@ -306,5 +306,12 @@ export const searchEngineThunk =
 
             return true;
         });
-        AppDispatch(placeActions.setSelectedPlaces(allPlaces));
+
+        console.log(selectedPlaces);
+
+        if (showAllPlaces) {
+            AppDispatch(placeActions.setSelectedPlaces(places));
+        } else {
+            AppDispatch(placeActions.setSelectedPlaces(selectedPlaces));
+        }
     };

@@ -32,7 +32,7 @@ function AmountOfPeople(props: any) {
                     step={1}
                     value={props.placesAvailable}
                     onChange={(event, value) => props.setPlacesAvailable(value)}
-                    min={1}
+                    min={0}
                     max={30}
                     valueLabelDisplay="on"
                 />

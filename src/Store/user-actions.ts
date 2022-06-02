@@ -82,26 +82,22 @@ export const loginUserThunk =
         })
             .then(async (response) => {
                 if (!response.ok) {
-                    if (response.status === 400) {
+                    if (response.status === 401) {
                         AppDispatch(
                             uiActions.showNotification({
                                 open: true,
                                 type: "error",
-                                message: "Please fill all the fields correctly!",
+                                message: "Mail lub hasło niepoprawne!",
                             })
                         );
-                    } else if (response.status === 401) {
-                        uiActions.showNotification({
-                            open: true,
-                            type: "error",
-                            message: "Invalid email and password combination.",
-                        });
                     } else {
-                        uiActions.showNotification({
-                            open: true,
-                            type: "error",
-                            message: genericErrorMessage,
-                        });
+                        AppDispatch(
+                            uiActions.showNotification({
+                                open: true,
+                                type: "error",
+                                message: genericErrorMessage,
+                            })
+                        );
                     }
                 } else {
                     const data = await response.json();
@@ -125,7 +121,7 @@ export const loginUserThunk =
                 AppDispatch(
                     uiActions.showNotification({
                         open: true,
-                        type: "success",
+                        type: "error",
                         message: error,
                     })
                 );

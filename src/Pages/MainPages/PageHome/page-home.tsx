@@ -9,9 +9,7 @@ function PageHome() {
             <div className="col-xl-8 col-12 offset-xl-2 offset-0 p-0">
                 <Home />
             </div>
-            <div className="col-xl-2 col-12 offset-0 p-0">
-                <AD />
-            </div>
+            <AD />
         </div>
     );
 }

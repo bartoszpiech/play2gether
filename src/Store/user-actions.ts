@@ -23,22 +23,6 @@ export const registerUserThunk =
             .then(async (response) => {
                 if (!response.ok) {
                     if (response.status === 400) {
-                        AppDispatch(
-                            uiActions.showNotification({
-                                open: true,
-                                type: "error",
-                                message: "Please fill all the fields correctly!",
-                            })
-                        );
-                    } else if (response.status === 401) {
-                        AppDispatch(
-                            uiActions.showNotification({
-                                open: true,
-                                type: "error",
-                                message: "Invalid email and password combination!",
-                            })
-                        );
-                    } else if (response.status === 500) {
                         const data = await response.json();
                         AppDispatch(
                             uiActions.showNotification({
@@ -98,26 +82,22 @@ export const loginUserThunk =
         })
             .then(async (response) => {
                 if (!response.ok) {
-                    if (response.status === 400) {
+                    if (response.status === 401) {
                         AppDispatch(
                             uiActions.showNotification({
                                 open: true,
                                 type: "error",
-                                message: "Please fill all the fields correctly!",
+                                message: "Mail lub hasło niepoprawne!",
                             })
                         );
-                    } else if (response.status === 401) {
-                        uiActions.showNotification({
-                            open: true,
-                            type: "error",
-                            message: "Invalid email and password combination.",
-                        });
                     } else {
-                        uiActions.showNotification({
-                            open: true,
-                            type: "error",
-                            message: genericErrorMessage,
-                        });
+                        AppDispatch(
+                            uiActions.showNotification({
+                                open: true,
+                                type: "error",
+                                message: genericErrorMessage,
+                            })
+                        );
                     }
                 } else {
                     const data = await response.json();
@@ -134,14 +114,18 @@ export const loginUserThunk =
                             message: "Udało się zalogować",
                         })
                     );
-                    navigate("/user/home", { replace: true });
+                    if (data.user.type === "premium") {
+                        navigate(`/user/home`, { replace: true });
+                    } else {
+                        navigate(`/${data.user.type}/home`, { replace: true });
+                    }
                 }
             })
             .catch((error) => {
                 AppDispatch(
                     uiActions.showNotification({
                         open: true,
-                        type: "success",
+                        type: "error",
                         message: error,
                     })
                 );
@@ -291,8 +275,7 @@ export const getUserDateThunk =
         });
     };
 
-
-    export const buyPremiumThunk =
+export const buyPremiumThunk =
     (token: string | null): AppThunk =>
     async (AppDispatch) => {
         fetch(process.env.REACT_APP_API_ENDPOINT + "user/premium", {
@@ -311,7 +294,7 @@ export const getUserDateThunk =
                         message: "Jesteś użytkownikiem premium dzięki :)",
                     })
                 );
-                AppDispatch(getUserDateThunk(token))
+                AppDispatch(getUserDateThunk(token));
             } else {
                 AppDispatch(
                     uiActions.showNotification({

@@ -69,6 +69,33 @@ export const getAllPlacesThunk =
         });
     };
 
+    export const getAllInactivePlacesThunk =
+    (token?: string | null): AppThunk =>
+    async (AppDispatch) => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "user/getInactivePlaces", {
+            method: "GET",
+            credentials: "include",
+            // Pass authentication token as bearer token in header
+            headers: {
+                "Content-Type": "application/json",
+                //   Authorization: `Bearer ${token}`,
+            },
+        }).then(async (response) => {
+            if (response.ok) {
+                const data = await response.json();
+                AppDispatch(placeActions.setPlaces(data));
+            } else {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "error",
+                        message: "Nie udało się pobrać miejsc",
+                    })
+                );
+            }
+        });
+    };
+
 export const getCurrentPlaceThunk =
     (id: string | undefined, token: string | null): AppThunk =>
     async (AppDispatch) => {

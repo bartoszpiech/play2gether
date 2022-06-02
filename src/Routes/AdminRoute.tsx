@@ -1,38 +1,38 @@
 import { Route } from "react-router-dom";
-import RequireUser from "Middleware/RequireUser";
+import RequireAdmin from "Middleware/RequireAdmin";
 
-import { PagePremium, PageUserHome, PageAccount } from "Pages/index";
+import { PagePremium, PageAccount, PageAdminHome } from "Pages/index";
 
 import { PlaceRoute } from "./PlaceRoute";
 
-export function UserRoute() {
+export function AdminRoute() {
     return [
-        <Route key="/user" path="/user">
+        <Route key="/admin" path="/admin">
             <Route
                 key="home"
                 path="home"
                 element={
-                    <RequireUser>
-                        <PageUserHome />
-                    </RequireUser>
+                    <RequireAdmin>
+                        <PageAdminHome />
+                    </RequireAdmin>
                 }
             />
             <Route
                 key="premium"
                 path="premium"
                 element={
-                    <RequireUser>
+                    <RequireAdmin>
                         <PagePremium />
-                    </RequireUser>
+                    </RequireAdmin>
                 }
             />
             <Route
                 key="account"
                 path="account"
                 element={
-                    <RequireUser>
+                    <RequireAdmin>
                         <PageAccount />
-                    </RequireUser>
+                    </RequireAdmin>
                 }
             />
             {PlaceRoute()}

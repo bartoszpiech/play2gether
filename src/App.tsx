@@ -16,6 +16,7 @@ import { RootState } from "Store";
 import { useCallback, useEffect } from "react";
 import { useAppDispatch } from "hooks";
 import { refreshTokenThunk } from "Store/user-actions";
+import { AdminRoute } from "Routes/AdminRoute";
 
 function App() {
     const notification = useSelector((state: RootState) => state.ui.notification);
@@ -44,6 +45,7 @@ function App() {
             <Routes>
                 {MainRoute()}
                 {UserRoute()}
+                {AdminRoute()}
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
             <Footer creatorName="Play2Gether inc." />

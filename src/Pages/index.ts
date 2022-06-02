@@ -7,6 +7,8 @@ import PageUserHome from "./UserPages/PageHome/page-user-home";
 import PageAccount from "./UserPages/PageAccount/page-account";
 import PagePremium from "./UserPages/PagePremium/page-premium";
 
+import PageAdminHome from "./AdminPages/PageHome/page-admin-home";
+
 import PageNewPlace from "./PlacePages/PageNewPlace/page-new-place";
 import PagePlace from "./PlacePages/PagePlace/page-place";
 
@@ -20,4 +22,5 @@ export {
     PageNewPlace,
     PagePlace,
     PageAccount,
+    PageAdminHome,
 };

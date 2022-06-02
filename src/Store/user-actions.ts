@@ -114,7 +114,11 @@ export const loginUserThunk =
                             message: "Udało się zalogować",
                         })
                     );
-                    navigate("/user/home", { replace: true });
+                    if (data.user.type === "premium") {
+                        navigate(`/user/home`, { replace: true });
+                    } else {
+                        navigate(`/${data.user.type}/home`, { replace: true });
+                    }
                 }
             })
             .catch((error) => {

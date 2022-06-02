@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 
-import RequireAuth from "Middleware/RequireAuth";
+import RequireUser from "Middleware/RequireUser";
 
 
 import { PageNewPlace, PagePlace } from "Pages";
@@ -13,9 +13,9 @@ export function PlaceRoute() {
                 key="newPlace"
                 path="newPlace"
                 element={
-                    <RequireAuth>
+                    <RequireUser>
                         <PageNewPlace />
-                    </RequireAuth>
+                    </RequireUser>
                 }
             />
             ,
@@ -23,9 +23,9 @@ export function PlaceRoute() {
                 key=":placeId"
                 path=":placeId"
                 element={
-                    <RequireAuth>
+                    <RequireUser>
                         <PagePlace />
-                    </RequireAuth>
+                    </RequireUser>
                 }
             />
         </Route>,

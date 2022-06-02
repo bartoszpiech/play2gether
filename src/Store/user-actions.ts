@@ -23,22 +23,6 @@ export const registerUserThunk =
             .then(async (response) => {
                 if (!response.ok) {
                     if (response.status === 400) {
-                        AppDispatch(
-                            uiActions.showNotification({
-                                open: true,
-                                type: "error",
-                                message: "Please fill all the fields correctly!",
-                            })
-                        );
-                    } else if (response.status === 401) {
-                        AppDispatch(
-                            uiActions.showNotification({
-                                open: true,
-                                type: "error",
-                                message: "Invalid email and password combination!",
-                            })
-                        );
-                    } else if (response.status === 500) {
                         const data = await response.json();
                         AppDispatch(
                             uiActions.showNotification({
@@ -291,8 +275,7 @@ export const getUserDateThunk =
         });
     };
 
-
-    export const buyPremiumThunk =
+export const buyPremiumThunk =
     (token: string | null): AppThunk =>
     async (AppDispatch) => {
         fetch(process.env.REACT_APP_API_ENDPOINT + "user/premium", {
@@ -311,7 +294,7 @@ export const getUserDateThunk =
                         message: "Jesteś użytkownikiem premium dzięki :)",
                     })
                 );
-                AppDispatch(getUserDateThunk(token))
+                AppDispatch(getUserDateThunk(token));
             } else {
                 AppDispatch(
                     uiActions.showNotification({

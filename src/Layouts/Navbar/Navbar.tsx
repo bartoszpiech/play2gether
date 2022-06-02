@@ -12,7 +12,7 @@ import { NavMenu } from "Assets/Styles/Navbar/NavMenu";
 
 import { StyledNavLink } from "Assets/Styles/Navbar/StyledNavLink";
 import { MenuItemsLoggedIn, MenuItems, MenuItemsInterface } from "./MenuItems";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "hooks";
 import { useNavigate } from "react-router-dom";
 
 interface NavbarProps {
@@ -23,6 +23,7 @@ interface NavbarProps {
 const Navbar = (props: NavbarProps) => {
     const [clicked, setClicked] = useState(false);
     const token = useAppSelector((state) => state.user.token);
+    const account = useAppSelector((state) => state.user.account);
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -78,7 +79,11 @@ const Navbar = (props: NavbarProps) => {
     };
 
     const handleHomeClick = () => {
-        navigate("/home", { replace: true });
+        if (token) {
+            navigate("/user/home", { replace: true });
+        } else {
+            navigate("/home", { replace: true });
+        }
     };
 
     return (

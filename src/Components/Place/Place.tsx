@@ -11,6 +11,7 @@ import NewEvent from "./NewEvent";
 import Event from "./Event";
 import { List } from "@mui/material";
 import PlaceMap from "Components/Maps/PlaceMap";
+import { placeActions } from "Store/place-slice";
 
 moment.locale("pl");
 
@@ -28,6 +29,10 @@ function Place() {
 
     useEffect(() => {
         fetchData();
+
+        return function cleanup() {
+            dispatch(placeActions.leavePlace());
+          };
     }, []);
 
     const fetchData = () => {

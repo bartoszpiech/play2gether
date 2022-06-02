@@ -11,15 +11,19 @@ import store from "Store/index";
 
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ThemeProvider } from "@mui/material";
+import { myTheme } from "Assets/theme";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
-        <Provider store={store}>
+    <Provider store={store}>
+        <ThemeProvider theme={myTheme}>
             <Router>
                 <App />
             </Router>
-        </Provider>
+        </ThemeProvider>
+    </Provider>
 );
 
 // root.render(

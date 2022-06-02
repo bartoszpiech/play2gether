@@ -7,9 +7,7 @@ function PagePremium() {
             <div className="col-xl-4 col-12 offset-xl-4 offset-0 d-flex p-0">
                 <Premium />
             </div>
-            <div className="col-xl-2 col-12 offset-xl-2 offset-0 d-flex p-0">
-                <AD />
-            </div>
+            <AD variant="secondary" />
         </div>
     );
 }

@@ -47,7 +47,7 @@ function AdminMap() {
         dispatch(getAllInactivePlacesThunk());
     };
 
-    const CreatPins = (places: any) => {
+    const CreatePins = (places: any) => {
         return places.map((event: TypePopupInfo) => (
             <Marker
                 key={`marker-${event._id}`}
@@ -96,7 +96,7 @@ function AdminMap() {
 
             <ScaleControl />
 
-            {selectedPlaces ? CreatPins(selectedPlaces) : ""}
+            {selectedPlaces ? CreatePins(selectedPlaces) : ""}
 
             {popupInfo && (
                 <Popup

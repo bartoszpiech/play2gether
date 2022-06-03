@@ -170,7 +170,7 @@ const Register = () => {
                             name="confirmPassword"
                             id="confirmPassword"
                             autoComplete="new-password"
-                            label="Potwierdzenie Hasła"
+                            label="Potwierdzenie hasła"
                             fullWidth
                             value={formik.values.confirmPassword}
                             onChange={formik.handleChange}
@@ -203,7 +203,7 @@ const Register = () => {
                             name="lastName"
                             id="lastName"
                             autoComplete="family-name"
-                            label="lastName"
+                            label="Nazwisko"
                             fullWidth
                             value={formik.values.lastName}
                             onChange={formik.handleChange}

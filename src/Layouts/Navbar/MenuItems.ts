@@ -50,3 +50,20 @@ export const MenuItemsLoggedIn = [
         isSignUpButton: true,
     },
 ];
+
+export const MenuItemsAdmin = [
+    {
+        title: "Home",
+        url: "admin/home",
+    },
+    {
+        title: "Konto",
+        url: "admin/account",
+    },
+    {
+        title: "Wyloguj",
+        url: "/login",
+        logout: true,
+        isSignUpButton: true,
+    },
+];

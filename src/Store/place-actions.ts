@@ -62,7 +62,7 @@ export const getAllPlacesThunk =
                     uiActions.showNotification({
                         open: true,
                         type: "error",
-                        message: "Nie udało się pobrać miejsc",
+                        message: "Nie udało się pobrać wszystkich miejsc",
                     })
                 );
             }
@@ -89,7 +89,7 @@ export const getAllPlacesThunk =
                     uiActions.showNotification({
                         open: true,
                         type: "error",
-                        message: "Nie udało się pobrać miejsc",
+                        message: "Nie udało się pobrać nieaktywnych miejsc",
                     })
                 );
             }

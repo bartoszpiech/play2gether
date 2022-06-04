@@ -11,7 +11,7 @@ import { MenuIcon } from "Assets/Styles/Navbar/MenuIcon";
 import { NavMenu } from "Assets/Styles/Navbar/NavMenu";
 
 import { StyledNavLink } from "Assets/Styles/Navbar/StyledNavLink";
-import { MenuItemsLoggedIn, MenuItems, MenuItemsInterface } from "./MenuItems";
+import { MenuItemsLoggedIn, MenuItems, MenuItemsInterface, MenuItemsAdmin } from "./MenuItems";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { useNavigate } from "react-router-dom";
 
@@ -63,7 +63,15 @@ const Navbar = (props: NavbarProps) => {
         };
     }, [syncLogout]);
 
-    const printMenuItems = (Items: MenuItemsInterface[]) => {
+    const printMenuItems = () => {
+        let Items : MenuItemsInterface[] = MenuItems;
+        if (account) {
+            if (token && account.type === "admin") {
+                Items = MenuItemsAdmin;
+            } else if (token && (account.type === "user" || account.type === "premium")) {
+                Items = MenuItemsLoggedIn;
+            }
+        }
         return Items.map((item, index) => {
             return (
                 <StyledNavLink
@@ -79,10 +87,14 @@ const Navbar = (props: NavbarProps) => {
     };
 
     const handleHomeClick = () => {
-        if (token) {
-            navigate("/user/home", { replace: true });
-        } else {
-            navigate("/home", { replace: true });
+        if (account) {
+            if (token && (account.type === "user" || account.type === "premium")) {
+                navigate("/user/home", { replace: true });
+            } else if (token && account.type === "admin") {
+                navigate("/admin/home", { replace: true });
+            } else {
+                navigate("/home", { replace: true });
+            }
         }
     };
 
@@ -99,7 +111,7 @@ const Navbar = (props: NavbarProps) => {
                 isActive={clicked}
                 menuHeight={(token ? MenuItemsLoggedIn.length : MenuItems.length) * 100 + 50}
             >
-                {token ? printMenuItems(MenuItemsLoggedIn) : printMenuItems(MenuItems)}
+                {printMenuItems()}
             </NavMenu>
         </PageNavbar>
     );

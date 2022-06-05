@@ -8,7 +8,7 @@ interface ADprops {
 export default function AD(props: ADprops)  {
     const account = useAppSelector((state) => state.user.account)
 
-    if (account?.type === "premium") {
+    if (account?.type === "premium" || account?.type === "admin") {
         return(null);
     }
     return (

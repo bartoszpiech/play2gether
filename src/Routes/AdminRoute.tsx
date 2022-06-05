@@ -18,15 +18,6 @@ export function AdminRoute() {
                 }
             />
             <Route
-                key="premium"
-                path="premium"
-                element={
-                    <RequireAdmin>
-                        <PagePremium />
-                    </RequireAdmin>
-                }
-            />
-            <Route
                 key="account"
                 path="account"
                 element={

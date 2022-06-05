@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 
-import { PageNewPlace, PagePlace } from "Pages";
+import { PageNewPlace, PagePlaceReview } from "Pages";
 import RequireAdmin from "Middleware/RequireAdmin";
 
 
@@ -22,7 +22,7 @@ export function AdminPlaceRoute() {
                 path=":placeId"
                 element={
                     <RequireAdmin>
-                        <PagePlace />
+                        <PagePlaceReview />
                     </RequireAdmin>
                 }
             />

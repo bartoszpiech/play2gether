@@ -1,21 +1,19 @@
 import { Route } from "react-router-dom";
 
-import RequireUser from "Middleware/RequireUser";
-
-
 import { PageNewPlace, PagePlace } from "Pages";
+import RequireAdmin from "Middleware/RequireAdmin";
 
 
-export function PlaceRoute() {
+export function AdminPlaceRoute() {
     return [
         <Route key="place" path="place">
             <Route
                 key="newPlace"
                 path="newPlace"
                 element={
-                    <RequireUser>
+                    <RequireAdmin>
                         <PageNewPlace />
-                    </RequireUser>
+                    </RequireAdmin>
                 }
             />
             ,
@@ -23,9 +21,9 @@ export function PlaceRoute() {
                 key=":placeId"
                 path=":placeId"
                 element={
-                    <RequireUser>
+                    <RequireAdmin>
                         <PagePlace />
-                    </RequireUser>
+                    </RequireAdmin>
                 }
             />
         </Route>,

@@ -3,7 +3,7 @@ import RequireUser from "Middleware/RequireUser";
 
 import { PagePremium, PageUserHome, PageAccount } from "Pages/index";
 
-import { PlaceRoute } from "./PlaceRoute";
+import { UserPlaceRoute } from "./UserPlaceRoute";
 
 export function UserRoute() {
     return [
@@ -35,7 +35,7 @@ export function UserRoute() {
                     </RequireUser>
                 }
             />
-            {PlaceRoute()}
+            {UserPlaceRoute()}
         </Route>,
     ];
     // return [{ PlaceRoute }];

@@ -92,10 +92,10 @@ const Navbar = (props: NavbarProps) => {
                 navigate("/user/home", { replace: true });
             } else if (token && account.type === "admin") {
                 navigate("/admin/home", { replace: true });
-            } else {
+            } 
+        } else {
                 navigate("/home", { replace: true });
             }
-        }
     };
 
     return (

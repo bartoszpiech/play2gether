@@ -6,10 +6,16 @@ import Pin from "./Pin";
 
 const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
 
+// const initialViewState = {
+//     longitude: 19.1343786,
+//     latitude: 51.9189046,
+//     zoom: 4.6,
+// };
+
 const initialViewState = {
-    longitude: 19.1343786,
-    latitude: 51.9189046,
-    zoom: 4.6,
+    longitude: 17.038538,
+    latitude: 51.107883,
+    zoom:12,
 };
 
 function NewPlaceMap(props: any) {

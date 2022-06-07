@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./Assets/Styles/index.css";
 import "moment/locale/pl";
+import 'react-slideshow-image/dist/styles.css'
 
 import React from "react";
 import ReactDOM from "react-dom/client";

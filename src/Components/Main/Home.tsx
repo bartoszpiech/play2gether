@@ -4,9 +4,6 @@
 import React from "react";
 import Map from "Components/Maps/GoogleMap";
 
-function Home() {
-    // return <Map />;
-    return <div>Map</div>;
-}
+function Home() {}
 
 export default Home;

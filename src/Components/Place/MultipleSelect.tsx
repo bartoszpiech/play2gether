@@ -59,9 +59,7 @@ export default function MultipleSelect(props: any) {
                     input={<OutlinedInput label="Name" />}
                     MenuProps={MenuProps}
                 >
-
                     {props.sportsType ? printSports(props.sportsType) : printSports(SportsType)}
-                    
                 </Select>
             </FormControl>
         </div>

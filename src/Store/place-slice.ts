@@ -5,6 +5,7 @@ interface CurrentPlace {
     name: string;
     description: string;
     sports: string[];
+    images: {url: string, id:string};
     events: object[];
     geometry: {
         type: string;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Map, {
     Marker,
     Popup,
@@ -33,11 +33,10 @@ interface TypePopupInfo {
 }
 
 function AdminMap() {
-    const [popupInfo, setPopupInfo] = useState<TypePopupInfo | null>(null);
-
     const selectedPlaces = useAppSelector((state) => state.place.selectedPlaces);
 
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchData();
@@ -48,15 +47,17 @@ function AdminMap() {
     };
 
     const CreatePins = (places: any) => {
-        return places.map((event: TypePopupInfo) => (
+        return places.map((place: TypePopupInfo) => (
             <Marker
-                key={`marker-${event._id}`}
-                longitude={event.geometry.coordinates[0]}
-                latitude={event.geometry.coordinates[1]}
+                key={`marker-${place._id}`}
+                longitude={place.geometry.coordinates[0]}
+                latitude={place.geometry.coordinates[1]}
                 anchor="bottom"
                 onClick={(e) => {
                     e.originalEvent.stopPropagation();
-                    setPopupInfo(event);
+                    // setPopupInfo(event);
+
+                    navigate(`/admin/place/${place._id}`);
                 }}
             >
                 <Pin />
@@ -65,17 +66,11 @@ function AdminMap() {
     };
 
     const onWheel = (event: any) => {
-        if (event.originalEvent.ctrlKey) {
-            return;
-        }
+        if (event.originalEvent.ctrlKey) return;
 
-        if (event.originalEvent.metaKey) {
-            return;
-        }
+        if (event.originalEvent.metaKey) return;
 
-        if (event.originalEvent.altKey) {
-            return;
-        }
+        if (event.originalEvent.altKey) return;
 
         event.preventDefault();
     };
@@ -97,30 +92,7 @@ function AdminMap() {
             <ScaleControl />
 
             {selectedPlaces ? CreatePins(selectedPlaces) : ""}
-
-            {popupInfo && (
-                <Popup
-                    anchor="top"
-                    longitude={Number(popupInfo.geometry.coordinates[0])}
-                    latitude={Number(popupInfo.geometry.coordinates[1])}
-                    onClose={() => setPopupInfo(null)}
-                    closeButton={false}
-                >
-                    <div
-                        className="d-flex flex-column p-1"
-                        style={{ height: "125px", width: "200px" }}
-                    >
-                        <h5 className="mt-1">{popupInfo.name}</h5>
-                        <p>{popupInfo.description}</p>
-
-                        <div className="d-grid gap-2 mt-auto">
-                            <NavLink to={`/user/place/${popupInfo._id}`} className="btn myBtn">
-                                Wejdź
-                            </NavLink>
-                        </div>
-                    </div>
-                </Popup>
-            )}
+            
         </Map>
     );
 }

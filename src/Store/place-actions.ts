@@ -8,10 +8,18 @@ export const newPlaceThunk =
         description: string,
         sports: string[],
         marker: any,
+        images:any,
         navigate: any,
         token: string | null
     ): AppThunk =>
     async (AppDispatch) => {
+        AppDispatch(
+            uiActions.showNotification({
+                open: true,
+                type: "success",
+                message: "Miejsce wysłane proszę czekać...",
+            })
+        );
         fetch(process.env.REACT_APP_API_ENDPOINT + "user/newPlace", {
             method: "POST",
             credentials: "include",
@@ -19,7 +27,7 @@ export const newPlaceThunk =
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ name, description, sports, location: marker }),
+            body: JSON.stringify({ name, description, sports, location: marker,data: images }),
         }).then(async (response) => {
             if (response.ok) {
                 AppDispatch(

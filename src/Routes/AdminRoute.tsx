@@ -2,8 +2,7 @@ import { Route } from "react-router-dom";
 import RequireAdmin from "Middleware/RequireAdmin";
 
 import { PagePremium, PageAccount, PageAdminHome } from "Pages/index";
-
-import { PlaceRoute } from "./PlaceRoute";
+import { AdminPlaceRoute } from "./AdminPlaceRoute";
 
 export function AdminRoute() {
     return [
@@ -26,7 +25,7 @@ export function AdminRoute() {
                     </RequireAdmin>
                 }
             />
-            {PlaceRoute()}
+            {AdminPlaceRoute()}
         </Route>,
     ];
     // return [{ PlaceRoute }];

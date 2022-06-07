@@ -1,29 +1,21 @@
+import { AnyAsyncThunk } from "@reduxjs/toolkit/dist/matchers";
 import React from "react";
 import { Slide } from "react-slideshow-image";
 
+const Slideshow = (images: any) => {
+    const printSlide = (images: any) => {
+        return images.map((image: any) => {
+            return (
+                <div className="each-slide" key={image.id}>
+                    <div style={{ backgroundImage: `url(${image.url})` }}></div>
+                </div>
+            );
+        });
+    };
 
-const slideImages = ["https://picsum.photos/200/300","https://picsum.photos/200/300","https://picsum.photos/200/300"];
-
-const Slideshow = () => {
     return (
         <div>
-            <Slide easing="ease">
-                <div className="each-slide">
-                    <div style={{ backgroundImage: `url(${slideImages[0]})` }}>
-                        <span>Slide 1</span>
-                    </div>
-                </div>
-                <div className="each-slide">
-                    <div style={{ backgroundImage: `url(${slideImages[1]})` }}>
-                        <span>Slide 2</span>
-                    </div>
-                </div>
-                <div className="each-slide">
-                    <div style={{ backgroundImage: `url(${slideImages[2]})` }}>
-                        <span>Slide 3</span>
-                    </div>
-                </div>
-            </Slide>
+            <Slide easing="ease">{images && printSlide(images.images)}</Slide>
         </div>
     );
 };

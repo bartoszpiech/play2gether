@@ -10,7 +10,6 @@ export function ImageUploader(props: any) {
     const onChange = (imageList: ImageListType, addUpdateIndex: number[] | undefined) => {
         // data for submit
         // console.log(imageList, addUpdateIndex);
-        
         setImages(imageList as never[]);
         props.setNewImages(imageList);
     };

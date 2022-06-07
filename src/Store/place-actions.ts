@@ -8,7 +8,7 @@ export const newPlaceThunk =
         description: string,
         sports: string[],
         marker: any,
-        images:any,
+        images: any,
         navigate: any,
         token: string | null
     ): AppThunk =>
@@ -27,7 +27,7 @@ export const newPlaceThunk =
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ name, description, sports, location: marker,data: images }),
+            body: JSON.stringify({ name, description, sports, location: marker, data: images }),
         }).then(async (response) => {
             if (response.ok) {
                 AppDispatch(
@@ -77,7 +77,7 @@ export const getAllPlacesThunk =
         });
     };
 
-    export const getAllInactivePlacesThunk =
+export const getAllInactivePlacesThunk =
     (token?: string | null): AppThunk =>
     async (AppDispatch) => {
         fetch(process.env.REACT_APP_API_ENDPOINT + "user/getInactivePlaces", {
@@ -118,6 +118,7 @@ export const getCurrentPlaceThunk =
             if (response.ok) {
                 const data = await response.json();
                 AppDispatch(placeActions.setCurrentPlace(data));
+                console.log(data);
             } else {
                 AppDispatch(
                     uiActions.showNotification({
@@ -349,4 +350,78 @@ export const searchEngineThunk =
         } else {
             AppDispatch(placeActions.setSelectedPlaces(selectedPlaces));
         }
+    };
+
+export const adminAcceptedPlaceThunk =
+    (
+        id: string | undefined,
+        name: string,
+        description: string,
+        sports: string[],
+        marker: any,
+        navigate: any,
+        token: string | null
+    ): AppThunk =>
+    async (AppDispatch) => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "user/acceptedPlace", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ id, name, description, sports, location: marker }),
+        }).then(async (response) => {
+            if (response.ok) {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Udało się akceptować miejsce",
+                    })
+                );
+                navigate("/admin/home", { replace: true });
+            } else {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "error",
+                        message: "Nie udało się akceptować miejsca",
+                    })
+                );
+            }
+        });
+    };
+
+export const adminDeniedPlaceThunk =
+    (id: string | undefined, navigate: any, token: string | null): AppThunk =>
+    async (AppDispatch) => {
+        fetch(process.env.REACT_APP_API_ENDPOINT + "user/deniedPlace", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ id}),
+        }).then(async (response) => {
+            if (response.ok) {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "success",
+                        message: "Udało się usunąć miejsce",
+                    })
+                );
+                navigate("/admin/home", { replace: true });
+            } else {
+                AppDispatch(
+                    uiActions.showNotification({
+                        open: true,
+                        type: "error",
+                        message: "Nie udało się usunąć miejsca",
+                    })
+                );
+            }
+        });
     };

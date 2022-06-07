@@ -9,7 +9,7 @@ import NewPlaceMap from "Components/Maps/NewPlaceMap";
 
 import CSS from "csstype";
 import { uiActions } from "Store/ui-slice";
-import MultipleSelect from "./Selector";
+import MultipleSelect from "./MultipleSelect";
 import { Box, Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -48,7 +48,7 @@ function NewPlace() {
         initialValues: INITIAL_FORM_STATE,
         validationSchema: FORM_VALIDATION,
         onSubmit: ({ name, description }) => {
-            console.log(images)
+            console.log(images);
             if (!marker) {
                 dispatch(
                     uiActions.showNotification({
@@ -66,7 +66,7 @@ function NewPlace() {
                     })
                 );
             } else {
-                dispatch(newPlaceThunk(name, description, sports, marker, images,navigate, token));
+                dispatch(newPlaceThunk(name, description, sports, marker, images, navigate, token));
             }
         },
     });

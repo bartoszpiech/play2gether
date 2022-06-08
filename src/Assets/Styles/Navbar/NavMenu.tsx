@@ -29,7 +29,7 @@ export const NavMenu = styled.ul<NavMenuProps>`
         left: -100%;
         opacity: 1;
         transition: all 0.5s ease;
-        ${ props => props.isActive ? 'background-color: rgb(209, 188, 255); left: 0; opacity: 1; z-index: 2; transition: all 0.5s ease;' : '' };
+        ${ props => props.isActive ? 'background-color: rgb(209, 188, 255); left: 0; opacity: 1; z-index: 3; transition: all 0.5s ease;' : '' };
     }
 
 `;

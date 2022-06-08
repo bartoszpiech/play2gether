@@ -63,15 +63,15 @@ const Navbar = (props: NavbarProps) => {
         };
     }, [syncLogout]);
 
-    const printMenuItems = () => {
-        let Items : MenuItemsInterface[] = MenuItems;
-        if (account) {
-            if (token && account.type === "admin") {
-                Items = MenuItemsAdmin;
-            } else if (token && (account.type === "user" || account.type === "premium")) {
-                Items = MenuItemsLoggedIn;
-            }
+    let Items : MenuItemsInterface[] = MenuItems;
+    if (account) {
+        if (token && account.type === "admin") {
+            Items = MenuItemsAdmin;
+        } else if (token && (account.type === "user" || account.type === "premium")) {
+            Items = MenuItemsLoggedIn;
         }
+    }
+    const printMenuItems = () => {
         return Items.map((item, index) => {
             return (
                 <StyledNavLink
@@ -92,10 +92,10 @@ const Navbar = (props: NavbarProps) => {
                 navigate("/user/home", { replace: true });
             } else if (token && account.type === "admin") {
                 navigate("/admin/home", { replace: true });
-            } else {
+            } 
+        } else {
                 navigate("/home", { replace: true });
             }
-        }
     };
 
     return (
@@ -109,7 +109,7 @@ const Navbar = (props: NavbarProps) => {
             </MenuIcon>
             <NavMenu
                 isActive={clicked}
-                menuHeight={(token ? MenuItemsLoggedIn.length : MenuItems.length) * 100 + 50}
+                menuHeight={(Items.length) * 100 + 50}
             >
                 {printMenuItems()}
             </NavMenu>

@@ -11,7 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import pl from "date-fns/locale/pl";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { newEventThunk } from "Store/place-actions";
-import MultipleSelect from "./Selector";
+import MultipleSelect from "./MultipleSelect";
 import moment from "moment";
 
 function NewEvent(props: any) {

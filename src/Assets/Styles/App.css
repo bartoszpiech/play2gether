@@ -63,7 +63,7 @@ input:-webkit-autofill:active {
     cursor: pointer;
     /* border: red; */
     border-width: 3px;
-    border-color: rgb(94,63,161) !important;
+    border-color: rgb(94, 63, 161) !important;
 }
 
 /* .divImage {
@@ -72,4 +72,19 @@ input:-webkit-autofill:active {
     background-position-x: center;
     background-position-y: center;
     background-image: url("https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp");
+} */
+
+.each-slide > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 350px;
+}
+
+/* .each-slide span {
+    padding: 20px;
+    font-size: 20px;
+    background: #efefef;
+    text-align: center;
 } */

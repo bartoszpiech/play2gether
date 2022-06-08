@@ -1,26 +1,12 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-
 import { ThemeProvider } from "@mui/material/styles";
+import * as React from "react";
 import { Theme } from "./Theme";
 
 function valuetext(value: number) {
     return `${value}°C`;
 }
-
-/*
-const marks = [
-  {
-    value: 0,
-    label: '0',
-  },
-  {
-    value: 15,
-    label: '15',
-  },
-];
-*/
 
 function AmountOfPeople(props: any) {
     return (

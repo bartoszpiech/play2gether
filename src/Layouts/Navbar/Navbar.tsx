@@ -1,19 +1,13 @@
-import { useState, useCallback, useEffect } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
-
-import { RootState } from "Store";
-import { userActions } from "Store/user-slice";
-
-import { PageNavbar } from "Assets/Styles/Navbar/PageNavbar";
 import { Heading } from "Assets/Styles/Navbar/Heading";
 import { MenuIcon } from "Assets/Styles/Navbar/MenuIcon";
 import { NavMenu } from "Assets/Styles/Navbar/NavMenu";
-
+import { PageNavbar } from "Assets/Styles/Navbar/PageNavbar";
 import { StyledNavLink } from "Assets/Styles/Navbar/StyledNavLink";
-import { MenuItemsLoggedIn, MenuItems, MenuItemsInterface, MenuItemsAdmin } from "./MenuItems";
 import { useAppDispatch, useAppSelector } from "hooks";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { userActions } from "Store/user-slice";
+import { MenuItems, MenuItemsAdmin, MenuItemsInterface, MenuItemsLoggedIn } from "./MenuItems";
 
 interface NavbarProps {
     title: string;
@@ -63,7 +57,7 @@ const Navbar = (props: NavbarProps) => {
         };
     }, [syncLogout]);
 
-    let Items : MenuItemsInterface[] = MenuItems;
+    let Items: MenuItemsInterface[] = MenuItems;
     if (account) {
         if (token && account.type === "admin") {
             Items = MenuItemsAdmin;
@@ -92,10 +86,10 @@ const Navbar = (props: NavbarProps) => {
                 navigate("/user/home", { replace: true });
             } else if (token && account.type === "admin") {
                 navigate("/admin/home", { replace: true });
-            } 
-        } else {
-                navigate("/home", { replace: true });
             }
+        } else {
+            navigate("/home", { replace: true });
+        }
     };
 
     return (
@@ -107,10 +101,7 @@ const Navbar = (props: NavbarProps) => {
             <MenuIcon onClick={handleClick}>
                 <i className={clicked ? "fa-solid fa-arrow-left" : "fa-solid fa-arrow-right"} />
             </MenuIcon>
-            <NavMenu
-                isActive={clicked}
-                menuHeight={(Items.length) * 100 + 50}
-            >
+            <NavMenu isActive={clicked} menuHeight={Items.length * 100 + 50}>
                 {printMenuItems()}
             </NavMenu>
         </PageNavbar>

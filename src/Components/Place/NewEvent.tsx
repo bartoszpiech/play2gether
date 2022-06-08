@@ -1,18 +1,14 @@
-import React, { useState, useContext } from "react";
-
-import { useNavigate } from "react-router-dom";
-
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-
 import pl from "date-fns/locale/pl";
 import { useAppDispatch, useAppSelector } from "hooks";
+import moment from "moment";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { newEventThunk } from "Store/place-actions";
 import MultipleSelect from "./MultipleSelect";
-import moment from "moment";
 
 function NewEvent(props: any) {
     const [maxPeople, setMaxPeople] = useState("");
@@ -20,7 +16,7 @@ function NewEvent(props: any) {
 
     // const [startDate, setStartDate] = useState(new Date());
     const token = useAppSelector((state) => state.user.token);
-    const place = useAppSelector(state => state.place.currentPlace)
+    const place = useAppSelector((state) => state.place.currentPlace);
 
     const [startDate, setStartDate] = React.useState<Date | null>(new Date());
     const [sport, setSport] = React.useState<string[]>([]);
@@ -57,7 +53,12 @@ function NewEvent(props: any) {
 
             <form onSubmit={formSubmitHandler}>
                 <div className="mt-5">
-                    <MultipleSelect multiple={false} sportsType={place!.sports} sports={sport} setSports={setSport} />
+                    <MultipleSelect
+                        multiple={false}
+                        sportsType={place!.sports}
+                        sports={sport}
+                        setSports={setSport}
+                    />
                 </div>
                 <div className="mt-4">
                     <label className="form-label mb-1">Wybierz date</label>

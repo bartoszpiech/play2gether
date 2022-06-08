@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "hooks";
+import React, { useState } from "react";
 import { uiActions } from "Store/ui-slice";
 import { sendUserImageThunk, updateUserThunk } from "Store/user-actions";
 

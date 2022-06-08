@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useAppSelector } from "hooks";
-
+import { useState } from "react";
 import EditAccount from "./EditAccount";
 
 function Account() {
@@ -23,7 +22,7 @@ function Account() {
                             backgroundRepeat: "no-repeat",
                             backgroundPositionX: "center",
                             backgroundPositionY: "center",
-                            backgroundImage: `url(${account?.image.url})`
+                            backgroundImage: `url(${account?.image.url})`,
                         }}
                     />
 

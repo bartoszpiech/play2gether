@@ -5,7 +5,7 @@ interface CurrentPlace {
     name: string;
     description: string;
     sports: string[];
-    images: {url: string, id:string};
+    images: { url: string; id: string };
     events: object[];
     geometry: {
         type: string;
@@ -58,11 +58,13 @@ const placeSlice = createSlice({
         setCurrentEvent(state, action: PayloadAction<CurrentEvent>) {
             state.currentEvent = action.payload;
         },
-        leavePlace(state){
+        deleteEvent(state, action: PayloadAction<{ id: string | null }>) {
+            state.currentEvent = null;
+        },
+        leavePlace(state) {
             state.currentPlace = null;
             state.currentEvent = null;
-        }
-        
+        },
     },
 });
 

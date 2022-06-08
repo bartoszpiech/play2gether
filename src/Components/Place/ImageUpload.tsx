@@ -1,15 +1,12 @@
+import { Button, Stack } from "@mui/material";
 import React from "react";
-import { SetStateAction } from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
-import { Stack, Button, Grid, TextareaAutosize, TextField } from "@mui/material";
 
 export function ImageUploader(props: any) {
     const [images, setImages] = React.useState([]);
     const maxNumber = 69;
 
     const onChange = (imageList: ImageListType, addUpdateIndex: number[] | undefined) => {
-        // data for submit
-        // console.log(imageList, addUpdateIndex);
         setImages(imageList as never[]);
         props.setNewImages(imageList);
     };

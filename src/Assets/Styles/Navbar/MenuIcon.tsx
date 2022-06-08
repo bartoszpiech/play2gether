@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MenuIcon = styled.div`
     font-size: 32px;

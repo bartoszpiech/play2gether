@@ -1,7 +1,5 @@
-import styled from 'styled-components';
-const basketball = require('Assets/Images/basketball.jpg');
-
-console.log(basketball)
+import styled from "styled-components";
+const basketball = require("Assets/Images/basketball.jpg");
 
 export const Container = styled.div`
     background-image: url(${basketball});

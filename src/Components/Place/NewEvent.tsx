@@ -10,7 +10,28 @@ import { useNavigate } from "react-router-dom";
 import { newEventThunk } from "Store/place-actions";
 import MultipleSelect from "./MultipleSelect";
 
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '40%',
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 function NewEvent(props: any) {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     const [maxPeople, setMaxPeople] = useState("");
     const [maxPeopleDisabled, setMaxPeopleDisabled] = useState(false);
 
@@ -48,6 +69,15 @@ function NewEvent(props: any) {
     };
 
     return (
+    <div>
+    <Button onClick={handleOpen} fullWidth variant="contained">Stwórz nowe wydarzenie</Button>
+    <Modal
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+    >
+        <Box sx={style}>
         <div className="p-4 text-center">
             <h1 className="display-4 text-center">Stwórz wydarzenie</h1>
 
@@ -100,10 +130,13 @@ function NewEvent(props: any) {
 
                 <button className="btn myBtn col-12 mt-2">Stwórz</button>
 
-                <div onClick={() => props.setNewEventView(false)} className="btn btn myBtn mt-5">
+                <div onClick={handleClose} className="btn btn myBtn mt-5">
                     Anuluj
                 </div>
             </form>
+        </div>
+        </Box>
+        </Modal>
         </div>
     );
 }

@@ -1,9 +1,26 @@
 import { useAppSelector } from "hooks";
+import styled from "styled-components";
 import React from "react";
+const ADImage = require("Assets/Images/ad.jpg");
 
 interface ADprops {
     variant?: string;
 }
+
+
+/*
+ * TODO:
+ * tutaj min-width do zrobienia i poprawy
+ * dodac a href tez
+ */
+const ADDiv = styled.div`
+    background-image: url(${ADImage});
+    min-height: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    min-width: 1000px;
+`;
+
 
 export default function AD(props: ADprops)  {
     const account = useAppSelector((state) => state.user.account)
@@ -16,9 +33,8 @@ export default function AD(props: ADprops)  {
         ${props.variant === "secondary" ? "offset-xl-2" : ""}
         ${props.variant === "tertiary" ? "offset-xl-1" : ""} 
         col-xl-2 col-12 offset-0 d-flex p-0`}>
-            <div className="container-fluid bg-warning py-3" style={{minHeight: "500px"}}>
-                {account?.type !== "premium" &&<h1 className="text-center">Reklama</h1>}
-            </div>
+            <ADDiv>
+            </ADDiv>
         </div>
     );
 };

@@ -4,17 +4,12 @@
     padding: 0;
 }
 
-/* Change the white to any color */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px rgb(227, 216, 252) inset !important;
 }
-
-/* input:-webkit-autofill{
-    -webkit-text-fill-color: yellow !important;
-} */
 
 .myBtn {
     background-color: rgba(209, 188, 255, 1);
@@ -33,12 +28,10 @@ input:-webkit-autofill:active {
 }
 
 .form-control {
-    /* border: rgba(94, 63, 161, 1); */
     background-color: white;
 }
 
 .form-control:focus {
-    /* border: rgba(94, 63, 161, 1); */
     border-color: rgba(94, 63, 161, 1);
     box-shadow: 0 0 0 0.25rem rgba(209, 188, 255, 1);
 }
@@ -61,18 +54,10 @@ input:-webkit-autofill:active {
 
 .mySelectedCard {
     cursor: pointer;
-    /* border: red; */
+
     border-width: 3px;
     border-color: rgb(94, 63, 161) !important;
 }
-
-/* .divImage {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    background-image: url("https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp");
-} */
 
 .each-slide > div {
     display: flex;
@@ -82,17 +67,9 @@ input:-webkit-autofill:active {
     height: 350px;
 }
 
-/* .each-slide span {
-    padding: 20px;
-    font-size: 20px;
-    background: #efefef;
-    text-align: center;
-} */
-
 .css-shadow {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     border: 2px solid rgb(94, 63, 161);
-    /* filter: drop-shadow(0 0 8px #ff5722); */
 }

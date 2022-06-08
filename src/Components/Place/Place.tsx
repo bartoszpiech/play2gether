@@ -1,18 +1,15 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
+import { Button } from "@mui/material";
+import PlaceMap from "Components/Maps/PlaceMap";
+import { useAppDispatch, useAppSelector } from "hooks";
 import moment from "moment";
 import "moment/locale/pl"; // without this line it didn't work
-
-import { useAppDispatch, useAppSelector } from "hooks";
-import { getCurrentPlaceThunk } from "Store/place-actions";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { getCurrentEventThunk } from "Store/event-actions";
-
-import NewEvent from "./NewEvent";
-import Event from "./Event";
-import { Button, List } from "@mui/material";
-import PlaceMap from "Components/Maps/PlaceMap";
+import { getCurrentPlaceThunk } from "Store/place-actions";
 import { placeActions } from "Store/place-slice";
+import Event from "./Event";
+import NewEvent from "./NewEvent";
 import Slideshow from "./Slideshow";
 
 moment.locale("pl");
@@ -95,16 +92,6 @@ function Place() {
                                 >
                                     Dodaj Wydarzenie
                                 </Button>
-
-                                {/* {account?._id === currentPlace?.owner && (
-                                    <div
-                                        onClick={() => setNewEventView(true)}
-                                        className="btn myBtn"
-                                        color="error"
-                                    >
-                                        Usuń
-                                    </div>
-                                )} */}
                             </div>
 
                             <div className="flex-grow-1">

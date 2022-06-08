@@ -1,11 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface NavMenuProps {
     isActive?: boolean;
     menuHeight: number;
 }
 
-// z-index: 2 prevents from searchbar sticking out in mobile view
 export const NavMenu = styled.ul<NavMenuProps>`
     color: white;
     display: grid;
@@ -23,13 +22,15 @@ export const NavMenu = styled.ul<NavMenuProps>`
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: ${ props => props.menuHeight }px;
+        height: ${(props) => props.menuHeight}px;
         position: absolute;
         top: 80px;
         left: -100%;
         opacity: 1;
         transition: all 0.5s ease;
-        ${ props => props.isActive ? 'background-color: rgb(209, 188, 255); left: 0; opacity: 1; z-index: 3; transition: all 0.5s ease;' : '' };
+        ${(props) =>
+            props.isActive
+                ? "background-color: rgb(209, 188, 255); left: 0; opacity: 1; z-index: 3; transition: all 0.5s ease;"
+                : ""};
     }
-
 `;

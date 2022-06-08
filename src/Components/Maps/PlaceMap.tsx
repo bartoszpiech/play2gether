@@ -1,18 +1,12 @@
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useAppSelector } from "hooks";
 import Map, {
-    Marker,
-    Popup,
-    NavigationControl,
     FullscreenControl,
-    ScaleControl,
     GeolocateControl,
+    Marker,
+    NavigationControl,
+    ScaleControl,
 } from "react-map-gl";
-
 import Pin from "./Pin";
-import GeocoderControl from "./GeocoderControl";
-import { useAppDispatch, useAppSelector } from "hooks";
-import { getAllPlacesThunk } from "Store/place-actions";
 
 const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
 

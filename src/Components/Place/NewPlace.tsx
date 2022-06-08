@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-
-import { useNavigate } from "react-router-dom";
-
-import { useAppDispatch, useAppSelector } from "hooks";
-import { newPlaceThunk } from "Store/place-actions";
-
-import NewPlaceMap from "Components/Maps/NewPlaceMap";
-
-import CSS from "csstype";
-import { uiActions } from "Store/ui-slice";
-import MultipleSelect from "./MultipleSelect";
 import { Box, Button, TextField } from "@mui/material";
+import NewPlaceMap from "Components/Maps/NewPlaceMap";
+import CSS from "csstype";
 import { useFormik } from "formik";
+import { useAppDispatch, useAppSelector } from "hooks";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { newPlaceThunk } from "Store/place-actions";
+import { uiActions } from "Store/ui-slice";
 import * as Yup from "yup";
 import { ImageUploader } from "./ImageUpload";
+import MultipleSelect from "./MultipleSelect";
+
+
+
+
 
 const newLocationMap: CSS.Properties = {
     minHeight: "200px",

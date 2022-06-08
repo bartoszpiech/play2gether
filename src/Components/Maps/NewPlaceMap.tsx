@@ -1,21 +1,15 @@
 import { useCallback } from "react";
-import Map, { NavigationControl, Marker, GeolocateControl } from "react-map-gl";
+import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
 import GeocoderControl from "./GeocoderControl";
-
 import Pin from "./Pin";
 
-const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
 
-// const initialViewState = {
-//     longitude: 19.1343786,
-//     latitude: 51.9189046,
-//     zoom: 4.6,
-// };
+const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
 
 const initialViewState = {
     longitude: 17.038538,
     latitude: 51.107883,
-    zoom:12,
+    zoom: 12,
 };
 
 function NewPlaceMap(props: any) {

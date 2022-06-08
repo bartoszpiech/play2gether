@@ -1,8 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "hooks";
 import React from "react";
-import { useParams } from "react-router-dom";
-import { joinToEventThunk, leaveFromEventThunk, deleteEventThunk } from "Store/event-actions";
+import { deleteEventThunk, joinToEventThunk, leaveFromEventThunk } from "Store/event-actions";
 
 function Event(props: any) {
     const account = useAppSelector((state) => state.user.account);

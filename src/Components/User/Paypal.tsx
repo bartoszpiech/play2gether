@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-
 import { useAppDispatch, useAppSelector } from "hooks";
+import React, { useEffect, useRef, useState } from "react";
 import { buyPremiumThunk } from "Store/user-actions";
 
 interface productInterface {
@@ -32,38 +31,38 @@ export default function Paypal() {
 
     useEffect(() => {
         window.paypal
-        .Buttons({
-            createOrder: (data: any, actions: any) => {
-                return actions.order.create({
-                    purchase_units: [
-                        {
-                            description: product.description,
-                            amount: {
-                                currency_code: 'PLN',
-                                value: product.price,
+            .Buttons({
+                createOrder: (data: any, actions: any) => {
+                    return actions.order.create({
+                        purchase_units: [
+                            {
+                                description: product.description,
+                                amount: {
+                                    currency_code: "PLN",
+                                    value: product.price,
+                                },
                             },
-                        },
-                    ],
-                });
-            },
-            onApprove : async (data: any, actions: any) => {
-                const order = await actions.order.capture();
-                setPaidFor(true);
-                //console.log(order);
-                dispatch(buyPremiumThunk(token));
-            },
-            onError: (err: any) => {
-                setError(err);
-                console.error(err);
-            },
-        })
-        .render(paypalRef.current);
+                        ],
+                    });
+                },
+                onApprove: async (data: any, actions: any) => {
+                    const order = await actions.order.capture();
+                    setPaidFor(true);
+                    //console.log(order);
+                    dispatch(buyPremiumThunk(token));
+                },
+                onError: (err: any) => {
+                    setError(err);
+                    console.error(err);
+                },
+            })
+            .render(paypalRef.current);
     }, [product.description, product.price]);
 
-    return(
+    return (
         <div>
-            { error && <div>Ups, wystąpił nieoczekiwany błąd</div> }
-            <div ref={ paypalRef } />
+            {error && <div>Ups, wystąpił nieoczekiwany błąd</div>}
+            <div ref={paypalRef} />
         </div>
     );
 }

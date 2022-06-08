@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useControl, ControlPosition } from "react-map-gl";
 // import MapboxGeocoder, { GeocoderOptions } from "@mapbox/mapbox-gl-geocoder";
 import MapboxGeocoder, { GeocoderOptions } from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import { useState } from "react";
+import { ControlPosition, useControl } from "react-map-gl";
 
 type GeocoderControlProps = Omit<GeocoderOptions, "accessToken" | "mapboxgl" | "marker"> & {
     mapboxAccessToken: string;
@@ -14,7 +14,6 @@ type GeocoderControlProps = Omit<GeocoderOptions, "accessToken" | "mapboxgl" | "
     onError: (e: object) => void;
 };
 
-/* eslint-disable complexity,max-statements */
 export default function GeocoderControl(props: GeocoderControlProps) {
     const [marker] = useState(null);
 
@@ -29,12 +28,6 @@ export default function GeocoderControl(props: GeocoderControlProps) {
             ctrl.on("results", props.onResults);
             ctrl.on("result", (evt: any) => {
                 props.onResult(evt);
-                // console.log(evt)
-                // const { result } = evt;
-                // const location =
-                //     result &&
-                //     (result.center ||
-                //         (result.geometry?.type === "Point" && result.geometry.coordinates));
             });
             ctrl.on("error", props.onError);
             return ctrl;

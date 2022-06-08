@@ -1,7 +1,6 @@
-import id from "date-fns/locale/id/index";
 import { AppThunk } from ".";
 import { getCurrentPlaceThunk } from "./place-actions";
-import placeSlice, { placeActions } from "./place-slice";
+import { placeActions } from "./place-slice";
 import { uiActions } from "./ui-slice";
 
 export const getCurrentEventThunk =

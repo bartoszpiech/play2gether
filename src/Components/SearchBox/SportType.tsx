@@ -1,10 +1,10 @@
-import * as React from "react";
-import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-
 import { ThemeProvider } from "@mui/material/styles";
-import { Theme } from "./Theme";
+import TextField from "@mui/material/TextField";
+import * as React from "react";
 import { SportsType } from "./Sports";
+import { Theme } from "./Theme";
+
 
 function SportType(props: any) {
     return (

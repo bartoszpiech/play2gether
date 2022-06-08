@@ -1,4 +1,3 @@
-import { AnyAsyncThunk } from "@reduxjs/toolkit/dist/matchers";
 import React from "react";
 import { Slide } from "react-slideshow-image";
 

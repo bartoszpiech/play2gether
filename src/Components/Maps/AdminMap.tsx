@@ -1,18 +1,16 @@
-import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import Map, {
-    Marker,
-    Popup,
-    NavigationControl,
-    FullscreenControl,
-    ScaleControl,
-    GeolocateControl,
-} from "react-map-gl";
-
-import Pin from "./Pin";
-import GeocoderControl from "./GeocoderControl";
 import { useAppDispatch, useAppSelector } from "hooks";
-import { getAllInactivePlacesThunk, getAllPlacesThunk } from "Store/place-actions";
+import { useEffect } from "react";
+import Map, {
+    FullscreenControl,
+    GeolocateControl,
+    Marker,
+    NavigationControl,
+    ScaleControl
+} from "react-map-gl";
+import { useNavigate } from "react-router-dom";
+import { getAllInactivePlacesThunk } from "Store/place-actions";
+import GeocoderControl from "./GeocoderControl";
+import Pin from "./Pin";
 
 const TOKEN = process.env.REACT_APP_API_MAP_TOKEN;
 
@@ -92,7 +90,6 @@ function AdminMap() {
             <ScaleControl />
 
             {selectedPlaces ? CreatePins(selectedPlaces) : ""}
-            
         </Map>
     );
 }

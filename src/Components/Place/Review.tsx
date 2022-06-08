@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
-import moment from "moment";
-import "moment/locale/pl"; // without this line it didn't work
-
-import { useAppDispatch, useAppSelector } from "hooks";
-import { adminDeniedPlaceThunk, getCurrentPlaceThunk } from "Store/place-actions";
-import { adminAcceptedPlaceThunk } from "Store/place-actions";
-import CSS from "csstype";
-import PlaceMap from "Components/Maps/PlaceMap";
-import { placeActions } from "Store/place-slice";
-import Slideshow from "./Slideshow";
 import { Button, TextField } from "@mui/material";
 import NewPlaceMap from "Components/Maps/NewPlaceMap";
+import CSS from "csstype";
+import { useAppDispatch, useAppSelector } from "hooks";
+import "moment/locale/pl"; // without this line it didn't work
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+    adminAcceptedPlaceThunk,
+    adminDeniedPlaceThunk,
+    getCurrentPlaceThunk,
+} from "Store/place-actions";
+import { placeActions } from "Store/place-slice";
 import MultipleSelect from "./MultipleSelect";
-import { ImageUploader } from "./ImageUpload";
+import Slideshow from "./Slideshow";
 
 const newLocationMap: CSS.Properties = {
     minHeight: "200px",
@@ -38,13 +36,10 @@ function Review() {
         dispatch(
             adminAcceptedPlaceThunk(placeId, name, description, sports, marker, navigate, token)
         );
-        console.log("git");
     };
 
     const deniedHandler = () => {
         dispatch(adminDeniedPlaceThunk(placeId, navigate, token));
-
-        console.log("nie git");
     };
 
     useEffect(() => {

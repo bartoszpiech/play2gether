@@ -10,7 +10,7 @@ import { adminAcceptedPlaceThunk } from "Store/place-actions";
 import CSS from "csstype";
 import PlaceMap from "Components/Maps/PlaceMap";
 import { placeActions } from "Store/place-slice";
-import Slideshow from "./Slideshow ";
+import Slideshow from "./Slideshow";
 import { Button, TextField } from "@mui/material";
 import NewPlaceMap from "Components/Maps/NewPlaceMap";
 import MultipleSelect from "./MultipleSelect";

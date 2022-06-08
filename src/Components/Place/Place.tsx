@@ -5,13 +5,15 @@ import moment from "moment";
 import "moment/locale/pl"; // without this line it didn't work
 
 import { useAppDispatch, useAppSelector } from "hooks";
-import { getCurrentEventThunk, getCurrentPlaceThunk } from "Store/place-actions";
+import { getCurrentPlaceThunk } from "Store/place-actions";
+import { getCurrentEventThunk } from "Store/event-actions";
 
 import NewEvent from "./NewEvent";
 import Event from "./Event";
-import { List } from "@mui/material";
+import { Button, List } from "@mui/material";
 import PlaceMap from "Components/Maps/PlaceMap";
 import { placeActions } from "Store/place-slice";
+import Slideshow from "./Slideshow";
 
 moment.locale("pl");
 
@@ -32,7 +34,7 @@ function Place() {
 
         return function cleanup() {
             dispatch(placeActions.leavePlace());
-          };
+        };
     }, []);
 
     const fetchData = () => {
@@ -42,7 +44,9 @@ function Place() {
     const loadEvents = (events: object[]) => {
         return events.map((event: any) => (
             <div
-                className={`card p-0 ${event._id != currentEvent?._id ? "myCard": "mySelectedCard"}`}
+                className={`card p-0 ${
+                    event._id != currentEvent?._id ? "myCard" : "mySelectedCard"
+                }`}
                 key={event._id}
                 onClick={() => getEventHandler(event._id)}
             >
@@ -77,29 +81,30 @@ function Place() {
                         />
                     ) : (
                         <div className="card d-flex flex-grow-1">
-                            <img
-                                width="100%"
-                                height="350px"
-                                src={
-                                    "https://www.mojeurlopy.pl/upload/object/2864/images/9c649c98f15a9cbfd4de21f3356c1e27.jpg"
-                                }
-                            />
+                            {currentPlace && <Slideshow images={currentPlace?.images} />}
+
                             <div className="div text-center my-4">
                                 <h1 className="card-title">{currentPlace?.name}</h1>
                                 <p className="card-text">{currentPlace?.description}</p>
                             </div>
                             <div className="div m-3">
-                                <div onClick={() => setNewEventView(true)} className="btn myBtn">
+                                <Button
+                                    fullWidth
+                                    variant="contained"
+                                    onClick={() => setNewEventView(true)}
+                                >
                                     Dodaj Wydarzenie
-                                </div>
-                                {account?._id === currentPlace?.owner && (
+                                </Button>
+
+                                {/* {account?._id === currentPlace?.owner && (
                                     <div
                                         onClick={() => setNewEventView(true)}
                                         className="btn myBtn"
+                                        color="error"
                                     >
-                                        Ustawienia
+                                        Usuń
                                     </div>
-                                )}
+                                )} */}
                             </div>
 
                             <div className="flex-grow-1">

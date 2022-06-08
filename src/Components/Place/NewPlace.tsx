@@ -48,7 +48,6 @@ function NewPlace() {
         initialValues: INITIAL_FORM_STATE,
         validationSchema: FORM_VALIDATION,
         onSubmit: ({ name, description }) => {
-            console.log(images);
             if (!marker) {
                 dispatch(
                     uiActions.showNotification({

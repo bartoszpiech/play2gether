@@ -70,13 +70,6 @@ function Place() {
         <div className="container-fluid d-flex rounded-3 shadow p-0">
             <div className="row container-fluid m-0 p-0">
                 <div className="col-xl-4 col-12 p-0 d-flex">
-                    {newEventView ? (
-                        <NewEvent
-                            setNewEventView={setNewEventView}
-                            fetchData={fetchData}
-                            placeId={placeId}
-                        />
-                    ) : (
                         <div className="card d-flex flex-grow-1">
                             {currentPlace && <Slideshow images={currentPlace?.images} />}
 
@@ -85,20 +78,18 @@ function Place() {
                                 <p className="card-text">{currentPlace?.description}</p>
                             </div>
                             <div className="div m-3">
-                                <Button
-                                    fullWidth
-                                    variant="contained"
-                                    onClick={() => setNewEventView(true)}
-                                >
-                                    Dodaj Wydarzenie
-                                </Button>
+                            {currentPlace &&
+                        <NewEvent
+                            setNewEventView={setNewEventView}
+                            fetchData={fetchData}
+                            placeId={placeId}
+                        /> }
                             </div>
 
                             <div className="flex-grow-1">
                                 <PlaceMap />
                             </div>
                         </div>
-                    )}
                 </div>
                 <div className="col-xl-2 col-12 p-0 m-0">
                     <div className="row overflow-auto m-0 p-0" style={{ maxHeight: "825px" }}>
